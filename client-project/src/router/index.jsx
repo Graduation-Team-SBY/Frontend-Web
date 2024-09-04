@@ -1,18 +1,19 @@
-import { createBrowserRouter, redirect } from "react-router-dom";
-import RegisterPage from "../pages/RegisterPage";
-import LoginPage from "../pages/LoginPage";
-import MainLayout from "../pages/layout/MainLayout";
-import HomeClientPage from "../pages/client/HomeClientPage";
-import MyOrders from "../pages/client/MyOrdersPage";
-import AddOrderPage from "../pages/client/AddOrderPage";
+import { createBrowserRouter, redirect } from 'react-router-dom';
+import RegisterPage from '../pages/RegisterPage';
+import LoginPage from '../pages/LoginPage';
+import MainLayout from '../pages/layout/MainLayout';
+import HomeClientPage from '../pages/client/HomeClientPage';
+import MyOrders from '../pages/client/MyOrdersPage';
+import AddOrderPage from '../pages/client/AddOrderPage';
+import DetailOrderPage from '../pages/client/DetailOrderPage';
 
 const router = createBrowserRouter([
   {
-    path: "/register",
+    path: '/register',
     element: <RegisterPage />,
   },
   {
-    path: "/login",
+    path: '/login',
     element: <LoginPage />,
   },
   {
@@ -24,12 +25,16 @@ const router = createBrowserRouter([
         element: <HomeClientPage />,
       },
       {
-        path: "orders",
+        path: 'orders',
         element: <MyOrders />,
       },
       {
-        path: "add-order",
+        path: 'add-order',
         element: <AddOrderPage />,
+      },
+      {
+        path: ':id',
+        element: <DetailOrderPage />,
       },
     ],
   },

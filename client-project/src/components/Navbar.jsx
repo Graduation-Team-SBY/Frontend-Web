@@ -9,7 +9,7 @@ export default function Navbar() {
           <div
             tabIndex={0}
             role="button"
-            className="lg:hidden hover:text-yellow-400"
+            className="lg:hidden hover:text-[#05ECAE]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,21 +42,24 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <Link to="/" className="ml-5 lg:ml-0 text-xl font-black">
+        <Link
+          to="/"
+          className="ml-5 lg:ml-0 text-xl font-black hover:text-[#05ECAE]"
+        >
           AssistMaster
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to="/">Home</Link>
+            <Link className='font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full' to="/">Home</Link>
           </li>
           <li>
-            <Link to="/">Worker</Link>
+            <Link className='font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full' to="/">Worker</Link>
           </li>
 
           <li>
-            <Link to="/orders">Order</Link>
+            <Link className='font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full' to="/orders">Order</Link>
           </li>
         </ul>
       </div>
