@@ -31,11 +31,14 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/client/dashboard">Home</Link>
+              <Link to="/">Home</Link>
             </li>
 
             <li>
-              <Link to="/client/orders">Order</Link>
+              <Link to="/">Worker</Link>
+            </li>
+            <li>
+              <Link to="/orders">Order</Link>
             </li>
           </ul>
         </div>
@@ -46,11 +49,14 @@ export default function Navbar() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to="/client/dashboard">Home</Link>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/">Worker</Link>
           </li>
 
           <li>
-            <Link to="/client/orders">Order</Link>
+            <Link to="/orders">Order</Link>
           </li>
         </ul>
       </div>
@@ -66,10 +72,10 @@ export default function Navbar() {
             className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow"
           >
             <li>
-              <a>Item 1</a>
+              <a>Profile</a>
             </li>
             <li>
-              <a>Item 2</a>
+              <a>Logout</a>
             </li>
           </ul>
         </div>
