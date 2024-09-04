@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <div className="navbar px-6 lg:px-32 fixed top-0 inset-x-0">
+    <div className="navbar px-6 bg-[#faf9fe] lg:px-32 fixed top-0 inset-x-0">
       <div className="navbar-start">
         <div className="dropdown">
           <div
@@ -49,7 +49,7 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <Link to="/" className="ml-5 lg:ml-0 text-xl font-bold">
+        <Link to="/" className="ml-5 lg:ml-0 text-xl font-black">
           AssistMaster
         </Link>
       </div>
