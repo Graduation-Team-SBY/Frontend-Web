@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function HomePage() {
+export default function HomeClientPage() {
   return (
     <>
       <div className="flex gap-10">
@@ -91,9 +91,17 @@ export default function HomePage() {
         <div className="list-card flex gap-6 mt-5 overflow-y-auto no-scrollbar">
           {[1, 2, 3, 4, 5, 6].map((_, i) => {
             return (
-              <div className="p-10 bg-white text-[#1D204C] rounded-xl w-96 shrink-0" key={i}>
-                <h3 className='font-black'>Pencuci Piring</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores officia tempora voluptates ea id maiores earum numquam qui sapiente, eius, quisquam assumenda illo quis ipsa cum? Rem eveniet odio officiis?</p>
+              <div
+                className="p-10 bg-white text-[#1D204C] rounded-xl w-96 shrink-0"
+                key={i}
+              >
+                <h3 className="font-black">Pencuci Piring</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Asperiores officia tempora voluptates ea id maiores earum
+                  numquam qui sapiente, eius, quisquam assumenda illo quis ipsa
+                  cum? Rem eveniet odio officiis?
+                </p>
               </div>
             );
           })}
@@ -117,9 +125,17 @@ export default function HomePage() {
         <div className="list-card flex gap-6 mt-5 overflow-y-auto no-scrollbar">
           {[1, 2, 3, 4, 5, 6].map((_, i) => {
             return (
-              <div className="p-10 bg-white text-[#1D204C] rounded-xl w-96 shrink-0" key={i}>
-                <h3 className='font-black'>Pencuci Piring</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores officia tempora voluptates ea id maiores earum numquam qui sapiente, eius, quisquam assumenda illo quis ipsa cum? Rem eveniet odio officiis?</p>
+              <div
+                className="p-10 bg-white text-[#1D204C] rounded-xl w-96 shrink-0"
+                key={i}
+              >
+                <h3 className="font-black">Pencuci Piring</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Asperiores officia tempora voluptates ea id maiores earum
+                  numquam qui sapiente, eius, quisquam assumenda illo quis ipsa
+                  cum? Rem eveniet odio officiis?
+                </p>
               </div>
             );
           })}
