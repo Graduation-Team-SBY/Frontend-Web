@@ -6,6 +6,7 @@ import HomeClientPage from "../pages/client/HomeClientPage";
 import MyOrders from "../pages/client/MyOrdersPage";
 import AddOrderPage from "../pages/client/AddOrderPage";
 import UpdateProfilePage from "../pages/client/UpdateProfilePage";
+import AddOrderGmapsPage from "../pages/client/AddOrderGmapsPage";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "add-order",
         element: <AddOrderPage />,
+      },
+      {
+        path: "add-order-gmaps",
+        element: <AddOrderGmapsPage />,
       },
       {
         path: "update-profile",
