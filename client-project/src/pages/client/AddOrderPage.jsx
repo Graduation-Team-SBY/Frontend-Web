@@ -40,6 +40,17 @@ export default function AddOrderPage() {
         </div>
         <div>
           <label htmlFor="" className="text-lg">
+            Address
+          </label>{" "}
+          <br />
+          <input
+            type="text"
+            placeholder="Your Address"
+            className="input input-bordered w-full rounded-full"
+          />
+        </div>
+        <div>
+          <label htmlFor="" className="text-lg">
             Due Date
           </label>{" "}
           <br />
