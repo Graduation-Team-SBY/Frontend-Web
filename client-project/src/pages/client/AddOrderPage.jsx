@@ -1,81 +1,80 @@
 export default function AddOrderPage() {
   return (
-    <>
-      <h1 className="text-4xl">Let's start with your first job post.</h1>
-      <div className="mt-[50px] flex w-full justify-between">
-        <div className="w-[400px]">
-          <img
-            src="https://images.unsplash.com/photo-1721332154373-17e78d19b4a4?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
-            className="w-[400px] h-[530px] rounded-[50px]"
+    <div className="flex w-full h-full gap-10">
+      <div className="w-[35%]">
+        <img
+          src="https://images.unsplash.com/photo-1540132586218-183f59221b4f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+          className="w-80 h-80 rounded-xl"
+        />
+        <input
+          type="file"
+          className="file-input file-input-bordered w-full max-w-xs mt-5 rounded-full"
+        />
+      </div>
+      <div className="flex-1 flex flex-col gap-4">
+        <h1 className="font-black text-4xl">
+          Let's start with your first job post.
+        </h1>
+        <div className="w-full">
+          <label htmlFor="" className="text-lg">
+            Job Title
+          </label>{" "}
+          <br />
+          <input
+            type="text"
+            placeholder="Your Job Title"
+            className="input input-bordered w-full rounded-full"
           />
         </div>
-        <div className="flex flex-col justify-between">
-          <div className="flex justify-between">
-            <label htmlFor="" className="text-lg font-semibold">
-              Job Title:
-            </label>
-            <input
-              type="text"
-              placeholder="Job here"
-              className="input input-bordered w-[755px] max-w-xs"
-            />
-          </div>
-          <div className="flex justify-between">
-            <label htmlFor="" className="text-lg font-semibold">
-              Category Title:
-            </label>
-            <input
-              type="text"
-              placeholder="Category title"
-              className="input input-bordered w-[755px] max-w-xs"
-            />
-          </div>
-          <div className="flex justify-between">
-            <label htmlFor="" className="text-lg font-semibold">
-              Due Date:
-            </label>
-            <input
-              type="date"
-              placeholder="Due date"
-              className="input input-bordered w-[755px] max-w-xs"
-            />
-          </div>
-          <div className="flex justify-between">
-            <label htmlFor="" className="text-lg font-semibold">
-              Description Title:
-            </label>
-            <input
-              type="text"
-              placeholder="Description Title"
-              className="input input-bordered w-[755px] max-w-xs"
-            />
-          </div>
-          <div className="flex justify-between">
-            <label htmlFor="" className="text-lg font-semibold">
-              Job Price:
-            </label>
-            <input
-              type="text"
-              placeholder="Job Price"
-              className="input input-bordered w-[755px] max-w-xs"
-            />
-          </div>
-          <div className="flex justify-between">
-            <label htmlFor="" className="text-lg font-semibold">
-              Job Title:
-            </label>
-            <input
-              type="text"
-              placeholder="Job here"
-              className="input input-bordered w-[755px] max-w-xs"
-            />
-          </div>
-          <button className="btn btn-xs bg-[#1D214E] text-white sm:btn-sm md:btn-md lg:btn-lg">
-            Create
-          </button>
+        <div>
+          <label htmlFor="" className="text-lg">
+            Category Title
+          </label>{" "}
+          <br />
+          <input
+            type="text"
+            placeholder="Your Category Title"
+            className="input input-bordered w-full rounded-full"
+          />
         </div>
+        <div>
+          <label htmlFor="" className="text-lg">
+            Due Date
+          </label>{" "}
+          <br />
+          <input
+            type="date"
+            placeholder="Your Due Date"
+            className="input input-bordered w-full rounded-full"
+          />
+        </div>
+        <div>
+          <label htmlFor="" className="text-lg">
+            Description Job
+          </label>{" "}
+          <br />
+          <input
+            type="text"
+            placeholder="Your Description Job"
+            className="input input-bordered w-full rounded-full"
+          />
+        </div>
+        <div>
+          <label htmlFor="" className="text-lg">
+            Price
+          </label>{" "}
+          <br />
+          <input
+            type="number"
+            placeholder="Your Job Price"
+            className="input input-bordered w-full rounded-full"
+          />
+        </div>
+        <button className="btn btn-block btn-lg bg-[#1D204C] text-white rounded-full">
+          Save
+        </button>
       </div>
-    </>
+    </div>
   );
 }
