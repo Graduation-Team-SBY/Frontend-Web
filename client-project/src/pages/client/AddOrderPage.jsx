@@ -72,7 +72,7 @@ export default function AddOrderPage() {
           />
         </div>
         <button className="btn btn-block btn-lg bg-[#1D204C] text-white rounded-full">
-          Save
+          Create
         </button>
       </div>
     </div>
