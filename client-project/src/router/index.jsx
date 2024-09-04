@@ -1,8 +1,9 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
-import HomePage from '../pages/HomePage';
 import RegisterPage from '../pages/RegisterPage';
 import LoginPage from '../pages/LoginPage';
 import MainLayout from '../pages/layout/MainLayout';
+import HomeClientPage from '../pages/client/HomeClientPage';
+import MyOrders from '../pages/client/MyOrdersPage';
 
 const router = createBrowserRouter([
   {
@@ -14,12 +15,16 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: '/',
+    path: '/client',
     element: <MainLayout />,
     children: [
       {
-        path: '',
-        element: <HomePage />,
+        path: 'dashboard',
+        element: <HomeClientPage />,
+      },
+      {
+        path: 'orders',
+        element: <MyOrders />,
       },
     ],
   },
