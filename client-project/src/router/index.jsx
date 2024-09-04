@@ -5,6 +5,8 @@ import MainLayout from "../pages/layout/MainLayout";
 import HomeClientPage from "../pages/client/HomeClientPage";
 import MyOrders from "../pages/client/MyOrdersPage";
 import AddOrderPage from "../pages/client/AddOrderPage";
+import UpdateProfilePage from "../pages/client/UpdateProfilePage";
+import AddOrderGmapsPage from "../pages/client/AddOrderGmapsPage";
 
 const router = createBrowserRouter([
   {
@@ -16,11 +18,11 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: '/',
+    path: "/",
     element: <MainLayout />,
     children: [
       {
-        path: '',
+        path: "",
         element: <HomeClientPage />,
       },
       {
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: "add-order",
         element: <AddOrderPage />,
+      },
+      {
+        path: "add-order-gmaps",
+        element: <AddOrderGmapsPage />,
+      },
+      {
+        path: "update-profile",
+        element: <UpdateProfilePage />,
       },
     ],
   },

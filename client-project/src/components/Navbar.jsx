@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <div className="navbar px-6 bg-[#faf9fe] lg:px-32 fixed top-0 inset-x-0">
+    <div className="navbar px-6 bg-[#faf9fe] lg:px-32 fixed top-0 inset-x-0 z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div
@@ -72,7 +72,7 @@ export default function Navbar() {
             className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow"
           >
             <li>
-              <a>Profile</a>
+              <Link to="/update-profile">Profile</Link>
             </li>
             <li>
               <a>Logout</a>

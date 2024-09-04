@@ -1,4 +1,4 @@
-export default function AddOrderPage() {
+export default function UpdateProfilePage() {
   return (
     <div className="flex w-full h-full gap-10">
       <div className="w-[35%]">
@@ -13,77 +13,53 @@ export default function AddOrderPage() {
         />
       </div>
       <div className="flex-1 flex flex-col gap-4">
-        <h1 className="font-black text-4xl">
-          Let's start with your first job post.
-        </h1>
+        <h1 className="font-black text-4xl">Profile Detail</h1>
         <div className="w-full">
           <label htmlFor="" className="text-lg">
-            Job Title
+            Name
           </label>{" "}
           <br />
           <input
             type="text"
-            placeholder="Your Job Title"
+            placeholder="Your Name"
             className="input input-bordered w-full rounded-full"
           />
         </div>
         <div>
           <label htmlFor="" className="text-lg">
-            Category Title
+            Phone Number
           </label>{" "}
           <br />
           <input
             type="text"
-            placeholder="Your Category Title"
+            placeholder="Your Phone Number"
             className="input input-bordered w-full rounded-full"
           />
         </div>
         <div>
           <label htmlFor="" className="text-lg">
-            Address
+            Email
           </label>{" "}
           <br />
           <input
-            type="text"
-            placeholder="Your Address"
+            type="email"
+            placeholder="Your Email"
             className="input input-bordered w-full rounded-full"
           />
         </div>
         <div>
           <label htmlFor="" className="text-lg">
-            Due Date
+            Password
           </label>{" "}
           <br />
           <input
-            type="date"
-            placeholder="Your Due Date"
-            className="input input-bordered w-full rounded-full"
-          />
-        </div>
-        <div>
-          <label htmlFor="" className="text-lg">
-            Description Job
-          </label>{" "}
-          <br />
-          <input
-            type="text"
-            placeholder="Your Description Job"
-            className="input input-bordered w-full rounded-full"
-          />
-        </div>
-        <div>
-          <label htmlFor="" className="text-lg">
-            Price
-          </label>{" "}
-          <br />
-          <input
-            type="number"
-            placeholder="Your Job Price"
+            type="password"
+            placeholder="Your Password"
             className="input input-bordered w-full rounded-full"
           />
         </div>
         <button className="btn btn-block btn-lg bg-[#1D204C] text-white rounded-full">
-          Create
+          Save
         </button>
       </div>
     </div>
