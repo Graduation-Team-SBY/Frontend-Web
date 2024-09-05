@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -72,7 +72,7 @@ export default function Navbar() {
             className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow"
           >
             <li>
-              <a>Profile</a>
+              <Link to="/profileWorker">Profile</Link>
             </li>
             <li>
               <a>Logout</a>

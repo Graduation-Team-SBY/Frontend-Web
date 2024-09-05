@@ -1,8 +1,8 @@
-import ChatEnd from "../../components/ChatEnd";
-import ChatStart from "../../components/ChatStart";
-import ProfileChat from "../../components/ProfileChat";
+import ChatEnd from "../../../components/ChatEnd";
+import ChatStart from "../../../components/ChatStart";
+import ProfileChat from "../../../components/workerComponent/ProfileChat";
 
-export default function ChatRoamWorkerPage() {
+export default function RoamChatWorkerPage() {
   return (
     <>
       <div className="flex bg-[#FAF9FE] gap-4 h-[75vh] overflow-hidden">
