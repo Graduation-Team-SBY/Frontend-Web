@@ -1,20 +1,37 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/effect-creative';
+
+import { Autoplay, EffectCreative, Mousewheel} from 'swiper/modules';
 export default function HomeClientPage() {
   return (
     <>
       <div className="flex flex-col-reverse lg:flex-row gap-10 justify-between mt-10">
         <div className="my-auto w-full lg:w-1/2">
-          <h1 className="font-black text-3xl lg:text-4xl">Mau Ngapain Hari Ini?</h1>
+          <h1 className="font-black text-3xl lg:text-4xl">
+            Mau Ngapain Hari Ini?
+          </h1>
           <div className="flex gap-6">
-            <Link to="/" className="bg-white mt-10 p-10 w-full lg:w-[25%] rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]">
+            <Link
+              to="/add-order-gmaps"
+              className="bg-white mt-10 p-10 w-full lg:w-[25%] rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
+            >
               <img src="/shopping-bag.png" alt="" />
-              <span className="font-bold text-md mt-4 text-center">Belanja</span>
+              <span className="font-bold text-md mt-4 text-center">
+                Belanja
+              </span>
             </Link>
-            <Link to="/" className="bg-white mt-10 p-10 w-full lg:w-[25%] rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]">
+            <Link
+              to="/add-order"
+              className="bg-white mt-10 p-10 w-full lg:w-[25%] rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
+            >
               <img src="/bucket-cleaner.png" alt="" />
-              <span className="font-bold text-md mt-4 text-center">Cleaning Service</span>
+              <span className="font-bold text-md mt-4 text-center">
+                Cleaning Service
+              </span>
             </Link>
           </div>
         </div>
@@ -57,7 +74,7 @@ export default function HomeClientPage() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className='text-sm'>Top Up</span>
+                <span className="text-sm">Top Up</span>
               </div>
               <div className="flex flex-col items-center">
                 <svg
@@ -73,7 +90,7 @@ export default function HomeClientPage() {
                   />
                 </svg>
 
-                <span className='text-sm'>Transfer</span>
+                <span className="text-sm">Transfer</span>
               </div>
             </div>
             <svg
@@ -93,141 +110,41 @@ export default function HomeClientPage() {
       </div>
 
       {/* Carousel */}
-      <div
-        id="default-carousel"
-        className="relative w-full mt-10"
-        data-carousel="slide"
+      <Swiper
+        grabCursor={true}
+        slidesPerView={1}
+        effect={'creative'}
+        loop={true}
+        creativeEffect={{
+          prev: {
+            shadow: true,
+            translate: [0, 0, -400],
+          },
+          next: {
+            translate: ['100%', 0, 0],
+          },
+        }}
+        mousewheel={true}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        modules={[EffectCreative, Autoplay, Mousewheel]}
+        className="mySwiper mt-14"
       >
-        {/* Carousel wrapper */}
-        <div className="relative h-56 overflow-hidden rounded-2xl md:h-96">
-          {/* Item 1 */}
-          <div
-            className="hidden duration-700 ease-in-out"
-            data-carousel-item=""
-          >
-            <img
-              src="/banner1.png"
-              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt="..."
-            />
-          </div>
-          {/* Item 2 */}
-          <div
-            className="hidden duration-700 ease-in-out"
-            data-carousel-item=""
-          >
-            <img
-              src="/banner2.png"
-              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt="..."
-            />
-          </div>
-          {/* Item 3 */}
-          <div
-            className="hidden duration-700 ease-in-out"
-            data-carousel-item=""
-          >
-            <img
-              src="/banner3.png"
-              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt="..."
-            />
-          </div>
-          {/* Item 4 */}
-          <div
-            className="hidden duration-700 ease-in-out"
-            data-carousel-item=""
-          >
-            <img
-              src="/banner4.png"
-              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              alt="..."
-            />
-          </div>
-          
-        </div>
-        {/* Slider indicators */}
-        <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-          <button
-            type="button"
-            className="w-3 h-3 rounded-full"
-            aria-current="true"
-            aria-label="Slide 1"
-            data-carousel-slide-to={0}
-          />
-          <button
-            type="button"
-            className="w-3 h-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 2"
-            data-carousel-slide-to={1}
-          />
-          <button
-            type="button"
-            className="w-3 h-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 3"
-            data-carousel-slide-to={2}
-          />
-          <button
-            type="button"
-            className="w-3 h-3 rounded-full"
-            aria-current="false"
-            aria-label="Slide 4"
-            data-carousel-slide-to={3}
-          />
-          
-        </div>
-        {/* Slider controls */}
-        <button
-          type="button"
-          className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-          data-carousel-prev=""
-        >
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg
-              className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 1 1 5l4 4"
-              />
-            </svg>
-            <span className="sr-only">Previous</span>
-          </span>
-        </button>
-        <button
-          type="button"
-          className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-          data-carousel-next=""
-        >
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg
-              className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="m1 9 4-4-4-4"
-              />
-            </svg>
-            <span className="sr-only">Next</span>
-          </span>
-        </button>
-      </div>
+        <SwiperSlide>
+          <img src="/banner1.png" alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/banner2.png" alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/banner3.png" alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/banner4.png" alt="" />
+        </SwiperSlide>
+      </Swiper>
       {/* Carousel */}
 
       <div className="mt-20">
