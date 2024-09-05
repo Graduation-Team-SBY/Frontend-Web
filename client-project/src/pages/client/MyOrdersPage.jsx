@@ -15,7 +15,7 @@ export default function MyOrdersPage() {
         </select>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-5">
         {[1, 2, 3, 4, 5, 6, , 7].map((_, i) => {
           return <div className="p-10 bg-white text-[#1D204C]">
             <h3 className="font-black text-lg">Pencuci Piring</h3>

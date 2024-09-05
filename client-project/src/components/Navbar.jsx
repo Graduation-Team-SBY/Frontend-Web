@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <div className="navbar px-6 bg-[#faf9fe] lg:px-32 fixed top-0 inset-x-0">
+    <div className="navbar px-6 bg-[#faf9fe] lg:px-32 fixed top-0 inset-x-0 z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div
             tabIndex={0}
             role="button"
-            className="lg:hidden hover:text-yellow-400"
+            className="lg:hidden hover:text-[#05ECAE]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -38,32 +38,70 @@ export default function Navbar() {
               <Link to="/worker">Worker</Link>
             </li>
             <li>
-              <Link to="/orders">Order</Link>
+              <details>
+                <summary className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full">
+                  Orders
+                </summary>
+                <ul className="p-2 w-36">
+                  <li>
+                    <Link to="/orders">My Order</Link>
+                  </li>
+                  <li>
+                    <Link to="/orders-deals">Deal Order</Link>
+                  </li>
+                </ul>
+              </details>
             </li>
           </ul>
         </div>
-        <Link to="/" className="ml-5 lg:ml-0 text-xl font-black">
+        <Link
+          to="/"
+          className="ml-5 lg:ml-0 text-xl font-black hover:text-[#05ECAE]"
+        >
           AssistMaster
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to="/">Home</Link>
+            <Link
+              className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
+              to="/"
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/worker">Worker</Link>
+
+            <Link
+              className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
+              to="/worker"
+            >
+              Worker
+            </Link>
           </li>
 
           <li>
-            <Link to="/orders">Order</Link>
+            <details>
+              <summary className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full">
+                Orders
+              </summary>
+              <ul className="p-2 w-36">
+                <li>
+                  <Link to="/orders">My Order</Link>
+                </li>
+                <li>
+                  <Link to="/orders-deals">Deal Order</Link>
+                </li>
+              </ul>
+            </details>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
         <div className="dropdown dropdown-bottom dropdown-end flex content-center">
           <div className="avatar online" tabIndex={0} role="button">
-            <div className="w-10 rounded-full">
+            <div className="w-8 rounded-full">
               <img src="https://cdn-icons-png.flaticon.com/512/8847/8847419.png" />
             </div>
           </div>
@@ -72,7 +110,11 @@ export default function Navbar() {
             className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/profileWorker">Profile</Link>
+
+              <Link to="/profile-worker">Profile Worker</Link>
+
+              <Link to="/update-profile">Profile</Link>
+
             </li>
             <li>
               <a>Logout</a>

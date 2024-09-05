@@ -1,26 +1,42 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/effect-creative';
+
+import { Autoplay, EffectCreative, Mousewheel} from 'swiper/modules';
 export default function HomeClientPage() {
   return (
     <>
-      <div className="flex gap-10">
-        <div className="bg-white w-[25%] rounded-xl flex flex-col justify-center items-center text-[#1D204C]">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="w-12"
-          >
-            <path
-              fillRule="evenodd"
-              d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <span className="font-bold text-md">Add Order</span>
+      <div className="flex flex-col-reverse lg:flex-row gap-10 justify-between mt-10">
+        <div className="my-auto w-full lg:w-1/2">
+          <h1 className="font-black text-3xl lg:text-4xl">
+            Mau Ngapain Hari Ini?
+          </h1>
+          <div className="flex gap-6">
+            <Link
+              to="/add-order-gmaps"
+              className="bg-white mt-10 p-10 w-full lg:w-[25%] rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
+            >
+              <img src="/shopping-bag.png" alt="" />
+              <span className="font-bold text-md mt-4 text-center">
+                Belanja
+              </span>
+            </Link>
+            <Link
+              to="/add-order"
+              className="bg-white mt-10 p-10 w-full lg:w-[25%] rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
+            >
+              <img src="/bucket-cleaner.png" alt="" />
+              <span className="font-bold text-md mt-4 text-center">
+                Cleaning Service
+              </span>
+            </Link>
+          </div>
         </div>
 
-        <div className="card-wallet bg-white text-white p-10 w-[50%] rounded-2xl flex flex-col justify-between gap-16 bg-gradient-to-tl from-[#05ECAE] to-[#1D204C]">
+        <div className="card-wallet bg-white text-white p-10 w-full lg:w-1/2 rounded-2xl flex flex-col justify-between gap-8 bg-gradient-to-tl from-[#05ECAE] to-[#1D204C]">
           <div className=" flex justify-between">
             <h2 className="font-black text-lg text-gray-200">My Balance</h2>
             <svg
@@ -37,15 +53,51 @@ export default function HomeClientPage() {
               />
             </svg>
           </div>
-          <h1 className="font-black text-4xl">Rp. 300.000</h1>
-
-          <div className="flex justify-between">
+          <div className="">
+            <h1 className="font-black text-4xl">Rp. 300.000</h1>
             <p>**** **** **** 4093</p>
+          </div>
+
+          <div className="flex justify-between items-center">
+            <div className="bg-white text-[#1D204C] py-3 px-5 rounded-xl flex gap-6">
+              <div className="flex flex-col items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-6"
+                >
+                  <path d="M4.5 3.75a3 3 0 0 0-3 3v.75h21v-.75a3 3 0 0 0-3-3h-15Z" />
+                  <path
+                    fillRule="evenodd"
+                    d="M22.5 9.75h-21v7.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-7.5Zm-18 3.75a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5h-6a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="text-sm">Top Up</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm.53 5.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 1 0 1.06 1.06l1.72-1.72v5.69a.75.75 0 0 0 1.5 0v-5.69l1.72 1.72a.75.75 0 1 0 1.06-1.06l-3-3Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+
+                <span className="text-sm">Transfer</span>
+              </div>
+            </div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="size-6"
+              className="w-8"
             >
               <path
                 fillRule="evenodd"
@@ -55,28 +107,49 @@ export default function HomeClientPage() {
             </svg>
           </div>
         </div>
-        <div className="bg-white w-[25%] rounded-xl flex flex-col justify-center items-center text-[#1D204C]">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="w-12"
-          >
-            <path d="M4.5 3.75a3 3 0 0 0-3 3v.75h21v-.75a3 3 0 0 0-3-3h-15Z" />
-            <path
-              fillRule="evenodd"
-              d="M22.5 9.75h-21v7.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-7.5Zm-18 3.75a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5h-6a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z"
-              clipRule="evenodd"
-            />
-          </svg>
-
-          <span className="font-bold text-md">Top Up</span>
-        </div>
       </div>
 
+      {/* Carousel */}
+      <Swiper
+        grabCursor={true}
+        slidesPerView={1}
+        effect={'creative'}
+        loop={true}
+        creativeEffect={{
+          prev: {
+            shadow: true,
+            translate: [0, 0, -400],
+          },
+          next: {
+            translate: ['100%', 0, 0],
+          },
+        }}
+        mousewheel={true}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        modules={[EffectCreative, Autoplay, Mousewheel]}
+        className="mySwiper mt-14"
+      >
+        <SwiperSlide>
+          <img src="/banner1.png" alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/banner2.png" alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/banner3.png" alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/banner4.png" alt="" />
+        </SwiperSlide>
+      </Swiper>
+      {/* Carousel */}
+
       <div className="mt-20">
-        <h2 className="font-black text-4xl">Recommendation</h2>
-        <div className="flex gap-4 justify-end items-center mt-5">
+        <h2 className="font-black text-3xl lg:text-4xl">Recommendation</h2>
+        <div className="flex gap-4 lg:justify-end items-center mt-5">
           <p>Filter :</p>
           <select className="select select-ghost w-fit">
             <option disabled selected>
@@ -91,7 +164,8 @@ export default function HomeClientPage() {
         <div className="list-card flex gap-6 mt-5 overflow-y-auto no-scrollbar">
           {[1, 2, 3, 4, 5, 6].map((_, i) => {
             return (
-              <div
+              <Link
+                to={`/${i}`}
                 className="p-10 bg-white text-[#1D204C] rounded-xl w-96 shrink-0"
                 key={i}
               >
@@ -102,15 +176,15 @@ export default function HomeClientPage() {
                   numquam qui sapiente, eius, quisquam assumenda illo quis ipsa
                   cum? Rem eveniet odio officiis?
                 </p>
-              </div>
+              </Link>
             );
           })}
         </div>
       </div>
 
       <div className="mt-20">
-        <h2 className="font-black text-4xl">Histories</h2>
-        <div className="flex gap-4 justify-end items-center mt-5">
+        <h2 className="font-black text-3xl lg:text-4xl">Histories</h2>
+        <div className="flex gap-4 lg:justify-end items-center mt-5">
           <p>Filter :</p>
           <select className="select select-ghost w-fit">
             <option disabled selected>

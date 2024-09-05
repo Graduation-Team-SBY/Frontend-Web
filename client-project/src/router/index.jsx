@@ -9,6 +9,12 @@ import HomepageWorker from "../pages/worker/Home/HomepageWorker";
 import RoamChatWorkerPage from "../pages/worker/Chat/RoamChatWorkerPage";
 import EditProfileWorkerPage from "../pages/worker/Profile/EditProfileWorkerPage";
 import ProfileWorkerPage from "../pages/worker/Profile/ProfileWorkerPage";
+import DetailOrderPage from "../pages/client/DetailOrderPage";
+import UpdateProfilePage from "../pages/client/UpdateProfilePage";
+import AddOrderGmapsPage from "../pages/client/AddOrderGmapsPage";
+import ProfilePage from "../pages/client/ProfilePage";
+import DealOrdersPage from '../pages/client/DealOrdersPage';
+
 
 const router = createBrowserRouter([
   {
@@ -32,7 +38,11 @@ const router = createBrowserRouter([
         element: <MyOrders />,
       },
       {
-        path: "add-order",
+        path: 'orders-deals',
+        element: <DealOrdersPage />,
+      },
+      {
+        path: 'add-order',
         element: <AddOrderPage />,
       },
       {
@@ -40,12 +50,28 @@ const router = createBrowserRouter([
         element: <HomepageWorker />,
       },
       {
-        path: "editProfile",
+        path: "edit-profile-worker",
         element: <EditProfileWorkerPage />,
       },
       {
-        path: "profileWorker",
+        path: "profile-worker",
         element: <ProfileWorkerPage />,
+      },
+      {  
+        path: ":id",
+        element: <DetailOrderPage />,
+      },
+      {
+        path: "add-order-gmaps",
+        element: <AddOrderGmapsPage />,
+      },
+      {
+        path: "update-profile",
+        element: <UpdateProfilePage />,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
       },
     ],
   },
