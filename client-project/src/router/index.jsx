@@ -5,6 +5,10 @@ import MainLayout from "../pages/layout/MainLayout";
 import HomeClientPage from "../pages/client/HomeClientPage";
 import MyOrders from "../pages/client/MyOrdersPage";
 import AddOrderPage from "../pages/client/AddOrderPage";
+import HomepageWorker from "../pages/worker/Home/HomepageWorker";
+import RoamChatWorkerPage from "../pages/worker/Chat/RoamChatWorkerPage";
+import EditProfileWorkerPage from "../pages/worker/Profile/EditProfileWorkerPage";
+import ProfileWorkerPage from "../pages/worker/Profile/ProfileWorkerPage";
 import DetailOrderPage from "../pages/client/DetailOrderPage";
 import UpdateProfilePage from "../pages/client/UpdateProfilePage";
 import AddOrderGmapsPage from "../pages/client/AddOrderGmapsPage";
@@ -42,6 +46,18 @@ const router = createBrowserRouter([
         element: <AddOrderPage />,
       },
       {
+        path: "worker",
+        element: <HomepageWorker />,
+      },
+      {
+        path: "edit-profile-worker",
+        element: <EditProfileWorkerPage />,
+      },
+      {
+        path: "profile-worker",
+        element: <ProfileWorkerPage />,
+      },
+      {  
         path: ":id",
         element: <DetailOrderPage />,
       },

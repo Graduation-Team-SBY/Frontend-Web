@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -35,7 +35,7 @@ export default function Navbar() {
             </li>
 
             <li>
-              <Link to="/">Worker</Link>
+              <Link to="/worker">Worker</Link>
             </li>
             <li>
               <details>
@@ -72,9 +72,10 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
+
             <Link
               className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
-              to="/"
+              to="/worker"
             >
               Worker
             </Link>
@@ -109,7 +110,11 @@ export default function Navbar() {
             className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow"
           >
             <li>
+
+              <Link to="/profile-worker">Profile Worker</Link>
+
               <Link to="/update-profile">Profile</Link>
+
             </li>
             <li>
               <a>Logout</a>
