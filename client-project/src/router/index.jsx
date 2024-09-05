@@ -1,23 +1,24 @@
-import { createBrowserRouter, redirect } from 'react-router-dom';
-import RegisterPage from '../pages/RegisterPage';
-import LoginPage from '../pages/LoginPage';
-import MainLayout from '../pages/layout/MainLayout';
-import HomeClientPage from '../pages/client/HomeClientPage';
-import MyOrders from '../pages/client/MyOrdersPage';
-import AddOrderPage from '../pages/client/AddOrderPage';
-import DetailOrderPage from '../pages/client/DetailOrderPage';
+import { createBrowserRouter, redirect } from "react-router-dom";
+import RegisterPage from "../pages/RegisterPage";
+import LoginPage from "../pages/LoginPage";
+import MainLayout from "../pages/layout/MainLayout";
+import HomeClientPage from "../pages/client/HomeClientPage";
+import MyOrders from "../pages/client/MyOrdersPage";
+import AddOrderPage from "../pages/client/AddOrderPage";
+import DetailOrderPage from "../pages/client/DetailOrderPage";
 import UpdateProfilePage from "../pages/client/UpdateProfilePage";
 import AddOrderGmapsPage from "../pages/client/AddOrderGmapsPage";
+import ProfilePage from "../pages/client/ProfilePage";
 import DealOrdersPage from '../pages/client/DealOrdersPage';
 
 
 const router = createBrowserRouter([
   {
-    path: '/register',
+    path: "/register",
     element: <RegisterPage />,
   },
   {
-    path: '/login',
+    path: "/login",
     element: <LoginPage />,
   },
   {
@@ -29,20 +30,19 @@ const router = createBrowserRouter([
         element: <HomeClientPage />,
       },
       {
-        path: 'orders',
+        path: "orders",
         element: <MyOrders />,
       },
       {
         path: 'orders-deals',
         element: <DealOrdersPage />,
       },
-
       {
         path: 'add-order',
         element: <AddOrderPage />,
       },
       {
-        path: ':id',
+        path: ":id",
         element: <DetailOrderPage />,
       },
       {
@@ -52,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "update-profile",
         element: <UpdateProfilePage />,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
       },
     ],
   },
