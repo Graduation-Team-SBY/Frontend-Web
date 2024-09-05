@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
@@ -38,7 +38,19 @@ export default function Navbar() {
               <Link to="/">Worker</Link>
             </li>
             <li>
-              <Link to="/orders">Order</Link>
+              <details>
+                <summary className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full">
+                  Orders
+                </summary>
+                <ul className="p-2 w-36">
+                  <li>
+                    <Link to="/orders">My Order</Link>
+                  </li>
+                  <li>
+                    <Link to="/orders-deals">Deal Order</Link>
+                  </li>
+                </ul>
+              </details>
             </li>
           </ul>
         </div>
@@ -52,21 +64,43 @@ export default function Navbar() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link className='font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full' to="/">Home</Link>
+            <Link
+              className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
+              to="/"
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <Link className='font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full' to="/">Worker</Link>
+            <Link
+              className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
+              to="/"
+            >
+              Worker
+            </Link>
           </li>
 
           <li>
-            <Link className='font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full' to="/orders">Order</Link>
+            <details>
+              <summary className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full">
+                Orders
+              </summary>
+              <ul className="p-2 w-36">
+                <li>
+                  <Link to="/orders">My Order</Link>
+                </li>
+                <li>
+                  <Link to="/orders-deals">Deal Order</Link>
+                </li>
+              </ul>
+            </details>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
         <div className="dropdown dropdown-bottom dropdown-end flex content-center">
           <div className="avatar online" tabIndex={0} role="button">
-            <div className="w-10 rounded-full">
+            <div className="w-8 rounded-full">
               <img src="https://cdn-icons-png.flaticon.com/512/8847/8847419.png" />
             </div>
           </div>
