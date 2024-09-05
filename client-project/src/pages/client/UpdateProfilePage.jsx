@@ -1,4 +1,34 @@
+// import { useState } from "react";
+// import axios from "../../config/axiosInstance";
+// import { toast } from "react-toastify";
+// import { useNavigate } from "react-router-dom";
+
 export default function UpdateProfilePage() {
+  // const navigate = useNavigate();
+  // const [name, setName] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+  // const handleUpdate = async (e) => {
+  //   try {
+  //     e.preventDefault();
+  //     const { data } = await axios({
+  //       method: "PUT",
+  //       url: "",
+  //       data: {
+  //         name,
+  //         phoneNumber,
+  //         email,
+  //         password,
+  //       },
+  //     });
+  //     toast.info("Success to Update Profile");
+  //     navigate("/profile");
+  //   } catch (error) {
+  //     toast.error(error.response.data.message);
+  //   }
+  // };
   return (
     <div className="">
       <form className="flex gap-10 mt-4 justify-between">
@@ -24,6 +54,7 @@ export default function UpdateProfilePage() {
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full rounded-full py-6"
+              // onChange={(e) => setName(e.target.value)}
             />
           </label>
           <label className="form-control w-full">
@@ -34,6 +65,7 @@ export default function UpdateProfilePage() {
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full rounded-full py-6"
+              // onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </label>
           <label className="form-control w-full">
@@ -44,6 +76,7 @@ export default function UpdateProfilePage() {
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full rounded-full py-6"
+              // onChange={(e) => setEmail(e.target.value)}
             />
           </label>
           <label className="form-control w-full">
@@ -54,6 +87,7 @@ export default function UpdateProfilePage() {
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full rounded-full py-6"
+              // onChange={(e) => setPassword(e.target.value)}
             />
           </label>
           <button
