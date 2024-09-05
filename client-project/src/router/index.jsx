@@ -5,6 +5,10 @@ import MainLayout from "../pages/layout/MainLayout";
 import HomeClientPage from "../pages/client/HomeClientPage";
 import MyOrders from "../pages/client/MyOrdersPage";
 import AddOrderPage from "../pages/client/AddOrderPage";
+import HomeWorkerPage from "../pages/worker/HomeWokerPage";
+import ChatApp from "../pages/worker/ChatWorker";
+import ProfileWorker from "../pages/worker/ProfileWorkerPage";
+import EditProfilePage from "../pages/worker/EditProfile";
 
 const router = createBrowserRouter([
   {
@@ -16,11 +20,11 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: '/',
+    path: "/",
     element: <MainLayout />,
     children: [
       {
-        path: '',
+        path: "",
         element: <HomeClientPage />,
       },
       {
@@ -31,6 +35,14 @@ const router = createBrowserRouter([
         path: "add-order",
         element: <AddOrderPage />,
       },
+      {
+        path: "worker",
+        element: <ProfileWorker />,
+      },
+      {
+        path: "editProfile",
+        element: <EditProfilePage />
+      }
     ],
   },
 ]);

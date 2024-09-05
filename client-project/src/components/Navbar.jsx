@@ -35,7 +35,7 @@ export default function Navbar() {
             </li>
 
             <li>
-              <Link to="/">Worker</Link>
+              <Link to="/worker">Worker</Link>
             </li>
             <li>
               <Link to="/orders">Order</Link>
@@ -52,7 +52,7 @@ export default function Navbar() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/">Worker</Link>
+            <Link to="/worker">Worker</Link>
           </li>
 
           <li>
