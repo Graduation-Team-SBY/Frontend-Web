@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function ProfilePage() {
   return (
     <div className="p-8 rounded-lg shadow-lg">
@@ -53,7 +55,8 @@ export default function ProfilePage() {
 
         {/* Side Content */}
         <div className="p-4 rounded-lg flex items-start gap-4">
-          <button
+          <Link
+            to="/orders"
             className="
           shadow-lg p-4 rounded-xl"
           >
@@ -74,8 +77,9 @@ export default function ProfilePage() {
               </svg>
               <p className="text-gray-400 ml-4">My Orders</p>
             </div>
-          </button>
-          <button
+          </Link>
+          <Link
+            to="/orders-deals"
             className="
           shadow-lg p-4 rounded-xl"
           >
@@ -96,8 +100,9 @@ export default function ProfilePage() {
               </svg>
               <p className="text-gray-400 ml-4">My Deal Job</p>
             </div>
-          </button>
-          <button
+          </Link>
+          <Link
+            to="/update-profile"
             className="
           shadow-lg p-4 rounded-xl"
           >
@@ -118,7 +123,7 @@ export default function ProfilePage() {
               </svg>
               <p className="text-gray-400 ml-4">Edit Profile</p>
             </div>
-          </button>
+          </Link>
         </div>
       </div>
 
