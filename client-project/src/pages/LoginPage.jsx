@@ -1,6 +1,33 @@
-import React from 'react';
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import axios from "../config/axiosInstance";
+// import { toast } from "react-toastify";
 
 export default function LoginPage() {
+  // const navigate = useNavigate();
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+  // const handlerLogin = async (e) => {
+  //   try {
+  //     e.preventDefault();
+  //     const { data } = await axios({
+  //       method: "POST",
+  //       url: "/login",
+  //       data: {
+  //         email,
+  //         password,
+  //       },
+  //     });
+
+  //     // console.log(data)
+  //     localStorage.setItem("access_token", data.access_token);
+  //     toast.info("Success to login");
+  //     navigate("/");
+  //   } catch (error) {
+  //     toast.error(error.response.data.message);
+  //   }
+  // };
   return (
     <div className="min-h-screen flex container mx-auto px-10 lg:px-36 relative">
       <div className="hidden lg:flex justify-center content-center lg:w-1/2 min-h-screen">
@@ -14,7 +41,10 @@ export default function LoginPage() {
         <h1 className="font-black text-5xl">Login</h1>
         <h6 className="font-bold text-gray-400">Welcome back!</h6>
 
-        <form className="mt-10 w-full px-16">
+        <form
+          // onSubmit={handlerLogin}
+          className="mt-10 w-full px-16"
+        >
           <label className="form-control mt-3">
             <div className="label">
               <span className="label-text font-bold">Email</span>
@@ -24,6 +54,7 @@ export default function LoginPage() {
               name="email"
               placeholder="Type here your email"
               className="input input-bordered rounded-full p-7"
+              // onChange={(e) => setEmail(e.target.value)}
             />
           </label>
 
@@ -36,6 +67,7 @@ export default function LoginPage() {
               name="password"
               placeholder="Type here your password"
               className="input input-bordered rounded-full p-7"
+              // onChange={(e) => setPassword(e.target.value)}
             />
           </label>
 
