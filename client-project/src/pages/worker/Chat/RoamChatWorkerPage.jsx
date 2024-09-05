@@ -5,13 +5,13 @@ import ProfileChat from "../../../components/workerComponent/ProfileChat";
 export default function RoamChatWorkerPage() {
   return (
     <>
-      <div className="flex bg-[#FAF9FE] gap-4 h-[75vh] overflow-hidden">
+      <div className="flex bg-[#FAF9FE] gap-4 h-[75vh] overflow-hidden p-6 rounded-xl">
         <ProfileChat />
 
-        <div className="flex-1 p-6 flex flex-col bg-[#FFFFFF] rounded-2xl">
+        <div className="flex-1 p-6 flex flex-col bg-[#FAF9FE] rounded-2xl shadow-lg">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl font-bold text-[#1D204C]">Aditya</h1>
-            <button className="text-[#1D204C] hover:text-[#1D204C] transition">
+            <h1 className="text-2xl font-semibold text-[#1D204C]">Aditya</h1>
+            <button className="text-[#1D204C] hover:text-[#2a2b38] transition">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -28,18 +28,31 @@ export default function RoamChatWorkerPage() {
               </svg>
             </button>
           </div>
-          <hr className="border-t border-[#1D204C] mb-4" />
 
-          <div className="flex-1 overflow-y-auto space-y-2 pr-2">
+          <hr className="border-t border-[#FAF9FE] mb-4" />
+
+          <div className="flex-1 overflow-y-auto space-y-2 pr-2 custom-scrollbar">
+            <ChatStart />
+            <ChatEnd />
+
+            <ChatStart />
+            <ChatEnd />
+
+            <ChatStart />
+            <ChatEnd />
+
+            <ChatStart />
+            <ChatEnd />
+
             <ChatStart />
             <ChatEnd />
           </div>
 
-          <div className="flex items-center mt-4">
+          <div className="flex items-center mt-4  rounded-lg p-2">
             <input
-              className="flex-1 bg-[#FAF9FE] p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1D204C]"
+              className="flex-1 bg-transparent p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1D204C]"
               type="text"
-              placeholder="Write your message"
+              placeholder="Write your message..."
             />
             <button className="ml-2 bg-[#1D204C] text-[#FAF9FE] px-3 py-2 rounded-lg shadow-md hover:bg-[#2a2b38] transition">
               <svg

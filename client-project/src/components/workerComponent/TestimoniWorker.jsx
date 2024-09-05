@@ -1,51 +1,57 @@
 export default function Testimoni() {
+  // 1D204C blue
+  // 05ECAE mint
+  // FFFFFF card
+  // FAF9FE bg
   return (
     <>
-      <section className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-8">
-        <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white mb-8">
-          Testimoni
-        </h1>
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 max-w-7xl mx-auto">
-          <div className="bg-gray-100 p-6 rounded-lg dark:bg-gray-800">
-            <p className="leading-loose text-gray-500 dark:text-gray-300 mb-6">
-              “Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore
-              quibusdam ducimus libero ad tempora doloribus expedita laborum
-              saepe voluptas perferendis delectus assumenda rerum, culpa aperiam
-              dolorum, obcaecati corrupti aspernatur a.”
-            </p>
-            <div className="flex items-center">
-              <img
-                className="w-14 h-14 rounded-full object-cover"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMUNlxGQJEDxszeIf86HiwKH9nNAEYxsPepw&s"
-                alt="Testimonial 1"
-              />
-              <div className="ml-4">
-                <h2 className="font-semibold text-blue-500">Robbert</h2>
-                <p className="text-sm text-gray-500 dark:text-gray-300">
-                  CTO, Robert Consultancy
-                </p>
+      <section className="bg-[#FAF9FE]">
+        <div className="container px-6 py-10 mx-auto">
+          <h1 className="text-2xl font-semibold text-center">
+            see the rating given by the{" "}
+            <span className="text-[#05ECAE] ">Clients </span>say
+          </h1>
+          <div className="grid grid-cols-1 gap-8 mx-auto mt-8 lg:grid-cols-2 xl:mt-10 max-w-7xl">
+            <div className="p-6 bg-[#FFFFFF] rounded-lg  md:p-8">
+              <p className="leading-loose text-[#1D204C]">
+                “Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Tempore quibusdam ducimus libero ad tempora doloribus expedita
+                laborum saepe voluptas perferendis delectus assumenda rerum,
+                culpa aperiam dolorum, obcaecati corrupti aspernatur a.”.
+              </p>
+              <div className="flex items-center mt-6">
+                <img
+                  className="object-cover rounded-full w-14 h-14"
+                  src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt=""
+                />
+                <div className="mx-4">
+                  <h1 className="font-semibold text-[#1D204C]">Robbert</h1>
+                  <span className="text-sm text-[#1D204C]">
+                    CTO, Robert Consultency
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div className="bg-gray-100 p-6 rounded-lg dark:bg-gray-800">
-            <p className="leading-loose text-gray-500 dark:text-gray-300 mb-6">
-              “Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore
-              quibusdam ducimus libero ad tempora doloribus expedita laborum
-              saepe voluptas perferendis delectus assumenda rerum, culpa aperiam
-              dolorum, obcaecati corrupti aspernatur a.”
-            </p>
-            <div className="flex items-center">
-              <img
-                className="w-14 h-14 rounded-full object-cover"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSldtq86c8wAEf0lV3CBLozLpCjcIdx9ppR6g&s"
-                alt="Testimonial 2"
-              />
-              <div className="ml-4">
-                <h2 className="font-semibold text-blue-500">Mia Brown</h2>
-                <p className="text-sm text-gray-500 dark:text-gray-300">
-                  Marketing Manager at Stech
-                </p>
+            <div className="p-6 bg-[#FFFFFF] rounded-lg  md:p-8">
+              <p className="leading-loose text-[#1D204C]">
+                “Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Tempore quibusdam ducimus libero ad tempora doloribus expedita
+                laborum saepe voluptas perferendis delectus assumenda rerum,
+                culpa aperiam dolorum, obcaecati corrupti aspernatur a.”.
+              </p>
+              <div className="flex items-center mt-6">
+                <img
+                  className="object-cover rounded-full w-14 h-14"
+                  src="https://images.unsplash.com/photo-1499470932971-a90681ce8530?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                  alt=""
+                />
+                <div className="mx-4">
+                  <h1 className="font-semibold text-[#1D204C]">Mia Brown</h1>
+                  <span className="text-sm text-[#1D204C]">
+                    Marketing Manager at Stech
+                  </span>
+                </div>
               </div>
             </div>
           </div>
