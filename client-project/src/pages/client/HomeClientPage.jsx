@@ -5,33 +5,44 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-creative';
 
-import { Autoplay, EffectCreative, Mousewheel} from 'swiper/modules';
+import { Autoplay, EffectCreative } from 'swiper/modules';
 export default function HomeClientPage() {
   return (
     <>
-      <div className="flex flex-col-reverse lg:flex-row gap-10 justify-between mt-10">
+      <h1 className="hidden lg:block font-black text-5xl my-20 text-[#1D204C]">
+        Halo, <span className="text-[#05ECAE]">Adit</span> !
+      </h1>
+      <div className="flex flex-col-reverse lg:flex-row lg:gap-10 justify-between mt-10">
         <div className="my-auto w-full lg:w-1/2">
-          <h1 className="font-black text-3xl lg:text-4xl">
-            Mau Ngapain Hari Ini?
+          <h1 className="lg:hidden font-black text-5xl my-10 text-[#1D204C]">
+            Halo, <span className="text-[#05ECAE]">Adit</span> !
           </h1>
+
+          <h2 className="font-bold text-xl md:text-2xl lg-text-3xl">Mau Ngapain Hari Ini?</h2>
           <div className="flex gap-6">
             <Link
               to="/add-order-gmaps"
-              className="bg-white mt-10 p-10 w-full lg:w-[25%] rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
+              className="bg-white mt-10 p-10 w-full rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
             >
-              <img src="/shopping-bag.png" alt="" />
+              <img
+                className="w-[60%] md:w-[35%] lg:w-[70%] xl:w-[60%]"
+                src="/shopping-bag.png"
+                alt="belanja"
+              />
               <span className="font-bold text-md mt-4 text-center">
                 Belanja
               </span>
             </Link>
             <Link
               to="/add-order"
-              className="bg-white mt-10 p-10 w-full lg:w-[25%] rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
+              className="bg-white mt-10 p-10 w-full rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
             >
-              <img src="/bucket-cleaner.png" alt="" />
-              <span className="font-bold text-md mt-4 text-center">
-                Cleaning Service
-              </span>
+              <img
+                className="w-[60%] md:w-[35%] lg:w-[70%] xl:w-[60%]"
+                src="/bucket-cleaner.png"
+                alt="bersih"
+              />
+              <span className="font-bold text-md mt-4 text-center">Bersih</span>
             </Link>
           </div>
         </div>
@@ -54,13 +65,13 @@ export default function HomeClientPage() {
             </svg>
           </div>
           <div className="">
+            <p>Aditya Saputra</p>
             <h1 className="font-black text-4xl">Rp. 300.000</h1>
-            <p>**** **** **** 4093</p>
           </div>
 
           <div className="flex justify-between items-center">
-            <div className="bg-white text-[#1D204C] py-3 px-5 rounded-xl flex gap-6">
-              <div className="flex flex-col items-center">
+            <div className="bg-white text-[#1D204C] rounded-full flex">
+              <div className="flex flex-col items-center hover:bg-[#1D204C] hover:text-white rounded-l-full px-5 py-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -74,9 +85,9 @@ export default function HomeClientPage() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-sm">Top Up</span>
+                <span className="text-xs">Top Up</span>
               </div>
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center hover:bg-[#1D204C] hover:text-white rounded-r-full px-5 py-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -90,7 +101,7 @@ export default function HomeClientPage() {
                   />
                 </svg>
 
-                <span className="text-sm">Transfer</span>
+                <span className="text-xs">Transfer</span>
               </div>
             </div>
             <svg
@@ -124,12 +135,11 @@ export default function HomeClientPage() {
             translate: ['100%', 0, 0],
           },
         }}
-        mousewheel={true}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
         }}
-        modules={[EffectCreative, Autoplay, Mousewheel]}
+        modules={[EffectCreative, Autoplay]}
         className="mySwiper mt-14"
       >
         <SwiperSlide>
@@ -161,7 +171,7 @@ export default function HomeClientPage() {
           </select>
         </div>
 
-        <div className="list-card flex gap-6 mt-5 overflow-y-auto no-scrollbar">
+        <div className="list-card flex gap-6 mt-5 overflow-y-auto no-scrollbar rounded-xl">
           {[1, 2, 3, 4, 5, 6].map((_, i) => {
             return (
               <Link
@@ -196,7 +206,7 @@ export default function HomeClientPage() {
           </select>
         </div>
 
-        <div className="list-card flex gap-6 mt-5 overflow-y-auto no-scrollbar">
+        <div className="list-card flex gap-6 mt-5 overflow-y-auto no-scrollbar rounded-xl">
           {[1, 2, 3, 4, 5, 6].map((_, i) => {
             return (
               <div
