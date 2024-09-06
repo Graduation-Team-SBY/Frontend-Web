@@ -29,11 +29,11 @@ export default function LoginPage() {
   //   }
   // };
   return (
-    <div className="min-h-screen flex container mx-auto px-10 lg:px-36 relative">
+    <div className="min-h-screen flex gap-10 container mx-auto px-5 md:px-10 lg:px-32">
       <div className="hidden lg:flex justify-center content-center lg:w-1/2 min-h-screen">
         <img
-          className="absolute w-[45%] bottom-20 left-10"
-          src="/login.svg"
+          className="w-[100%]"
+          src="/login2.svg"
           alt=""
         />
       </div>
@@ -43,7 +43,7 @@ export default function LoginPage() {
 
         <form
           // onSubmit={handlerLogin}
-          className="mt-10 w-full px-16"
+          className="mt-5 w-full px-5 md:px-10 lg:px-10"
         >
           <label className="form-control mt-3">
             <div className="label">

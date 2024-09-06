@@ -32,11 +32,11 @@ export default function RegisterPage() {
   //   }
   // };
   return (
-    <div className="min-h-screen flex container mx-auto px-10 lg:px-36 relative">
+    <div className="min-h-screen flex gap-10 container mx-auto px-5 md:px-10 lg:px-32">
       <div className="hidden lg:flex justify-center content-center lg:w-1/2 min-h-screen">
         <img
-          className="absolute w-[50%] bottom-14 left-0"
-          src="/register.svg"
+          className="w-[100%]"
+          src="/register2.svg"
           alt=""
         />
       </div>
@@ -46,7 +46,7 @@ export default function RegisterPage() {
 
         <form
           // onSubmit={handleRegister}
-          className="mt-10 w-full px-16"
+          className="mt-10 w-full px-5 md:px-10 lg:px-10"
         >
           <label className="form-control mt-3">
             <div className="label">
