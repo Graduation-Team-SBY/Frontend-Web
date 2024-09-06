@@ -14,6 +14,12 @@ import UpdateProfilePage from "../pages/client/UpdateProfilePage";
 import AddOrderGmapsPage from "../pages/client/AddOrderGmapsPage";
 import ProfilePage from "../pages/client/ProfilePage";
 import DealOrdersPage from "../pages/client/DealOrdersPage";
+import VerificationOrderClient from "../pages/client/CompletedOrder/VerificationOrderClientPage";
+import PaymentPandingClientPage from "../pages/client/CompletedOrder/PaymentPandingClientPage";
+import PaymentCompletedClientPage from "../pages/client/CompletedOrder/PaymentCompletedClientPage";
+import VerificatonOrderWorkerPage from "../pages/worker/CompletedOrder/VertifikasiOrderWorkerPage";
+import PaymentPendingWorkerPage from "../pages/worker/CompletedOrder/PaymentPendingPage";
+import PaymentCompletedWorkerPage from "../pages/worker/CompletedOrder/PaymentWorkerPage";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +81,30 @@ const router = createBrowserRouter([
       {
         path: "chat-worker",
         element: <RoamChatWorkerPage />,
+      },
+      {
+        path: "verification-order-worker",
+        element: <VerificatonOrderWorkerPage />,
+      },
+      {
+        path: "payment-pending-worker",
+        element: <PaymentPendingWorkerPage />,
+      },
+      {
+        path: "payment-completed-worker",
+        element: <PaymentCompletedWorkerPage />,
+      },
+      {
+        path: "verification-order-client",
+        element: <VerificationOrderClient />,
+      },
+      {
+        path: "payment-pending-client",
+        element: <PaymentPandingClientPage />,
+      },
+      {
+        path: "payment-completed-client",
+        element: <PaymentCompletedClientPage />,
       },
     ],
   },
