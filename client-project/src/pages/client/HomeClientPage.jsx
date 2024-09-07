@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -6,8 +6,14 @@ import 'swiper/css';
 import 'swiper/css/effect-creative';
 
 import { Autoplay, EffectCreative } from 'swiper/modules';
-import { formatCurrencyRupiah } from '../../helpers/currency';
+// import { formatCurrencyRupiah } from '../../helpers/currency';
+import axios from '../../config/axiosInstance';
+import { toast } from 'react-toastify';
+import Wallet from '../../components/ClientComponent/Wallet';
+
 export default function HomeClientPage() {
+  
+
   return (
     <>
       <h1 className="hidden lg:block font-black text-5xl my-20 text-[#1D204C]">
@@ -19,7 +25,9 @@ export default function HomeClientPage() {
             Halo, <span className="text-[#05ECAE]">Adit</span> !
           </h1>
 
-          <h2 className="font-bold text-xl md:text-2xl lg-text-3xl">Mau Ngapain Hari Ini?</h2>
+          <h2 className="font-bold text-xl md:text-2xl lg-text-3xl">
+            Mau Ngapain Hari Ini?
+          </h2>
           <div className="flex gap-6">
             <Link
               to="/client/order/add-shopping"
@@ -48,7 +56,8 @@ export default function HomeClientPage() {
           </div>
         </div>
 
-        <div className="card-wallet bg-white text-white p-10 w-full lg:w-1/2 rounded-2xl flex flex-col justify-between gap-8 bg-gradient-to-tl from-[#05ECAE] to-[#1D204C]">
+        <Wallet />
+        {/* <div className="card-wallet bg-white text-white p-10 w-full lg:w-1/2 rounded-2xl flex flex-col justify-between gap-8 bg-gradient-to-tl from-[#05ECAE] to-[#1D204C]">
           <div className=" flex justify-between">
             <h2 className="font-black text-lg text-gray-200">My Balance</h2>
             <svg
@@ -67,7 +76,9 @@ export default function HomeClientPage() {
           </div>
           <div className="">
             <p>Aditya Saputra</p>
-            <h1 className="font-black text-4xl">{formatCurrencyRupiah(300000)}</h1>
+            <h1 className="font-black text-4xl">
+              {formatCurrencyRupiah(wallet)}
+            </h1>
           </div>
 
           <div className="flex justify-between items-center">
@@ -118,7 +129,7 @@ export default function HomeClientPage() {
               />
             </svg>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Carousel */}

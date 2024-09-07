@@ -1,6 +1,33 @@
+import { useEffect, useState } from 'react';
+import axios from '../../config/axiosInstance';
 import { Link } from 'react-router-dom';
 
 export default function ProfilePage() {
+  const [profile, setProfile] = useState({})
+
+  const fetchProfile = async () => {
+    try {
+      const { data } = await axios({
+        method: 'GET',
+        url: '/profile',
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`
+        }
+      });
+
+      console.log(data)
+
+      setProfile(data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfile()
+  }, [])
+  
+
   return (
     <div className="">
       <div className="flex justify-between mb-6">
@@ -22,8 +49,14 @@ export default function ProfilePage() {
                 className="w-32 h-32 rounded-full"
               />
               <div>
-                <h3 className="text-xl md:text-3xl font-bold">Muhammad Farhan Rosidi</h3>
-                <p className="text-gray-400 text-lg">myusername_farhan</p>
+                {profile.name ? (<h3 className="text-xl md:text-3xl font-bold">
+                  {/* Muhammad Farhan Rosidi */}
+                  {profile.name}
+                </h3>) : (<h3 className="text-xl md:text-3xl font-bold text-gray-400">
+                  {/* Muhammad Farhan Rosidi */}
+                  (Belum Diisi)
+                </h3>)}
+                <p className="text-gray-400 text-lg">myusername_farhan</p>  
               </div>
             </div>
             <Link
@@ -53,8 +86,7 @@ export default function ProfilePage() {
             <div className="">
               <p className="text-gray-400">Status</p>
               <p className="font-bold text-xl">
-                Worker / 
-                <span className="text-green-600">Client</span>
+                Worker /<span className="text-green-600">Client</span>
               </p>
             </div>
 
@@ -77,7 +109,9 @@ export default function ProfilePage() {
 
             <div className="">
               <p className="text-gray-400">My Address</p>
-              <p className="font-bold text-xl">Jl. in aja dulu no. 45 IK Surabaya</p>
+              <p className="font-bold text-xl">
+                Jl. in aja dulu no. 45 IK Surabaya
+              </p>
             </div>
           </div>
         </div>
