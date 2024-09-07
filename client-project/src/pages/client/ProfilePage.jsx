@@ -27,7 +27,7 @@ export default function ProfilePage() {
               </div>
             </div>
             <Link
-              to="/update-profile"
+              to="/client/profile/update"
               className="bg-white px-6 rounded-full hover:bg-[#1D204C] hover:text-white"
             >
               <div className="flex items-center gap-2 h-12 text-sm">

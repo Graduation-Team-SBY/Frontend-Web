@@ -27,7 +27,7 @@ export default function ProfileWorkerPage() {
                 </div>
               </div>
               <Link
-                to="/edit-profile-worker"
+                to="/worker/profile/update"
                 className="bg-[#1D204C] text-[#FAF9FE] px-4 py-2 rounded-full"
               >
                 Edit
