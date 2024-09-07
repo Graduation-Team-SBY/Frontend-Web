@@ -1,7 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-export default function Navbar() {
+export default function NavbarWorker() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/');
+    toast.info('Success to logout');
+  };
+
   return (
     <div className="navbar bg-[#faf9fe] px-8 md:px-20 lg:px-32 fixed top-0 inset-x-0 z-50">
       <div className="navbar-start">
@@ -31,27 +40,12 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/worker">Home</Link>
             </li>
 
-            <li>
-              <Link to="/worker">Worker</Link>
-            </li>
-            <li>
-              <details>
-                <summary className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full">
-                  Orders
-                </summary>
-                <ul className="p-2 w-36">
-                  <li>
-                    <Link to="/orders">My Order</Link>
-                  </li>
-                  <li>
-                    <Link to="/orders-deals">Deal Order</Link>
-                  </li>
-                </ul>
-              </details>
-            </li>
+            {/* <li>
+              <Link to="/">Worker</Link>
+            </li> */}
           </ul>
         </div>
         <Link
@@ -66,34 +60,18 @@ export default function Navbar() {
           <li>
             <Link
               className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
-              to="/"
+              to="/worker"
             >
               Home
             </Link>
           </li>
           <li>
-            <Link
+            {/* <Link
               className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
               to="/worker"
             >
               Worker
-            </Link>
-          </li>
-
-          <li>
-            <details>
-              <summary className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full">
-                Orders
-              </summary>
-              <ul className="p-2 w-36">
-                <li>
-                  <Link to="/orders">My Order</Link>
-                </li>
-                <li>
-                  <Link to="/orders-deals">Deal Order</Link>
-                </li>
-              </ul>
-            </details>
+            </Link> */}
           </li>
         </ul>
       </div>
@@ -109,12 +87,10 @@ export default function Navbar() {
             className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/profile-worker">Profile Worker</Link>
-
-              <Link to="/profile">Profile</Link>
+              <Link to="/worker/profile">Profile</Link>
             </li>
             <li>
-              <a>Logout</a>
+              <button onClick={handleLogout}>Logout</button>
             </li>
           </ul>
         </div>

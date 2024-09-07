@@ -6,6 +6,7 @@ import 'swiper/css';
 import 'swiper/css/effect-creative';
 
 import { Autoplay, EffectCreative } from 'swiper/modules';
+import { formatCurrencyRupiah } from '../../helpers/currency';
 export default function HomeClientPage() {
   return (
     <>
@@ -21,7 +22,7 @@ export default function HomeClientPage() {
           <h2 className="font-bold text-xl md:text-2xl lg-text-3xl">Mau Ngapain Hari Ini?</h2>
           <div className="flex gap-6">
             <Link
-              to="/add-order-gmaps"
+              to="/client/order/add-shopping"
               className="bg-white mt-10 p-10 w-full rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
             >
               <img
@@ -34,7 +35,7 @@ export default function HomeClientPage() {
               </span>
             </Link>
             <Link
-              to="/add-order"
+              to="/client/order/add-cleaning"
               className="bg-white mt-10 p-10 w-full rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
             >
               <img
@@ -66,7 +67,7 @@ export default function HomeClientPage() {
           </div>
           <div className="">
             <p>Aditya Saputra</p>
-            <h1 className="font-black text-4xl">Rp. 300.000</h1>
+            <h1 className="font-black text-4xl">{formatCurrencyRupiah(300000)}</h1>
           </div>
 
           <div className="flex justify-between items-center">

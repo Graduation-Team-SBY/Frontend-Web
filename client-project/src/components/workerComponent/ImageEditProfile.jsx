@@ -24,7 +24,7 @@ export default function ImageEditProfile() {
           accept="image/*"
           onChange={handleImageChange}
         />
-        <label htmlFor="upload" className="cursor-pointer relative block">
+        <label htmlFor="upload" className=" cursor-pointer relative block">
           <img
             className="w-full h-full object-cover rounded-full"
             src={profileImage || "https://via.placeholder.com/150"}

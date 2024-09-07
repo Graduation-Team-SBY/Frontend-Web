@@ -1,30 +1,29 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "../config/axiosInstance";
-import { toast } from "react-toastify";
+import React, { useState } from 'react';
+import axios from '../config/axiosInstance';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-export default function LoginPage() {
+export default function WorkerRegisterPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handlerLogin = async (e) => {
+  const handleRegister = async (e) => {
     try {
       e.preventDefault();
       const { data } = await axios({
-        method: "POST",
-        url: "/login",
+        method: 'POST',
+        url: '/workers/register',
         data: {
           email,
+          phoneNumber,
           password,
         },
       });
-
-      console.log(data)
-      localStorage.setItem("access_token", data.access_token);
-      localStorage.setItem("role", data.role)
-      toast.info("Success to login");
-      navigate(`/${data.role}`);
+      // console.log(data);
+      toast.info('Success to Register as worker');
+      navigate('/login');
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -32,19 +31,15 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex gap-10 container mx-auto px-5 md:px-10 lg:px-32">
       <div className="hidden lg:flex justify-center content-center lg:w-1/2 min-h-screen">
-        <img
-          className="w-[100%]"
-          src="/login2.svg"
-          alt=""
-        />
+        <img className="w-[100%]" src="/register2.svg" alt="" />
       </div>
       <div className="w-full lg:w-1/2 min-h-screen flex flex-col justify-center items-center text-[#1D204C]">
-        <h1 className="font-black text-5xl">Login</h1>
-        <h6 className="font-bold text-gray-400">Welcome back!</h6>
+        <h1 className="font-black text-5xl">Worker Register</h1>
+        <h6 className="font-bold text-gray-400">Create Account in this app</h6>
 
         <form
-          onSubmit={handlerLogin}
-          className="mt-5 w-full px-5 md:px-10 lg:px-10"
+          onSubmit={handleRegister}
+          className="mt-10 w-full px-5 md:px-10 lg:px-10"
         >
           <label className="form-control mt-3">
             <div className="label">
@@ -58,7 +53,18 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
-
+          <label className="form-control mt-3">
+            <div className="label">
+              <span className="label-text font-bold">Phone Number</span>
+            </div>
+            <input
+              type="text"
+              name="phoneNumber"
+              placeholder="Type here your number"
+              className="input input-bordered rounded-full p-7"
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+          </label>
           <label className="form-control mt-3">
             <div className="label">
               <span className="label-text font-bold">Password</span>
@@ -76,7 +82,7 @@ export default function LoginPage() {
             type="submit"
             className="btn btn-block btn-lg bg-[#1D204C] text-white mt-10 text-lg hover:text-[#1D204C] rounded-full"
           >
-            Login
+            Register
           </button>
         </form>
       </div>
