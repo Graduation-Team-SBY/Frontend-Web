@@ -24,6 +24,7 @@ export default function ProfileWorkerPage() {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
+
       setProfile(data);
     } catch (error) {
       console.log(error);
