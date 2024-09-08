@@ -16,6 +16,7 @@ import UpdateProfilePage from "../pages/client/UpdateProfilePage";
 import ProfileWorkerPage from "../pages/worker/Profile/ProfileWorkerPage";
 import DetailOrderPage from "../pages/client/DetailOrderPage";
 import UpdateProfileWorkerPage from "../pages/worker/Profile/UpdateProfileWorkerPage";
+import DetailJob from "../pages/worker/DetailJob";
 
 // Untuk local storage
 // const localStorage.access_token = localStorage.access_token;
@@ -135,6 +136,15 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "order",
+        children: [
+          {
+            path: ":id",
+            element: <DetailJob />
+          }
+        ]
+      }
     ],
   },
 ]);

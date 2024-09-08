@@ -1,6 +1,7 @@
 import axios from "../../../config/axiosInstance";
 import CardWorker from "../../../components/workerComponent/CardWorker";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 // 1D204C blue
 // 05ECAE mint
@@ -18,7 +19,6 @@ export default function HomepageWorker() {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
-      console.log(data);
       setData(data);
     } catch (error) {
       console.log(error);
@@ -49,7 +49,7 @@ export default function HomepageWorker() {
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {data.map((data) => (
-            <CardWorker key={data.clientId} work={data} />
+            <CardWorker key={data._id} work={data} />
           ))}
         </div>
       </div>
