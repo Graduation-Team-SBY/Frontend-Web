@@ -17,12 +17,13 @@ export default function ProfileWorkerPage() {
     try {
       const { data } = await axios({
         method: "GET",
-        url: "/profile",
+        url: "/workers/profile",
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
 
+      
       setProfile(data);
     } catch (error) {
       console.log(error);
