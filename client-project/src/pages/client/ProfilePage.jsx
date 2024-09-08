@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import axios from '../../config/axiosInstance';
-import { Link } from 'react-router-dom';
-import { age } from '../../helpers/age';
-import { formatDate } from '../../helpers/formatDate';
+import { useEffect, useState } from "react";
+import axios from "../../config/axiosInstance";
+import { Link } from "react-router-dom";
+import { age } from "../../helpers/age";
+import { formatDate } from "../../helpers/formatDate";
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState({});
@@ -10,8 +10,8 @@ export default function ProfilePage() {
   const fetchProfile = async () => {
     try {
       const { data } = await axios({
-        method: 'GET',
-        url: '/profile',
+        method: "GET",
+        url: "clients/profile",
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
