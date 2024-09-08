@@ -15,8 +15,6 @@ export default function MyOrdersPage() {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
-
-      console.log(data);
       setJobs(data);
     } catch (error) {
       console.log(error);
@@ -43,7 +41,7 @@ export default function MyOrdersPage() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-5">
         {jobs.map((el) => {
-          return <CardMyOrdersClient data={el} />;
+          return <CardMyOrdersClient key={el._id} data={el} />;
         })}
       </div>
     </div>
