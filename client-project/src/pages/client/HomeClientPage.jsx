@@ -1,18 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/effect-creative';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-creative";
 
-import { Autoplay, EffectCreative } from 'swiper/modules';
+import { Autoplay, EffectCreative } from "swiper/modules";
 // import { formatCurrencyRupiah } from '../../helpers/currency';
-import axios from '../../config/axiosInstance';
-import { toast } from 'react-toastify';
-import Wallet from '../../components/ClientComponent/Wallet';
+import axios from "../../config/axiosInstance";
+import { toast } from "react-toastify";
+import Wallet from "../../components/ClientComponent/Wallet";
 
 export default function HomeClientPage() {
-  
+  //! data undefined
+  // const showUsername = async () => {
+  //   try {
+  //     const { data } = axios({
+  //       method: "GET",
+  //       url: "/profile",
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.access_token}`,
+  //       },
+  //     });
+  //     console.log(data, ">>>>>>Ini data USER");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   showUsername();
+  // }, []);
 
   return (
     <>
@@ -136,7 +153,7 @@ export default function HomeClientPage() {
       <Swiper
         grabCursor={true}
         slidesPerView={1}
-        effect={'creative'}
+        effect={"creative"}
         loop={true}
         creativeEffect={{
           prev: {
@@ -144,7 +161,7 @@ export default function HomeClientPage() {
             translate: [0, 0, -400],
           },
           next: {
-            translate: ['100%', 0, 0],
+            translate: ["100%", 0, 0],
           },
         }}
         autoplay={{
