@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import CardSaldo from "../../../components/workerComponent/CardSaldo";
 import StarRating from "../../../components/workerComponent/StarRating";
 import Testimoni from "../../../components/workerComponent/TestimoniWorker";
+import { useEffect, useState } from "react";
+import axios from "../../../config/axiosInstance";
 
 // 1D204C blue
 // 05ECAE mint
@@ -9,6 +11,27 @@ import Testimoni from "../../../components/workerComponent/TestimoniWorker";
 // FAF9FE bg
 
 export default function ProfileWorkerPage() {
+  const [profile, setProfile] = useState({});
+
+  const fetchProfile = async () => {
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: "/profile",
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+
+      setProfile(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
   return (
     <>
       <div className="mt-10 py-8">
@@ -16,13 +39,29 @@ export default function ProfileWorkerPage() {
           <div className="w-full lg:w-[60%] bg-white py-10 px-8 rounded-xl">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <img
+                {/* <img
                   className="w-16 h-16 rounded-full object-cover ring ring-white"
-                  src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=880&h=880&q=100"
+                  src="
                   alt="Profile"
-                />
+                /> */}
+                {profile.profilePicture ? (
+                  <img
+                    className="w-16 h-16 rounded-full object-cover ring ring-white"
+                    src={profile.profilePicture}
+                  />
+                ) : (
+                  <img
+                    className="w-16 h-16 rounded-full object-cover ring ring-white"
+                    alt={profile.name}
+                    src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=880&h=880&q=100"
+                  />
+                )}
                 <div>
-                  <h2 className="text-xl font-semibold">Nama Worker</h2>
+                  {profile.name ? (
+                    <h3 className="text-xl font-semibold">{profile.name}</h3>
+                  ) : (
+                    <h3 className="text-xl font-semibold">(Belum Diisi)</h3>
+                  )}
                   <StarRating />
                 </div>
               </div>
@@ -35,7 +74,7 @@ export default function ProfileWorkerPage() {
             </div>
           </div>
 
-            <CardSaldo />
+          <CardSaldo />
           {/* <div className="w-1/2 flex items-center justify-center">
           </div> */}
         </div>
