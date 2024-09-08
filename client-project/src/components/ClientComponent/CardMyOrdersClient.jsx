@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { formatCurrencyRupiah } from "../../helpers/currency";
 
 export default function CardMyOrdersClient({ data }) {
-  console.log(data);
   return (
     <div className="card bg-base-100 w-96 transition duration-300 ease-in-out hover:shadow-xl shadow-sm">
       <div className="card-body">
