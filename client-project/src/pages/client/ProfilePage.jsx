@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from '../../config/axiosInstance';
 import { Link } from 'react-router-dom';
+import { age } from '../../helpers/age';
+import { formatDate } from '../../helpers/formatDate';
 
 export default function ProfilePage() {
-  const [profile, setProfile] = useState({})
+  const [profile, setProfile] = useState({});
 
   const fetchProfile = async () => {
     try {
@@ -11,22 +13,21 @@ export default function ProfilePage() {
         method: 'GET',
         url: '/profile',
         headers: {
-          Authorization: `Bearer ${localStorage.access_token}`
-        }
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
       });
 
-      console.log(data)
+      console.log(data);
 
-      setProfile(data)
+      setProfile(data);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchProfile()
-  }, [])
-  
+    fetchProfile();
+  }, []);
 
   return (
     <div className="">
@@ -49,14 +50,20 @@ export default function ProfilePage() {
                 className="w-32 h-32 rounded-full"
               />
               <div>
-                {profile.name ? (<h3 className="text-xl md:text-3xl font-bold">
-                  {/* Muhammad Farhan Rosidi */}
-                  {profile.name}
-                </h3>) : (<h3 className="text-xl md:text-3xl font-bold text-gray-400">
-                  {/* Muhammad Farhan Rosidi */}
-                  (Belum Diisi)
-                </h3>)}
-                <p className="text-gray-400 text-lg">myusername_farhan</p>  
+                {profile.name ? (
+                  <h3 className="text-xl md:text-3xl font-bold">
+                    {/* Muhammad Farhan Rosidi */}
+                    {profile.name}
+                  </h3>
+                ) : (
+                  <h3 className="text-xl md:text-3xl font-bold text-gray-400">
+                    {/* Muhammad Farhan Rosidi */}
+                    (Belum Diisi)
+                  </h3>
+                )}
+                <p className="text-gray-400 text-lg">
+                  {profile.userData?.email}
+                </p>
               </div>
             </div>
             <Link
@@ -85,33 +92,42 @@ export default function ProfilePage() {
           <div className="flex flex-wrap gap-x-20 gap-y-10 mt-20">
             <div className="">
               <p className="text-gray-400">Status</p>
-              <p className="font-bold text-xl">
-                Worker /<span className="text-green-600">Client</span>
+              <p className="font-bold text-xl text-green-600 capitalize">
+                {localStorage.role}
               </p>
             </div>
 
             <div className="">
-              <p className="text-gray-400">Email Address</p>
-              <p className="font-bold text-xl">farhan@mail.com</p>
+              <p className="text-gray-400">Umur</p>
+              <p className="font-bold text-xl">{age(profile.dateOfBirth)}</p>
             </div>
 
             <div className="">
               <p className="text-gray-400">Nomor Telephone</p>
-              <p className="font-bold text-xl">08888888889</p>
+              <p className="font-bold text-xl">{profile.userData?.phoneNumber}</p>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-x-20 gap-y-10 mt-10 mb-20">
             <div className="">
               <p className="text-gray-400">Date of Birth</p>
-              <p className="font-bold text-xl">28 June 2001</p>
+              {/* <p className="font-bold text-xl">28 June 2001</p> */}
+              {profile.dateOfBirth ? (
+                <p className="font-bold text-xl">
+                  {formatDate(profile.dateOfBirth)}
+                </p>
+              ) : (
+                <p className="font-bold text-xl text-gray-400">(Belum Diisi)</p>
+              )}
             </div>
 
             <div className="">
               <p className="text-gray-400">My Address</p>
-              <p className="font-bold text-xl">
-                Jl. in aja dulu no. 45 IK Surabaya
-              </p>
+              {profile.address ? (
+                <p className="font-bold text-xl">{profile.address}</p>
+              ) : (
+                <p className="font-bold text-xl text-gray-400">(Belum Diisi)</p>
+              )}
             </div>
           </div>
         </div>
