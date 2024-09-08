@@ -36,7 +36,7 @@ export default function UpdateProfilePage() {
 
       const { data } = await axios({
         method: "PATCH",
-        url: "/profile",
+        url: "/clients/profile",
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
