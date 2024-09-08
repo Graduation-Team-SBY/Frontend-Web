@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import axios from '../../config/axiosInstance';
-import { Link } from 'react-router-dom';
-import { age } from '../../helpers/age';
-import { formatDate } from '../../helpers/formatDate';
+import { useEffect, useState } from "react";
+import axios from "../../config/axiosInstance";
+import { Link } from "react-router-dom";
+import { age } from "../../helpers/age";
+import { formatDate } from "../../helpers/formatDate";
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState({});
@@ -10,8 +10,8 @@ export default function ProfilePage() {
   const fetchProfile = async () => {
     try {
       const { data } = await axios({
-        method: 'GET',
-        url: '/profile',
+        method: "GET",
+        url: "/profile",
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
@@ -44,11 +44,18 @@ export default function ProfilePage() {
         <div className="">
           <div className="flex flex-wrap gap-y-5 justify-between items-center">
             <div className="flex items-center gap-10">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-BzIly8lOyVuXcOoG-DPpFoiheFNGa2t_pQ&s"
-                alt="Profile Picture"
-                className="w-32 h-32 rounded-full"
-              />
+              {profile.profilePicture ? (
+                <img
+                  className="w-32 h-32 rounded-full"
+                  src={profile.profilePicture}
+                />
+              ) : (
+                <img
+                  className="w-32 h-32 rounded-full"
+                  alt={profile.name}
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-BzIly8lOyVuXcOoG-DPpFoiheFNGa2t_pQ&s"
+                />
+              )}
               <div>
                 {profile.name ? (
                   <h3 className="text-xl md:text-3xl font-bold">
@@ -104,7 +111,9 @@ export default function ProfilePage() {
 
             <div className="">
               <p className="text-gray-400">Nomor Telephone</p>
-              <p className="font-bold text-xl">{profile.userData?.phoneNumber}</p>
+              <p className="font-bold text-xl">
+                {profile.userData?.phoneNumber}
+              </p>
             </div>
           </div>
 

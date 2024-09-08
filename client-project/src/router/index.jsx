@@ -14,8 +14,8 @@ import HomepageWorker from "../pages/worker/Home/HomepageWorker";
 import ProfilePage from "../pages/client/ProfilePage";
 import UpdateProfilePage from "../pages/client/UpdateProfilePage";
 import ProfileWorkerPage from "../pages/worker/Profile/ProfileWorkerPage";
-import EditProfileWorkerPage from "../pages/worker/Profile/EditProfileWorkerPage";
 import DetailOrderPage from "../pages/client/DetailOrderPage";
+import UpdateProfileWorkerPage from "../pages/worker/Profile/UpdateProfileWorkerPage";
 
 // Untuk local storage
 // const localStorage.access_token = localStorage.access_token;
@@ -131,7 +131,7 @@ const router = createBrowserRouter([
           },
           {
             path: "update",
-            element: <EditProfileWorkerPage />,
+            element: <UpdateProfileWorkerPage />,
           },
         ],
       },

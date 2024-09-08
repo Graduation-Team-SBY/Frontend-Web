@@ -1,46 +1,71 @@
-// import { useState } from "react";
-// import axios from "../../config/axiosInstance";
-// import { toast } from "react-toastify";
-// import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "../../config/axiosInstance";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function UpdateProfilePage() {
-  // const navigate = useNavigate();
-  // const [name, setName] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [dateOfBirth, setdateOfBirth] = useState("");
+  const [address, setAddress] = useState("");
+  const [image, setImage] = useState(null);
 
-  // const handleUpdate = async (e) => {
-  //   try {
-  //     e.preventDefault();
-  //     const { data } = await axios({
-  //       method: "PUT",
-  //       url: "",
-  //       data: {
-  //         name,
-  //         phoneNumber,
-  //         email,
-  //         password,
-  //       },
-  //     });
-  //     toast.info("Success to Update Profile");
-  //     navigate("/profile");
-  //   } catch (error) {
-  //     toast.error(error.response.data.message);
-  //   }
-  // };
+  const handleFileChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  const handleUpdate = async (e) => {
+    try {
+      e.preventDefault();
+      const dataFrom = new FormData();
+      if (name) {
+        dataFrom.append("name", name);
+      }
+
+      if (dateOfBirth) {
+        dataFrom.append("dateOfBirth", dateOfBirth);
+      }
+
+      if (address) {
+        dataFrom.append("address", address);
+      }
+
+      if (image) {
+        dataFrom.append("image", image);
+      }
+
+      const { data } = await axios({
+        method: "PATCH",
+        url: "/profile",
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+        data: dataFrom,
+      });
+
+      console.log(data);
+      toast.info("Success to Update Profile");
+      navigate("/client/profile");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
   return (
     <div className="">
-      <form className="flex gap-10 mt-4 justify-between">
+      <form
+        className="flex gap-10 mt-4 justify-between"
+        onSubmit={handleUpdate}
+      >
         <div className="w-[30%] my-auto">
-          <img
+          {/* <img
             className="object-cover h-[60%] rounded-3xl "
             src="https://images.unsplash.com/photo-1540132586218-183f59221b4f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
-          />
+          /> */}
           <input
             type="file"
             className="file-input file-input-bordered w-full max-w-xs mt-5 rounded-full"
+            onChange={handleFileChange}
           />
         </div>
         <div className="w-[70%] my-auto pl-44">
@@ -53,41 +78,33 @@ export default function UpdateProfilePage() {
             <input
               type="text"
               placeholder="Type here"
+              value={name}
               className="input input-bordered w-full rounded-full py-6"
-              // onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </label>
           <label className="form-control w-full">
             <div className="label">
-              <span className="label-text font-bold">Phone Number</span>
+              <span className="label-text font-bold">Date of Birth</span>
             </div>
             <input
-              type="text"
+              type="date"
               placeholder="Type here"
+              value={dateOfBirth}
               className="input input-bordered w-full rounded-full py-6"
-              // onChange={(e) => setPhoneNumber(e.target.value)}
+              onChange={(e) => setdateOfBirth(e.target.value)}
             />
           </label>
           <label className="form-control w-full">
             <div className="label">
-              <span className="label-text font-bold">Email</span>
+              <span className="label-text font-bold">Address</span>
             </div>
             <input
               type="text"
               placeholder="Type here"
+              value={address}
               className="input input-bordered w-full rounded-full py-6"
-              // onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-          <label className="form-control w-full">
-            <div className="label">
-              <span className="label-text font-bold">Password</span>
-            </div>
-            <input
-              type="text"
-              placeholder="Type here"
-              className="input input-bordered w-full rounded-full py-6"
-              // onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setAddress(e.target.value)}
             />
           </label>
           <button
