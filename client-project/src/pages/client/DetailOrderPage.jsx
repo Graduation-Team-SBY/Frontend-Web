@@ -1,6 +1,29 @@
+import { useEffect, useState } from "react";
+import axios from "../../config/axiosInstance";
+
 export default function DetailOrderPage() {
+  const [order, setOrder] = useState({});
+  const showDetailOrderClient = async () => {
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: `clients/jobs/66dc2230a7edc1a7b528093b/workers`,
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+      console.log(data, "<< data detatail order");
+      setOrder(order);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    showDetailOrderClient();
+  }, []);
   return (
     <div>
+      {JSON.stringify(order)}
       <h2 className="font-black text-4xl">Detail Order</h2>
       <div className="mt-20 flex gap-10">
         <div className="w-1/2">
@@ -18,8 +41,6 @@ export default function DetailOrderPage() {
             eveniet iure dolores, laboriosam illum rem quo adipisci cumque.
             Architecto, nihil.
           </p>
-
-
         </div>
       </div>
     </div>
