@@ -4,6 +4,8 @@ import StarRating from "../../../components/workerComponent/StarRating";
 import Testimoni from "../../../components/workerComponent/TestimoniWorker";
 import { useEffect, useState } from "react";
 import axios from "../../../config/axiosInstance";
+import { formatDate } from "../../../helpers/formatDate";
+import { age } from "../../../helpers/age";
 
 // 1D204C blue
 // 05ECAE mint
@@ -11,18 +13,17 @@ import axios from "../../../config/axiosInstance";
 // FAF9FE bg
 
 export default function ProfileWorkerPage() {
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState([]);
 
   const fetchProfile = async () => {
     try {
       const { data } = await axios({
         method: "GET",
-        url: "/profile",
+        url: "/workers/profile",
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
-
       setProfile(data);
     } catch (error) {
       console.log(error);
@@ -36,6 +37,7 @@ export default function ProfileWorkerPage() {
     <>
       <div className="mt-10 py-8">
         <div className="flex flex-col-reverse lg:flex-row mb-6 gap-y-5 lg:gap-x-10">
+          {/* disini */}
           <div className="w-full lg:w-[60%] bg-white py-10 px-8 rounded-xl">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
@@ -44,23 +46,27 @@ export default function ProfileWorkerPage() {
                   src="
                   alt="Profile"
                 /> */}
-                {profile.profilePicture ? (
+                {profile[0]?.profilePicture ? (
                   <img
                     className="w-16 h-16 rounded-full object-cover ring ring-white"
-                    src={profile.profilePicture}
+                    src={profile[0]?.profilePicture}
                   />
                 ) : (
                   <img
                     className="w-16 h-16 rounded-full object-cover ring ring-white"
-                    alt={profile.name}
+                    alt={profile[0]?.name}
                     src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=880&h=880&q=100"
                   />
                 )}
                 <div>
-                  {profile.name ? (
-                    <h3 className="text-xl font-semibold">{profile.name}</h3>
+                  {profile[0]?.name ? (
+                    <h3 className="text-xl font-semibold">
+                      {profile[0]?.name}
+                    </h3>
                   ) : (
-                    <h3 className="text-xl font-semibold">(Belum Diisi)</h3>
+                    <h3 className="text-xl font-semibold">
+                      Silakan update profile
+                    </h3>
                   )}
                   <StarRating />
                 </div>
@@ -72,9 +78,77 @@ export default function ProfileWorkerPage() {
                 Edit
               </Link>
             </div>
-          </div>
+            <div className="flex flex-wrap gap-x-20 gap-y-10 mt-20">
+              <div className="">
+                <p className="text-gray-400">Status</p>
+                <p className="font-bold text-xl text-green-600 capitalize">
+                  {localStorage.role}
+                </p>
+              </div>
 
-          <CardSaldo />
+              <div className="">
+                <p className="text-gray-400">Umur</p>
+                {profile[0]?.dateOfBirth ? (
+                  <p className="font-bold text-xl">
+                    {age(profile[0]?.dateOfBirth)}
+                  </p>
+                ) : (
+                  <p className="font-bold text-xl text-gray-400">
+                    (Belum Diisi)
+                  </p>
+                )}
+              </div>
+
+              <div className="">
+                <p className="text-gray-400">Nomor Telephone</p>
+                <p className="font-bold text-xl">
+                  {profile[0]?.userData?.phoneNumber}
+                </p>
+              </div>
+
+              <div className="">
+                <p className="text-gray-400">Email</p>
+                <p className="font-bold text-xl">
+                  {profile[0]?.userData?.email}
+                </p>
+              </div>
+
+              <div className="">
+                <p className="text-gray-400">Bergabung pada</p>
+                <p className="font-bold text-xl">
+                  {formatDate(profile[0]?.userData?.createdAt)}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-x-20 gap-y-10 mt-10 mb-20">
+              <div className="">
+                <p className="text-gray-400">Tanggal Lahir</p>
+                {/* <p className="font-bold text-xl">28 June 2001</p> */}
+                {profile[0]?.dateOfBirth ? (
+                  <p className="font-bold text-xl">
+                    {formatDate(profile[0]?.dateOfBirth)}
+                  </p>
+                ) : (
+                  <p className="font-bold text-xl text-gray-400">
+                    (Belum Diisi)
+                  </p>
+                )}
+              </div>
+
+              <div className="">
+                <p className="text-gray-400">My Address</p>
+                {profile[0]?.address ? (
+                  <p className="font-bold text-xl">{profile[0]?.address}</p>
+                ) : (
+                  <p className="font-bold text-xl text-gray-400">
+                    (Belum Diisi)
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+          <CardSaldo data={profile[0]} />
           {/* <div className="w-1/2 flex items-center justify-center">
           </div> */}
         </div>
