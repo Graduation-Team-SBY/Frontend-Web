@@ -1,10 +1,34 @@
+import axios from "../../../config/axiosInstance";
 import CardWorker from "../../../components/workerComponent/CardWorker";
+import { useEffect, useState } from "react";
 
 // 1D204C blue
 // 05ECAE mint
 // FFFFFF card
 // FAF9FE bg
 export default function HomepageWorker() {
+  const [data, setData] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: "/workers/jobs/worker",
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+      console.log(data);
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="flex justify-between items-center mb-4">
@@ -24,7 +48,9 @@ export default function HomepageWorker() {
         </div>
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <CardWorker />
+          {data.map((data) => (
+            <CardWorker key={data.clientId} work={data} />
+          ))}
         </div>
       </div>
     </>

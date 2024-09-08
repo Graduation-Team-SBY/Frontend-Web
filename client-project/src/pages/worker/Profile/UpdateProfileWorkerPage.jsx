@@ -26,13 +26,14 @@ export default function UpdateProfileWorkerPage() {
 
       const { data } = await axios({
         method: "PATCH",
-        url: "/profile",
+        url: "/workers/profile",
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
         data: formData,
       });
 
+      console.log(data, "< ini data worker");
       toast.info("Success to Update Profile");
       navigate("/worker/profile");
     } catch (error) {
