@@ -1,20 +1,21 @@
-import { createBrowserRouter, redirect } from 'react-router-dom';
-import LandingPage from '../pages/LandingPage';
-import LoginPage from '../pages/LoginPage';
-import ClientRegisterPage from '../pages/ClientRegisterPage';
-import WorkerRegisterPage from '../pages/WorkerRegisterPage';
-import MainClientLayout from '../pages/layout/MainClientLayout';
-import HomeClientPage from '../pages/client/HomeClientPage';
-import MyOrdersPage from '../pages/client/MyOrdersPage';
-import DealOrdersPage from '../pages/client/DealOrdersPage';
-import AddOrderPage from '../pages/client/AddOrderPage';
-import AddOrderGmapsPage from '../pages/client/AddOrderGmapsPage';
-import MainWorkerLayout from '../pages/layout/MainWorkerLayout';
-import HomepageWorker from '../pages/worker/Home/HomepageWorker';
-import ProfilePage from '../pages/client/ProfilePage';
-import UpdateProfilePage from '../pages/client/UpdateProfilePage';
-import ProfileWorkerPage from '../pages/worker/Profile/ProfileWorkerPage';
-import EditProfileWorkerPage from '../pages/worker/Profile/EditProfileWorkerPage';
+import { createBrowserRouter, redirect } from "react-router-dom";
+import LandingPage from "../pages/LandingPage";
+import LoginPage from "../pages/LoginPage";
+import ClientRegisterPage from "../pages/ClientRegisterPage";
+import WorkerRegisterPage from "../pages/WorkerRegisterPage";
+import MainClientLayout from "../pages/layout/MainClientLayout";
+import HomeClientPage from "../pages/client/HomeClientPage";
+import MyOrdersPage from "../pages/client/MyOrdersPage";
+import DealOrdersPage from "../pages/client/DealOrdersPage";
+import AddOrderPage from "../pages/client/AddOrderPage";
+import AddOrderGmapsPage from "../pages/client/AddOrderGmapsPage";
+import MainWorkerLayout from "../pages/layout/MainWorkerLayout";
+import HomepageWorker from "../pages/worker/Home/HomepageWorker";
+import ProfilePage from "../pages/client/ProfilePage";
+import UpdateProfilePage from "../pages/client/UpdateProfilePage";
+import ProfileWorkerPage from "../pages/worker/Profile/ProfileWorkerPage";
+import EditProfileWorkerPage from "../pages/worker/Profile/EditProfileWorkerPage";
+import DetailOrderPage from "../pages/client/DetailOrderPage";
 
 // Untuk local storage
 // const localStorage.access_token = localStorage.access_token;
@@ -22,7 +23,7 @@ const role = localStorage.role;
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <LandingPage />,
     loader: () => {
       if (localStorage.access_token) return redirect(`/${localStorage.role}`);
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
     },
   },
   {
-    path: '/login',
+    path: "/login",
     element: <LoginPage />,
     loader: () => {
       if (localStorage.access_token) return redirect(`/${localStorage.role}`);
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
     },
   },
   {
-    path: '/client-register',
+    path: "/client-register",
     element: <ClientRegisterPage />,
     loader: () => {
       if (localStorage.access_token) return redirect(`/${localStorage.role}`);
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
     },
   },
   {
-    path: '/worker-register',
+    path: "/worker-register",
     element: <WorkerRegisterPage />,
     loader: () => {
       if (localStorage.access_token) return redirect(`/${localStorage.role}`);
@@ -54,81 +55,86 @@ const router = createBrowserRouter([
     },
   },
   {
-    path: '/client',
+    path: "/client",
     element: <MainClientLayout />,
     loader: () => {
-      if (!localStorage.access_token) return redirect('/');
-      if (localStorage.role !== 'client') return redirect(`/${localStorage.role}`);
+      if (!localStorage.access_token) return redirect("/");
+      if (localStorage.role !== "client")
+        return redirect(`/${localStorage.role}`);
       return null;
     },
     children: [
       {
-        path: '',
+        path: "",
         element: <HomeClientPage />,
       },
       {
-        path: 'profile',
+        path: "profile",
         children: [
           {
-            path: '',
+            path: "",
             element: <ProfilePage />,
           },
           {
-            path: 'update',
+            path: "update",
             element: <UpdateProfilePage />,
           },
         ],
       },
       {
-        path: 'order',
+        path: "order",
         children: [
           {
-            path: 'add-cleaning',
+            path: "add-cleaning",
             element: <AddOrderPage />,
           },
           {
-            path: 'add-shopping',
+            path: "add-shopping",
             element: <AddOrderGmapsPage />,
           },
           {
-            path: 'my',
+            path: "my",
             element: <MyOrdersPage />,
           },
           {
-            path: 'deals',
+            path: "deals",
             element: <DealOrdersPage />,
+          },
+          {
+            path: ":id",
+            element: <DetailOrderPage />,
           },
         ],
       },
     ],
   },
   {
-    path: '/worker',
+    path: "/worker",
     element: <MainWorkerLayout />,
     loader: () => {
-      if (!localStorage.access_token) return redirect('/');
-      if (localStorage.role !== 'worker') return redirect(`/${localStorage.role}`);
+      if (!localStorage.access_token) return redirect("/");
+      if (localStorage.role !== "worker")
+        return redirect(`/${localStorage.role}`);
       return null;
     },
     children: [
       {
-        path: '',
+        path: "",
         element: <HomepageWorker />,
       },
       {
-        path: 'profile',
+        path: "profile",
         children: [
           {
-            path: '',
+            path: "",
             element: <ProfileWorkerPage />,
           },
           {
-            path: 'update',
+            path: "update",
             element: <EditProfileWorkerPage />,
           },
         ],
       },
-
     ],
   },
 ]);
