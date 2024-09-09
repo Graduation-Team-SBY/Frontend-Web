@@ -56,7 +56,7 @@ export default function HomeClientPage() {
                 alt="belanja"
               />
               <span className="font-bold text-md mt-4 text-center">
-                Belanja
+                Nitip
               </span>
             </Link>
             <Link
@@ -68,7 +68,7 @@ export default function HomeClientPage() {
                 src="/bucket-cleaner.png"
                 alt="bersih"
               />
-              <span className="font-bold text-md mt-4 text-center">Bersih</span>
+              <span className="font-bold text-md mt-4 text-center">Bebersih</span>
             </Link>
           </div>
         </div>
@@ -118,13 +118,12 @@ export default function HomeClientPage() {
         <h2 className="font-black text-3xl lg:text-4xl">Recommendation</h2>
         <div className="flex gap-4 lg:justify-end items-center mt-5">
           <p>Filter :</p>
-          <select className="select select-ghost w-fit">
-            <option disabled selected>
-              Category
+          <select className="select select-ghost w-fit" defaultValue="">
+            <option value="">
+              All
             </option>
-            <option>Svelte</option>
-            <option>Vue</option>
-            <option>React</option>
+            <option value="Bebersih">Bebersih</option>
+            <option value="Nitip">Nitip</option>
           </select>
         </div>
 
@@ -153,13 +152,13 @@ export default function HomeClientPage() {
         <h2 className="font-black text-3xl lg:text-4xl">Histories</h2>
         <div className="flex gap-4 lg:justify-end items-center mt-5">
           <p>Filter :</p>
-          <select className="select select-ghost w-fit">
-            <option disabled selected>
-              Category
+          <select className="select select-ghost w-fit" defaultValue="">
+            <option value="">
+              All
             </option>
-            <option>Svelte</option>
-            <option>Vue</option>
-            <option>React</option>
+            <option value="Bebersih">Bebersih</option>
+            <option value="Nitip">Nitip</option>
+            
           </select>
         </div>
 

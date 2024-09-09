@@ -139,8 +139,8 @@ export default function Wallet() {
           </button>
           <dialog id="my_modal_2" className="modal">
             <div className="modal-box">
-              <h3 className="font-bold text-lg">Hello!</h3>
-              <p className="py-4">Press ESC key or click outside to close</p>
+              <h3 className="font-bold text-lg">Top Up</h3>
+              {/* <p className="py-4">Press ESC key or click outside to close</p> */}
               <form className="mt-8" onSubmit={handleTopup}>
                 <label className="form-control w-full">
                   <div className="label">
@@ -152,7 +152,7 @@ export default function Wallet() {
                     type="number"
                     placeholder="Type here"
                     className="input input-bordered w-full rounded-full"
-                    value={amount}
+                    defaultValue={amount}
                     onChange={(e) => setAmount(e.target.value)}
                   />
                 </label>
