@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from '../../config/axiosInstance';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { formatCurrencyRupiah } from '../../helpers/currency';
 import { toast } from 'react-toastify';
 
@@ -11,7 +11,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import { Pagination, Navigation } from 'swiper/modules';
-import Maps from '../../components/Maps';
 import DetailMaps from '../../components/DetailMaps';
 
 export default function DetailOrderPage() {
@@ -45,16 +44,49 @@ export default function DetailOrderPage() {
         },
       });
 
-      console.log(data);
+      // console.log(data);
       toast.info('Berhasil Menerima Worker');
       toast.info('Kamu tinggal tunggu pekerjaan nya beres');
 
       navigate('/jalu/order/my');
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error(error.response.data.message);
     }
   };
+
+  const handleDelete = async (jobId) => {
+    try {
+      const { data } = await axios({
+        method: 'DELETE',
+        url: `/clients/jobs/${jobId}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+
+      console.log(data);
+      toast.info('Berhasil membatalkan order nya');
+      navigate('/jalu/order/my');
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
+
+  const handleConfirm = async (jobId) => {
+    try {
+      const {data} = await axios({
+        method: "PATCH",
+        url: `/clients/jobs/${jobId}/client`
+      })
+
+      console.log(data);
+
+
+    } catch (error) {
+      toast.error(error.response.data.message)
+    }
+  }
 
   useEffect(() => {
     showDetailOrderClient(id);
@@ -64,11 +96,6 @@ export default function DetailOrderPage() {
       <h2 className="font-black text-4xl">Detail Order</h2>
       <div className="mt-20 flex gap-10">
         <div className="w-1/2">
-          {/* <img
-            className="rounded-xl"
-            src="https://plus.unsplash.com/premium_photo-1695582868702-5b0f91584d00?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3fHx8ZW58MHx8fHx8"
-            alt=""
-          /> */}
           {order.images ? (
             <Swiper
               slidesPerView={1}
@@ -90,7 +117,6 @@ export default function DetailOrderPage() {
               })}
             </Swiper>
           ) : (
-            // <Maps /> 
             <DetailMaps location={order.coordinates} />
           )}
         </div>
@@ -102,9 +128,31 @@ export default function DetailOrderPage() {
           <p className="mt-10">{formatCurrencyRupiah(order.fee)}</p>
 
           {order.workerId ? (
-            <h1>sudah sold</h1>
+            <div className="flex">
+              
+              <button className="btn bg-[#1D204C] text-white rounded-full mt-10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"
+                  />
+                </svg>
+              </button>
+              <Link to={`/jalu/order/${order._id}/verification`} className='btn bg-[#1D204C] text-white rounded-full mt-10'>Konfirmasi selesai</Link>
+            </div>
           ) : (
-            <button className="btn bg-[#1D204C] rounded-full text-white mt-10">
+            <button
+              onClick={() => handleDelete(order._id)}
+              className="btn bg-[#1D204C] rounded-full text-white mt-10"
+            >
               Batalkan Pekerjaan
             </button>
           )}
@@ -130,9 +178,7 @@ export default function DetailOrderPage() {
                           rating {worker.rating}
                         </span>
                       </div>
-                      {/* <p className="text-sm mt-2">{worker.bio}</p> */}
                       <div className="card-actions justify-end">
-                        {/* <button className="btn btn-ghost">Deny</button> */}
                         <button
                           className="btn btn-primary"
                           onClick={() => handleAcceptWorker(id, worker.userId)}

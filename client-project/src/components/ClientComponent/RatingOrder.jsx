@@ -1,6 +1,7 @@
 export default function RatingReview({ rating, setRating }) {
   return (
     <>
+      <p className="font-semibold">Rating: </p>
       <div>
         {[1, 2, 3, 4, 5].map((star, i) => {
           return (
