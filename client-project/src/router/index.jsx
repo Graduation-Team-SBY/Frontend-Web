@@ -13,7 +13,7 @@ import HomepageWorker from "../pages/worker/Home/HomepageWorker";
 import ProfilePage from "../pages/client/ProfilePage";
 import UpdateProfilePage from "../pages/client/UpdateProfilePage";
 import ProfileWorkerPage from "../pages/worker/Profile/ProfileWorkerPage";
-// import DetailOrderPage from "../pages/client/DetailOrderPage";
+import DetailOrderPage from "../pages/client/DetailOrderPage";
 import UpdateProfileWorkerPage from "../pages/worker/Profile/UpdateProfileWorkerPage";
 import DetailJob from "../pages/worker/DetailJob";
 
@@ -106,7 +106,7 @@ const router = createBrowserRouter([
           },
           {
             path: ":id",
-            element: <DetailJobWorkerPage />,
+            element: <DetailOrderPage />,
           },
         ],
       },

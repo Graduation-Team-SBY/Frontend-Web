@@ -12,6 +12,7 @@ import 'swiper/css/navigation';
 
 import { Pagination, Navigation } from 'swiper/modules';
 import Maps from '../../components/Maps';
+import DetailMaps from '../../components/DetailMaps';
 
 export default function DetailOrderPage() {
   const navigate = useNavigate();
@@ -90,11 +91,13 @@ export default function DetailOrderPage() {
             </Swiper>
           ) : (
             // <Maps /> 
-            <h1>test</h1>
+            <DetailMaps location={order.coordinates} />
           )}
         </div>
         <div className="w-1/2">
-          <h2 className="font-black text-4xl">Cuci Piring</h2>
+          <h2 className="font-black text-4xl">{order.category?.name}</h2>
+          <p>{order.address}</p>
+          <p>{order.addressNotes}</p>
           <p className="mt-10">{order.description}</p>
           <p className="mt-10">{formatCurrencyRupiah(order.fee)}</p>
 

@@ -40,7 +40,7 @@ export default function Maps({ location, setLocation, setAddress }) {
     } else {
       setErrorMsg('Geolocation tidak didukung oleh browser ini.');
     }
-    console.log(location, '<<<<');
+    // console.log(location, '<<<<');
   }, []);
 
   const handleMapClick = (event) => {
@@ -50,7 +50,7 @@ export default function Maps({ location, setLocation, setAddress }) {
     };
     setLocation(newLocation); // Simpan lokasi pada state
     getAddressFromLatLng(newLocation.lat, newLocation.lng)
-    console.log(location, "<< setelah update")
+    // console.log(location, "<< setelah update")
   };
 
   const getAddressFromLatLng = (lat, lng) => {
@@ -87,7 +87,7 @@ export default function Maps({ location, setLocation, setAddress }) {
       }
     );
 
-    console.log(location, "<< Location semula")
+    // console.log(location, "<< Location semula")
   }
 
   return isLoaded ? (
@@ -105,7 +105,7 @@ export default function Maps({ location, setLocation, setAddress }) {
         </GoogleMap>
       </div>
 
-      <button onClick={handleMyLocation}>my location</button>
+      <button className='btn btn-block mt-10 rounded-full' onClick={handleMyLocation}>Cari Posisi saya</button>
     </>
   ) : (
     <h1>Loading</h1>
