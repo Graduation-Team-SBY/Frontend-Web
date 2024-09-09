@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import RatingReview from '../../../components/ClientComponent/RatingOrder';
 import { toast } from 'react-toastify';
 import axios from '../../../config/axiosInstance';
@@ -7,8 +7,10 @@ import { formatCurrencyRupiah } from '../../../helpers/currency';
 
 export default function VerificationOrderClient() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [rating, setRating] = useState(0);
-  const [description, setDescription] = useState("")
+  const [description, setDescription] = useState('');
+  const [images, setImages] = useState([]);
 
   const [order, setOrder] = useState({});
 
@@ -29,9 +31,39 @@ export default function VerificationOrderClient() {
     }
   };
 
+  const handleRating = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append('rating', rating);
+      formData.append('description', description);
+
+      for (let i = 0; i < images.length; i++) {
+        formData.append('image', images[i]);
+      }
+      const { data } = await axios({
+        method: 'POST',
+        url: `/clients/jobs/${id}/review`,
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+        data: formData,
+      });
+
+      console.log(data);
+
+      toast.info('berhasil memberikan rating');
+      navigate('/jalu');
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
+  };
+
   useEffect(() => {
     fetchOrder();
   }, []);
+
 
   return (
     <div className="flex justify-center items-center flex-col bg-[#FAF9FE] min-h-screen py-8">
@@ -79,30 +111,46 @@ export default function VerificationOrderClient() {
           </div>
         </div>
 
-        <div className="mt-10">
-          <RatingReview rating={rating} setRating={setRating} />
-          
+        <form onSubmit={handleRating}>
+          <div className="mt-10">
+            <RatingReview rating={rating} setRating={setRating} />
 
-          <label className="form-control">
-            <div className="label">
-              <span className="label-text font-semibold">Testimoni: </span>
-            </div>
-            <textarea
-              className="textarea textarea-bordered h-24"
-              placeholder=""
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
-          </label>
-        </div>
+            <label className="form-control">
+              <div className="label">
+                <span className="label-text font-semibold">Testimoni: </span>
+              </div>
+              <textarea
+                className="textarea textarea-bordered h-24"
+                placeholder=""
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+            </label>
 
-        <div className="mt-8 flex justify-center">
-          <Link
-            to="/payment-pending-client"
-            className="bg-[#1D204C] text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-[#0b1434] transition duration-300"
-          >
-            Kirim Review
-          </Link>
-        </div>
+            <label className="form-control w-full mt-5">
+              <div className="label">
+                <span className="label-text">
+                  Tambahkan foto Testimoni kamu
+                </span>
+              </div>
+              <input
+                type="file"
+                className="file-input file-input-bordered w-full rounded-full"
+                multiple
+                onChange={(e) => setImages(e.target.files)}
+              />
+            </label>
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <button
+              // onClick={handleRating}
+              type='submit'
+              className="bg-[#1D204C] text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-[#0b1434] transition duration-300"
+            >
+              Kirim Review
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
