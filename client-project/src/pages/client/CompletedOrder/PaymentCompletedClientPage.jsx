@@ -67,7 +67,7 @@ export default function PaymentCompletedClientPage() {
 
         <div className="mt-8 flex justify-center">
           <Link
-            to="/worker"
+            to="/yasa"
             className="bg-[#1D204C] text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-[#0b1434] transition duration-300"
           >
             Kembali ke Beranda

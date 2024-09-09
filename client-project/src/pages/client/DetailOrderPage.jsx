@@ -48,7 +48,7 @@ export default function DetailOrderPage() {
       toast.info('Berhasil Menerima Worker');
       toast.info('Kamu tinggal tunggu pekerjaan nya beres');
 
-      navigate('/client/order/my');
+      navigate('/jalu/order/my');
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);

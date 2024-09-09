@@ -29,7 +29,7 @@ export default function UpdateProfileWorkerPage() {
         data: formData,
       });
       toast.info("Profile updated successfully");
-      navigate("/worker/profile");
+      navigate("/yasa/profile");
     } catch (error) {
       if (error.response) toast.error(error.response.data.message);
     }
