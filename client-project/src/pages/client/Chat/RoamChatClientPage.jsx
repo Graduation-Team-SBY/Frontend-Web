@@ -4,7 +4,7 @@ import ChatStart from "../../../components/ChatStart";
 import ProfileChat from "../../../components/workerComponent/ProfileChat";
 import { io } from "socket.io-client";
 
-export default function RoamChatWorkerPage() {
+export default function RoamChatClientPage() {
   const [chats, setChats] = useState([]);
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState(null);

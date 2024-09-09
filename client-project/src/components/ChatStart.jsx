@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ChatStart() {
+export default function ChatStart({ message }) {
   return (
     <div className="chat chat-start">
       <div className="chat-image avatar">
@@ -12,9 +12,7 @@ export default function ChatStart() {
         </div>
       </div>
       <div className="chat-header">Aditya</div>
-      <div className="chat-bubble bg-[#05ECAE] text-[#1D204C]">
-        Hello nama saya aditya
-      </div>
+      <div className="chat-bubble bg-[#05ECAE] text-[#1D204C]">{message}</div>
       <div className="chat-footer opacity-50">15.00</div>
     </div>
   );

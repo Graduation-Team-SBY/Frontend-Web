@@ -28,8 +28,8 @@ export default function DetailJobWorkerPage() {
     navigate("/yasa/order/verification", { state: { order } });
   };
 
-  const handleToChat = () => {
-    navigate("/yasa/order/chat");
+  const handleToChat = (id) => {
+    navigate(`/yasa/order/jobs/${id}/chat`);
   };
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function DetailJobWorkerPage() {
             </button>
             <button
               className="w-1/2 bg-[#05ECAE] text-white py-2 rounded-md transition duration-300"
-              onClick={() => handleToChat()}
+              onClick={() => handleToChat(id)}
             >
               Chat
             </button>
