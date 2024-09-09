@@ -6,7 +6,6 @@ import WorkerRegisterPage from "../pages/WorkerRegisterPage";
 import MainClientLayout from "../pages/layout/MainClientLayout";
 import HomeClientPage from "../pages/client/HomeClientPage";
 import MyOrdersPage from "../pages/client/MyOrdersPage";
-import DealOrdersPage from "../pages/client/DealOrdersPage";
 import AddOrderPage from "../pages/client/AddOrderPage";
 import AddOrderGmapsPage from "../pages/client/AddOrderGmapsPage";
 import MainWorkerLayout from "../pages/layout/MainWorkerLayout";
@@ -17,10 +16,14 @@ import ProfileWorkerPage from "../pages/worker/Profile/ProfileWorkerPage";
 import DetailOrderPage from "../pages/client/DetailOrderPage";
 import UpdateProfileWorkerPage from "../pages/worker/Profile/UpdateProfileWorkerPage";
 import DetailJob from "../pages/worker/DetailJob";
+
 import CurrectJobsPage from "../pages/worker/Jobs/CurrenctJobPage";
 import DetailJobWorkerPage from "../pages/worker/Jobs/DetailCurrenctJobPage";
 import RoamChatWorkerPage from "../pages/worker/Chat/RoamChatWorkerPage";
 import VerificationOrderWorkerPage from "../pages/worker/CompletedOrder/VertifikasiOrderWorkerPage";
+
+import HistoryOrdersPage from "../pages/client/HistoryOrdersPage";
+
 
 // Untuk local storage
 // const localStorage.access_token = localStorage.access_token;
@@ -102,8 +105,8 @@ const router = createBrowserRouter([
             element: <MyOrdersPage />,
           },
           {
-            path: "deals",
-            element: <DealOrdersPage />,
+            path: "history",
+            element: <HistoryOrdersPage />,
           },
           {
             path: ":id",

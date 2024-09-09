@@ -53,7 +53,7 @@ export default function NavbarClient() {
                     <Link to="/client/order/my">My Order</Link>
                   </li>
                   <li>
-                    <Link to="/client/order/deals">Deal Order</Link>
+                    <Link to="/client/order/history">History</Link>
                   </li>
                 </ul>
               </details>
@@ -88,7 +88,7 @@ export default function NavbarClient() {
                   <Link to="/client/order/my">My Order</Link>
                 </li>
                 <li>
-                  <Link to="/client/order/deals">Deal Order</Link>
+                  <Link to="/client/order/history">History</Link>
                 </li>
               </ul>
             </details>

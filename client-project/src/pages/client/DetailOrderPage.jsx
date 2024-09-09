@@ -4,6 +4,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { formatCurrencyRupiah } from '../../helpers/currency';
 import { toast } from 'react-toastify';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import { Pagination, Navigation } from 'swiper/modules';
+import Maps from '../../components/Maps';
+
 export default function DetailOrderPage() {
   const navigate = useNavigate();
   const [order, setOrder] = useState({});
@@ -54,11 +63,35 @@ export default function DetailOrderPage() {
       <h2 className="font-black text-4xl">Detail Order</h2>
       <div className="mt-20 flex gap-10">
         <div className="w-1/2">
-          <img
+          {/* <img
             className="rounded-xl"
             src="https://plus.unsplash.com/premium_photo-1695582868702-5b0f91584d00?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3fHx8ZW58MHx8fHx8"
             alt=""
-          />
+          /> */}
+          {order.images ? (
+            <Swiper
+              slidesPerView={1}
+              spaceBetween={30}
+              loop={true}
+              pagination={{
+                clickable: true,
+              }}
+              navigation={true}
+              modules={[Pagination, Navigation]}
+              className="mySwiper w-96"
+            >
+              {order.images.map((image, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <img className="rounded-xl" src={image} alt="" />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          ) : (
+            // <Maps /> 
+            <h1>test</h1>
+          )}
         </div>
         <div className="w-1/2">
           <h2 className="font-black text-4xl">Cuci Piring</h2>

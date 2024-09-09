@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function DealOrdersPage() {
+export default function HistoryOrdersPage() {
   return (
     <div>
-      <h2 className="font-black text-4xl text-[#1D204C]">Deal Orders</h2>
+      <h2 className="font-black text-4xl text-[#1D204C]">History Orders</h2>
 
       <div className="flex gap-4 justify-end items-center mt-5">
         <p>Filter :</p>
