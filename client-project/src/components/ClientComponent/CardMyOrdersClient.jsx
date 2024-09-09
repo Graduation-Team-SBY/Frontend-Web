@@ -13,7 +13,7 @@ export default function CardMyOrdersClient({ data }) {
         <p>Lokasi: {data.address}</p>
         <div className="flex gap-2 justify-end">
           <p className="text-2xl font-bold">{formatCurrencyRupiah(data.fee)}</p>
-          <Link to={`/client/order/${data._id}`} className="btn btn-primary">
+          <Link to={`/jalu/order/${data._id}`} className="btn btn-primary">
             Lihat Detail
           </Link>
         </div>

@@ -57,7 +57,7 @@ export default function VerificationOrderWorkerPage() {
 
       console.log("Verification submitted:", data);
       toast.success("Successfully");
-      navigate("/worker/order/jobs");
+      navigate("/yasa/order/jobs");
     } catch (error) {
       console.error("Error submitting verification:", error);
     }

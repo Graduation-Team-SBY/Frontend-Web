@@ -25,11 +25,11 @@ export default function DetailJobWorkerPage() {
   };
 
   const handleVerificationOrder = () => {
-    navigate("/worker/order/verification", { state: { order } });
+    navigate("/yasa/order/verification", { state: { order } });
   };
 
   const handleToChat = () => {
-    navigate("/worker/order/chat");
+    navigate("/yasa/order/chat");
   };
 
   useEffect(() => {

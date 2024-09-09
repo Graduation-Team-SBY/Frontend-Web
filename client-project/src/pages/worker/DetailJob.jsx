@@ -37,7 +37,7 @@ export default function DetailOrderPage() {
       });
 
       console.log(data);
-      navigate("/worker");
+      navigate("/yasa");
       toast.success("Successfully apply for the job");
     } catch (error) {
       console.log(error);

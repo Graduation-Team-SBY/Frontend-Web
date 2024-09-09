@@ -52,13 +52,13 @@ export default function LandingPage() {
               />
             </a> */}
               <Link
-                to="/client-register"
+                to="/jalu-register"
                 className="bg-[#1D204C] text-white px-5 py-2 rounded-full hover:bg-[#05ECAE] hover:text-[#1D204C]"
               >
                 Register
               </Link>
               <Link
-                to="/worker-register"
+                to="/yasa-register"
                 className="bg-[#1D204C] text-white px-5 py-2 rounded-full hover:bg-[#05ECAE] hover:text-[#1D204C]"
               >
                 Daftar sebagai worker

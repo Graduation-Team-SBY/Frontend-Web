@@ -74,7 +74,7 @@ export default function ProfileWorkerPage() {
                 </div>
               </div>
               <Link
-                to="/worker/profile/update"
+                to="/yasa/profile/update"
                 className="bg-[#1D204C] text-[#FAF9FE] px-4 py-2 rounded-full"
               >
                 Edit

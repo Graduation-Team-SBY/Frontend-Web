@@ -22,9 +22,15 @@ export default function LoginPage() {
 
       console.log(data)
       localStorage.setItem("access_token", data.access_token);
-      localStorage.setItem("role", data.role)
+      let role
+      if (data.role === "client") {
+        role = "jalu"
+      } else if (data.role === "worker") {
+        role = "yasa"
+      }
+      localStorage.setItem("role", role)
       toast.info("Success to login");
-      navigate(`/${data.role}`);
+      navigate(`/${localStorage.role}`);
     } catch (error) {
       toast.error(error.response.data.message);
     }

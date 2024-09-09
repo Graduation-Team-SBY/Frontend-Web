@@ -45,7 +45,7 @@ export default function UpdateProfilePage() {
 
       console.log(data);
       toast.info("Success to Update Profile");
-      navigate("/client/profile");
+      navigate("/jalu/profile");
     } catch (error) {
       toast.error(error.response.data.message);
     }
