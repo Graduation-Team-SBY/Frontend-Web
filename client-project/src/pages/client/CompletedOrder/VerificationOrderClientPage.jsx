@@ -1,18 +1,40 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import RatingReview from "../../../components/ClientComponent/RatingOrder";
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import RatingReview from '../../../components/ClientComponent/RatingOrder';
+import { toast } from 'react-toastify';
+import axios from '../../../config/axiosInstance';
+import { formatCurrencyRupiah } from '../../../helpers/currency';
 
 export default function VerificationOrderClient() {
+  const { id } = useParams();
   const [rating, setRating] = useState(0);
+  const [description, setDescription] = useState("")
+
+  const [order, setOrder] = useState({});
+
+  const fetchOrder = async () => {
+    try {
+      const { data } = await axios({
+        method: 'GET',
+        url: `clients/jobs/${id}/workers`,
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+
+      console.log(data);
+      setOrder(data);
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchOrder();
+  }, []);
 
   return (
     <div className="flex justify-center items-center flex-col bg-[#FAF9FE] min-h-screen py-8">
-      <ul className="steps steps-vertical lg:steps-horizontal mb-8">
-        <li className="step step-primary">Verifikasi Pesanan</li>
-        <li className="step">Pembayaran</li>
-        <li className="step">Selesai</li>
-      </ul>
-
       <div className="bg-white rounded-xl shadow-lg p-8 max-w-lg w-full">
         <div className="flex justify-center items-center mb-6">
           <div className="bg-gray-200 text-[#1D204C] rounded-full p-4">
@@ -45,32 +67,32 @@ export default function VerificationOrderClient() {
         <div className="text-base text-[#1D204C] space-y-4">
           <div className="flex justify-between">
             <span>Jumlah Total</span>
-            <span className="font-semibold">IDR 1,200,000</span>
+            <span className="font-semibold">
+              {formatCurrencyRupiah(order.fee)}
+            </span>
           </div>
           <div className="flex justify-between">
-            <span>Tugas yang Disertakan</span>
-            <span className="font-semibold">3 tasks</span>
+            <span className="font-semibold">Tugas yang Disertakan:</span>
           </div>
           <div className="space-y-1">
-            <span>Detail Tugas:</span>
-            <ul className="list-disc pl-5">
-              <li>Tugas 1: Design Review - IDR 400,000</li>
-              <li>Tugas 2: Backend Development - IDR 500,000</li>
-              <li>Tugas 3: UI Testing - IDR 300,000</li>
-            </ul>
+            <p>{order.description}</p>
           </div>
         </div>
 
-        <div className="mt-6">
+        <div className="mt-10">
           <RatingReview rating={rating} setRating={setRating} />
-          <label className="block text-sm font-medium text-gray-700 mt-4 mb-2">
-            Deskripsi (Opsional)
+          
+
+          <label className="form-control">
+            <div className="label">
+              <span className="label-text font-semibold">Testimoni: </span>
+            </div>
+            <textarea
+              className="textarea textarea-bordered h-24"
+              placeholder=""
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
           </label>
-          <textarea
-            className="w-full p-3 border rounded-lg focus:outline-none focus:border-[#1D204C]"
-            rows="4"
-            placeholder="Tambahkan catatan atau komentar..."
-          ></textarea>
         </div>
 
         <div className="mt-8 flex justify-center">
@@ -78,7 +100,7 @@ export default function VerificationOrderClient() {
             to="/payment-pending-client"
             className="bg-[#1D204C] text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-[#0b1434] transition duration-300"
           >
-            Kirim Verifikasi
+            Kirim Review
           </Link>
         </div>
       </div>
