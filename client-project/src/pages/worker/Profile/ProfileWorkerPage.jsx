@@ -48,22 +48,22 @@ export default function ProfileWorkerPage() {
                   src="
                   alt="Profile"
                 /> */}
-                {profile[0]?.profilePicture ? (
+                {profile.profilePicture ? (
                   <img
                     className="w-16 h-16 rounded-full object-cover ring ring-white"
-                    src={profile[0]?.profilePicture}
+                    src={profile.profilePicture}
                   />
                 ) : (
                   <img
                     className="w-16 h-16 rounded-full object-cover ring ring-white"
-                    alt={profile[0]?.name}
+                    alt={profile.name}
                     src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=880&h=880&q=100"
                   />
                 )}
                 <div>
-                  {profile[0]?.name ? (
+                  {profile.name ? (
                     <h3 className="text-xl font-semibold">
-                      {profile[0]?.name}
+                      {profile.name}
                     </h3>
                   ) : (
                     <h3 className="text-xl font-semibold">
@@ -90,9 +90,9 @@ export default function ProfileWorkerPage() {
 
               <div className="">
                 <p className="text-gray-400">Umur</p>
-                {profile[0]?.dateOfBirth ? (
+                {profile.dateOfBirth ? (
                   <p className="font-bold text-xl">
-                    {age(profile[0]?.dateOfBirth)}
+                    {age(profile.dateOfBirth)}
                   </p>
                 ) : (
                   <p className="font-bold text-xl text-gray-400">
@@ -104,21 +104,21 @@ export default function ProfileWorkerPage() {
               <div className="">
                 <p className="text-gray-400">Nomor Telephone</p>
                 <p className="font-bold text-xl">
-                  {profile[0]?.userData?.phoneNumber}
+                  {profile.userData?.phoneNumber}
                 </p>
               </div>
 
               <div className="">
                 <p className="text-gray-400">Email</p>
                 <p className="font-bold text-xl">
-                  {profile[0]?.userData?.email}
+                  {profile.userData?.email}
                 </p>
               </div>
 
               <div className="">
                 <p className="text-gray-400">Bergabung pada</p>
                 <p className="font-bold text-xl">
-                  {formatDate(profile[0]?.userData?.createdAt)}
+                  {formatDate(profile.userData?.createdAt)}
                 </p>
               </div>
             </div>
@@ -127,9 +127,9 @@ export default function ProfileWorkerPage() {
               <div className="">
                 <p className="text-gray-400">Tanggal Lahir</p>
                 {/* <p className="font-bold text-xl">28 June 2001</p> */}
-                {profile[0]?.dateOfBirth ? (
+                {profile.dateOfBirth ? (
                   <p className="font-bold text-xl">
-                    {formatDate(profile[0]?.dateOfBirth)}
+                    {formatDate(profile.dateOfBirth)}
                   </p>
                 ) : (
                   <p className="font-bold text-xl text-gray-400">
@@ -140,8 +140,8 @@ export default function ProfileWorkerPage() {
 
               <div className="">
                 <p className="text-gray-400">My Address</p>
-                {profile[0]?.address ? (
-                  <p className="font-bold text-xl">{profile[0]?.address}</p>
+                {profile.address ? (
+                  <p className="font-bold text-xl">{profile.address}</p>
                 ) : (
                   <p className="font-bold text-xl text-gray-400">
                     (Belum Diisi)
