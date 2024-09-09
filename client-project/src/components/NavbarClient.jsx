@@ -3,13 +3,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export default function NavbarClient() {
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-    localStorage.clear()
-    toast.info("Success to logout")
-    navigate("/")
-  }
+    localStorage.clear();
+    toast.info('Success to logout');
+    navigate('/');
+  };
 
   return (
     <div className="navbar bg-[#faf9fe] px-8 md:px-20 lg:px-32 fixed top-0 inset-x-0 z-50">
@@ -40,7 +40,7 @@ export default function NavbarClient() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/client">Home</Link>
+              <Link to="/jalu">Home</Link>
             </li>
 
             <li>
@@ -50,10 +50,10 @@ export default function NavbarClient() {
                 </summary>
                 <ul className="p-2 w-36">
                   <li>
-                    <Link to="/client/order/my">My Order</Link>
+                    <Link to="/jalu/order/my">My Order</Link>
                   </li>
                   <li>
-                    <Link to="/client/order/history">History</Link>
+                    <Link to="/jalu/order/history">History</Link>
                   </li>
                 </ul>
               </details>
@@ -72,7 +72,7 @@ export default function NavbarClient() {
           <li>
             <Link
               className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
-              to="/client"
+              to="/jalu"
             >
               Home
             </Link>
@@ -85,10 +85,10 @@ export default function NavbarClient() {
               </summary>
               <ul className="p-2 w-36">
                 <li>
-                  <Link to="/client/order/my">My Order</Link>
+                  <Link to="/jalu/order/my">My Order</Link>
                 </li>
                 <li>
-                  <Link to="/client/order/history">History</Link>
+                  <Link to="/jalu/order/history">History</Link>
                 </li>
               </ul>
             </details>
@@ -107,7 +107,7 @@ export default function NavbarClient() {
             className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/client/profile">Profile</Link>
+              <Link to="/jalu/profile">Profile</Link>
             </li>
             <li>
               <button onClick={handleLogout}>Logout</button>

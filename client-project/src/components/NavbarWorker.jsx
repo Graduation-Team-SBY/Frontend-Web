@@ -40,11 +40,11 @@ export default function NavbarWorker() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/worker">Home</Link>
+              <Link to="/yasa">Home</Link>
             </li>
 
             <li>
-              <Link to="/worker/order/jobs">Work</Link>
+              <Link to="/yasa/order/jobs">Work</Link>
             </li>
           </ul>
         </div>
@@ -60,7 +60,7 @@ export default function NavbarWorker() {
           <li>
             <Link
               className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
-              to="/worker"
+              to="/yasa"
             >
               Home
             </Link>
@@ -68,7 +68,7 @@ export default function NavbarWorker() {
           <li>
             <Link
               className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
-              to="/worker/order/jobs"
+              to="/yasa/order/jobs"
             >
               Work
             </Link>
@@ -95,7 +95,7 @@ export default function NavbarWorker() {
             className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/worker/profile">Profile</Link>
+              <Link to="/yasa/profile">Profile</Link>
             </li>
             <li>
               <button onClick={handleLogout}>Logout</button>

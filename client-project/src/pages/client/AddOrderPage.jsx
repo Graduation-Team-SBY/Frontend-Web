@@ -34,13 +34,13 @@ export default function AddOrderPage() {
       });
       console.log(data);
 
-      navigate('/client');
+      navigate('/jalu');
       toast.info("Berhasil membuat Pekerjaan")
     } catch (error) {
       // console.log(error);
       toast.error(error.response.data.message);
       if (error.response.data.message === "Fill in your profile first!") {
-        navigate("/client/profile")
+        navigate("/jalu/profile")
       }
     }
   };

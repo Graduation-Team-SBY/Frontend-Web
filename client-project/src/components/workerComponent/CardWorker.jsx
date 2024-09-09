@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function CardWorker({ work }) {
   return (
     <>
-      <Link to={`/worker/order/${work._id}`}>
+      <Link to={`/yasa/order/${work._id}`}>
         <div className="bg-[#FFFFFF] p-6 rounded-lg shadow">
           <div className="flex items-center space-x-4">
             <h2 className="text-2xl font-semibold">{work.category.name}</h2>
@@ -31,6 +31,7 @@ export default function CardWorker({ work }) {
             </div>
             <span className="text-[#1D204C]">${work.fee}/h</span>
           </div>
+
         </div>
       </Link>
 
