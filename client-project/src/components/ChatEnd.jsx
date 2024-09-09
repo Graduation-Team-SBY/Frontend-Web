@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ChatEnd() {
+export default function ChatEnd({ message }) {
   return (
     <div className="chat chat-end">
       <div className="chat-image avatar">
@@ -12,9 +12,7 @@ export default function ChatEnd() {
         </div>
       </div>
       <div className="chat-header">Mumei</div>
-      <div className="chat-bubble bg-[#1D204C] text-[#05ECAE]">
-        Ya apa kabar
-      </div>
+      <div className="chat-bubble bg-[#1D204C] text-[#05ECAE]">{message}</div>
       <div className="chat-footer opacity-50">15.00</div>
     </div>
   );

@@ -155,7 +155,7 @@ const router = createBrowserRouter([
             element: <DetailJobWorkerPage />,
           },
           {
-            path: "chat",
+            path: "jobs/:id/chat",
             element: <RoamChatWorkerPage />,
           },
           {
