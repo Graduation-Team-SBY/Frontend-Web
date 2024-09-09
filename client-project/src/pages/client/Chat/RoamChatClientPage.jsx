@@ -3,17 +3,19 @@ import ChatEnd from "../../../components/ChatEnd";
 import ChatStart from "../../../components/ChatStart";
 import ProfileChat from "../../../components/workerComponent/ProfileChat";
 import { io } from "socket.io-client";
+import { useParams } from "react-router-dom";
 
 export default function RoamChatClientPage() {
   const [chats, setChats] = useState([]);
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState(null);
+  const { id } = useParams();
 
   useEffect(() => {
     const newSocket = io("http://localhost:3000");
     setSocket(newSocket);
 
-    newSocket.emit("join_room", "66dd3a2dcc992155647b6758");
+    newSocket.emit("join_room", id);
 
     newSocket.on("receive_message", (data) => {
       setChats((curr) => [...curr, { data, isMine: false }]);
@@ -31,7 +33,7 @@ export default function RoamChatClientPage() {
         createdAt: new Date(),
         isMine: true,
       };
-      socket.emit("send_message", messageObj, "66dd3a2dcc992155647b6758");
+      socket.emit("send_message", messageObj, id);
       setChats((curr) => [...curr, messageObj]);
       setMessage("");
     }
