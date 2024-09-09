@@ -24,6 +24,7 @@ import VerificationOrderWorkerPage from '../pages/worker/CompletedOrder/Vertifik
 
 import HistoryOrdersPage from '../pages/client/HistoryOrdersPage';
 import VerificationOrderClient from '../pages/client/CompletedOrder/VerificationOrderClientPage';
+import RoamChatClientPage from '../pages/client/Chat/RoamChatClientPage';
 
 const router = createBrowserRouter([
   {
@@ -107,6 +108,10 @@ const router = createBrowserRouter([
           {
             path: ':id',
             element: <DetailOrderPage />,
+          },
+          {
+            path: ':id/chat',
+            element: <RoamChatClientPage />,
           },
           {
             path: ':id/verification',
