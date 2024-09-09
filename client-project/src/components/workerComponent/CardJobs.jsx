@@ -1,35 +1,48 @@
 import { Link } from "react-router-dom";
 import { formatCurrencyRupiah } from "../../helpers/currency";
+import { formatDateMonth } from "../../helpers/formatDate";
 
-// 1D204C blue
-// 05ECAE mint
-// FFFFFF card
-// FAF9FE bg
 export default function CardJobs({ jobs }) {
   return (
     <Link to={jobs._id}>
-      <div className="w-full max-w-sm px-4 py-3 bg-[#FFFFFF] rounded-md shadow-md">
+      <div className="w-full max-w-sm px-4 py-3 bg-[#FFFFFF] rounded-md shadow-md h-full flex flex-col justify-between">
         <div className="flex items-center justify-between">
-          <span className="text-xl font-bold text-[#1D204C]">
-            Beli Alat Perang
+          <span className="text-sm font-light text-[#1D204C]">
+            <h2 className="text-2xl font-semibold">{jobs.category.name}</h2>
+            <h6 className="text-sm text-gray-500">
+              {formatDateMonth(new Date(jobs.createdAt))}
+            </h6>
           </span>
-          <span className="px-3 py-1 text-xs text-[#1D204C] uppercase bg-[#05ECAE] rounded-full">
-            Ongoing
+          <span className="px-3 py-1 text-xs text-[#1D204C] bg-[#05ECAE] rounded-full">
+            <span className="p-1 rounded text-xs">ongoing</span>
           </span>
         </div>
-        <p className="mt-2 text-sm text-[#1D204C]">{jobs.description}</p>
-        <div className="mt-3 text-sm text-[#1D204C]">
+        <div className="mt-4 text-sm text-[#1D204C]">
           <p>
-            <strong>Address:</strong> {jobs.address}
+            <strong>Deskripsi: </strong> {jobs.description}
           </p>
-          <p>
-            <strong>Biaya: </strong>
-            {formatCurrencyRupiah(jobs.fee)}
-          </p>
-          <p>
-            <strong>Waktu :</strong>{" "}
-            {new Date(jobs.createdAt).toLocaleDateString()}
-          </p>
+        </div>
+        <div>
+          <div className="mt-4 text-sm text-[#1D204C] ">
+            <p className="line-clamp-3">
+              <strong>Alamat: </strong> {jobs.address}
+            </p>
+          </div>
+          <hr className="mt-4" />
+
+          <div className="mt-4 flex justify-between items-center">
+            <div className="flex items-center gap-2">
+              <img
+                className="object-cover h-10 rounded-full"
+                src={jobs.client.profilePicture}
+                alt="Avatar"
+              />
+              <h3 className="text-lg font-semibold">{jobs.client.name}</h3>
+            </div>
+            <span className="text-[#1D204C]">
+              {formatCurrencyRupiah(jobs.fee)}
+            </span>
+          </div>
         </div>
       </div>
     </Link>

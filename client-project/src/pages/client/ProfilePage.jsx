@@ -3,9 +3,11 @@ import axios from "../../config/axiosInstance";
 import { Link } from "react-router-dom";
 import { age } from "../../helpers/age";
 import { formatDate } from "../../helpers/formatDate";
+import CardHistory from "../../components/ClientComponent/CardHistori";
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState({});
+  const [history, setHistory] = useState([]);
 
   const fetchProfile = async () => {
     try {
@@ -17,7 +19,7 @@ export default function ProfilePage() {
         },
       });
 
-      console.log(data);
+      // console.log(data);
 
       setProfile(data);
     } catch (error) {
@@ -25,8 +27,26 @@ export default function ProfilePage() {
     }
   };
 
+  const fetchHistory = async () => {
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: "/profile/histories",
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+
+      console.log(data);
+      setHistory(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchProfile();
+    fetchHistory();
   }, []);
 
   return (
@@ -151,88 +171,9 @@ export default function ProfilePage() {
         <h2 className="text-2xl font-black mb-4">Histori</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Card */}
-          <div className="p-4 rounded-lg shadow-lg w-full bg-white">
-            <div className="flex justify-between">
-              <p className="text-sm">March 08, 2023</p>
-              <span className="bg-[#1D204C] text-white py-1 px-3 rounded-lg text-xs">
-                Belanja
-              </span>
-            </div>
-            <p className="text-sm mt-2">My Order sCleaning Swimming Pool</p>
-            <p className="text-sm">Price: Rp. 50.000</p>
-          </div>
-          <div className="p-4 rounded-lg shadow-lg w-full bg-white">
-            <div className="flex justify-between">
-              <p className="text-sm">March 07, 2023</p>
-              <span className="bg-[#05ECAE] text-white py-1 px-3 rounded-lg text-xs">
-                Bersih-bersih
-              </span>
-            </div>
-            <p className="text-sm mt-2">My Order Bersih-bersih Swimming Pool</p>
-            <p className="text-sm">Price: Rp. 50.000</p>
-          </div>
-          <div className="p-4 rounded-lg shadow-lg w-full bg-white">
-            <div className="flex justify-between">
-              <p className="text-sm">March 07, 2023</p>
-              <span className="bg-[#05ECAE] text-white py-1 px-3 rounded-lg text-xs">
-                Bersih-bersih
-              </span>
-            </div>
-            <p className="text-sm mt-2">My Order Bersih-bersih Swimming Pool</p>
-            <p className="text-sm">Price: Rp. 50.000</p>
-          </div>
-          <div className="p-4 rounded-lg shadow-lg w-full bg-white">
-            <div className="flex justify-between">
-              <p className="text-sm">March 07, 2023</p>
-              <span className="bg-[#05ECAE] text-white py-1 px-3 rounded-lg text-xs">
-                Bersih-bersih
-              </span>
-            </div>
-            <p className="text-sm mt-2">
-              My Order Besssssssssssssssih-bersih Swimming Pool
-            </p>
-            <p className="text-sm">Price: Rp. 50.000</p>
-          </div>
-          <div className="p-4 rounded-lg shadow-lg w-full bg-white">
-            <div className="flex justify-between">
-              <p className="text-sm">March 07, 2023</p>
-              <span className="bg-[#05ECAE] text-white py-1 px-3 rounded-lg text-xs">
-                Bersih-bersih
-              </span>
-            </div>
-            <p className="text-sm mt-2">My Order Bersih-bersih Swimming Pool</p>
-            <p className="text-sm">Price: Rp. 50.000</p>
-          </div>
-          <div className="p-4 rounded-lg shadow-lg w-full bg-white">
-            <div className="flex justify-between">
-              <p className="text-sm">March 07, 2023</p>
-              <span className="bg-[#05ECAE] text-white py-1 px-3 rounded-lg text-xs">
-                Bersih-bersih
-              </span>
-            </div>
-            <p className="text-sm mt-2">My Order Bersih-bersih Swimming Pool</p>
-            <p className="text-sm">Price: Rp. 50.000</p>
-          </div>
-          <div className="p-4 rounded-lg shadow-lg w-full bg-white">
-            <div className="flex justify-between">
-              <p className="text-sm">March 07, 2023</p>
-              <span className="bg-[#05ECAE] text-white py-1 px-3 rounded-lg text-xs">
-                Bersih-bersih
-              </span>
-            </div>
-            <p className="text-sm mt-2">My Order Bersih-bersih Swimming Pool</p>
-            <p className="text-sm">Price: Rp. 50.000</p>
-          </div>
-          <div className="p-4 rounded-lg shadow-lg w-full bg-white">
-            <div className="flex justify-between">
-              <p className="text-sm">March 07, 2023</p>
-              <span className="bg-[#05ECAE] text-white py-1 px-3 rounded-lg text-xs">
-                Bersih-bersih
-              </span>
-            </div>
-            <p className="text-sm mt-2">My Order Bersih-bersih Swimming Pool</p>
-            <p className="text-sm">Price: Rp. 50.000</p>
-          </div>
+          {history.map((histories) => (
+            <CardHistory key={history._id} histories={histories} />
+          ))}
         </div>
       </div>
     </div>
