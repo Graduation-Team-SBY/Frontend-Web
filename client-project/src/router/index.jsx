@@ -16,7 +16,14 @@ import ProfileWorkerPage from "../pages/worker/Profile/ProfileWorkerPage";
 import DetailOrderPage from "../pages/client/DetailOrderPage";
 import UpdateProfileWorkerPage from "../pages/worker/Profile/UpdateProfileWorkerPage";
 import DetailJob from "../pages/worker/DetailJob";
+
+import CurrectJobsPage from "../pages/worker/Jobs/CurrenctJobPage";
+import DetailJobWorkerPage from "../pages/worker/Jobs/DetailCurrenctJobPage";
+import RoamChatWorkerPage from "../pages/worker/Chat/RoamChatWorkerPage";
+import VerificationOrderWorkerPage from "../pages/worker/CompletedOrder/VertifikasiOrderWorkerPage";
+
 import HistoryOrdersPage from "../pages/client/HistoryOrdersPage";
+
 
 // Untuk local storage
 // const localStorage.access_token = localStorage.access_token;
@@ -103,7 +110,7 @@ const router = createBrowserRouter([
           },
           {
             path: ":id",
-            element: <DetailOrderPage />,
+            element: <DetailJobWorkerPage />,
           },
         ],
       },
@@ -141,10 +148,26 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":id",
-            element: <DetailJob />
-          }
-        ]
-      }
+            element: <DetailJob />,
+          },
+          {
+            path: "jobs",
+            element: <CurrectJobsPage />,
+          },
+          {
+            path: `jobs/:id`,
+            element: <DetailJobWorkerPage />,
+          },
+          {
+            path: "chat",
+            element: <RoamChatWorkerPage />,
+          },
+          {
+            path: "verification",
+            element: <VerificationOrderWorkerPage />,
+          },
+        ],
+      },
     ],
   },
 ]);
