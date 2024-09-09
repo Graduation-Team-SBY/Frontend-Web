@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import axios from "../../config/axiosInstance";
-import { useParams, useNavigate } from "react-router-dom";
-import { formatCurrencyRupiah } from "../../helpers/currency";
-import { toast } from "react-toastify";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { formatCurrencyRupiah } from "../../../helpers/currency";
+import axios from "../../../config/axiosInstance";
 
-export default function DetailOrderPage() {
+export default function DetailJobWorkerPage() {
   const [order, setOrder] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const showDetailOrderClient = async (id) => {
+  const showData = async (id) => {
     try {
       const { data } = await axios({
         method: "GET",
@@ -19,33 +18,22 @@ export default function DetailOrderPage() {
         },
       });
 
-      console.log(data);
       setOrder(data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleApplyJob = async (id) => {
-    try {
-      const { data } = await axios({
-        method: "POST",
-        url: `workers/jobs/${id}`,
-        headers: {
-          Authorization: `Bearer ${localStorage.access_token}`,
-        },
-      });
+  const handleVerificationOrder = () => {
+    navigate("/worker/order/verification", { state: { order } });
+  };
 
-      console.log(data);
-      navigate("/worker");
-      toast.success("Successfully apply for the job");
-    } catch (error) {
-      console.log(error);
-    }
+  const handleToChat = () => {
+    navigate("/worker/order/chat");
   };
 
   useEffect(() => {
-    showDetailOrderClient(id);
+    showData(id);
   }, [id]);
 
   return (
@@ -65,12 +53,20 @@ export default function DetailOrderPage() {
           </h2>
           <p className="mt-10">{order.description}</p>
           <p className="mt-10">{formatCurrencyRupiah(order.fee)}</p>
-          <button
-            className="mt-10 w-1/2 bg-[#1D204C] text-white py-2 rounded-md hover:bg-[#1D204C]/90 focus:ring-4 focus:outline-none focus:ring-[#1D204C]/50 transition duration-300"
-            onClick={() => handleApplyJob(id)}
-          >
-            Apply
-          </button>
+          <div className="mt-10 flex gap-4">
+            <button
+              className="w-1/2 bg-[#1D204C] text-white py-2 rounded-md hover:bg-[#1D204C]/90 focus:ring-4 focus:outline-none focus:ring-[#1D204C]/50 transition duration-300"
+              onClick={() => handleVerificationOrder()}
+            >
+              Done
+            </button>
+            <button
+              className="w-1/2 bg-[#05ECAE] text-white py-2 rounded-md transition duration-300"
+              onClick={() => handleToChat()}
+            >
+              Chat
+            </button>
+          </div>
         </div>
       </div>
     </div>

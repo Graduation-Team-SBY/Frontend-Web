@@ -1,14 +1,14 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function NavbarWorker() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate('/');
-    toast.info('Success to logout');
+    navigate("/");
+    toast.info("Success to logout");
   };
 
   return (
@@ -43,9 +43,9 @@ export default function NavbarWorker() {
               <Link to="/worker">Home</Link>
             </li>
 
-            {/* <li>
-              <Link to="/">Worker</Link>
-            </li> */}
+            <li>
+              <Link to="/worker/order/jobs">Work</Link>
+            </li>
           </ul>
         </div>
         <Link
@@ -63,6 +63,14 @@ export default function NavbarWorker() {
               to="/worker"
             >
               Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
+              to="/worker/order/jobs"
+            >
+              Work
             </Link>
           </li>
           <li>

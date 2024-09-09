@@ -19,6 +19,8 @@ export default function HomepageWorker() {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
+
+      console.log(data);
       setData(data);
     } catch (error) {
       console.log(error);

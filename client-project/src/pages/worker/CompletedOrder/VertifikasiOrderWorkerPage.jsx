@@ -1,6 +1,68 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "../../../config/axiosInstance";
+import { useLocation, useNavigate } from "react-router-dom";
+import { formatCurrencyRupiah } from "../../../helpers/currency";
+import { toast } from "react-toastify";
 
 export default function VerificationOrderWorkerPage() {
+  const location = useLocation();
+  const [order, setOrder] = useState(location.state?.order || {});
+  const [file, setFile] = useState(null);
+  const [description, setDescription] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!order._id) {
+      const fetchJob = async () => {
+        try {
+          const { data } = await axios({
+            method: "GET",
+            url: `/jobs/${order._id}`,
+            headers: {
+              Authorization: `Bearer ${localStorage.access_token}`,
+            },
+          });
+
+          setOrder(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      fetchJob();
+    }
+  }, [order]);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleVerificationSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("description", description);
+
+    try {
+      const { data } = await axios({
+        method: "PATCH",
+        url: `/workers/jobs/${order._id}/worker`,
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+          "Content-Type": "multipart/form-data",
+        },
+        data: formData,
+      });
+
+      console.log("Verification submitted:", data);
+      toast.success("Successfully");
+      navigate("/worker/order/jobs");
+    } catch (error) {
+      console.error("Error submitting verification:", error);
+    }
+  };
+
   return (
     <div className="flex justify-center items-center flex-col bg-[#FAF9FE] min-h-screen py-8">
       <ul className="steps steps-vertical lg:steps-horizontal mb-8">
@@ -38,54 +100,58 @@ export default function VerificationOrderWorkerPage() {
 
         <hr className="my-6" />
 
-        <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Upload Bukti
-          </label>
-          <input
-            type="file"
-            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#1D204C] file:text-white hover:file:bg-[#0b1434]"
-          />
-        </div>
-
-        <div className="text-base text-[#1D204C] space-y-4">
-          <div className="flex justify-between">
-            <span>Jumlah Total</span>
-            <span className="font-semibold">IDR 1,200,000</span>
+        <form onSubmit={handleVerificationSubmit}>
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Upload Bukti
+            </label>
+            <input
+              type="file"
+              className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#1D204C] file:text-white hover:file:bg-[#0b1434]"
+              onChange={handleFileChange}
+              required
+            />
           </div>
-          <div className="flex justify-between">
-            <span>Tugas yang Disertakan</span>
-            <span className="font-semibold">3 Tugas</span>
-          </div>
-          <div className="space-y-1">
-            <span>Detail Tugas:</span>
-            <ul className="list-disc pl-5">
-              <li>Tugas 1: Design Review - IDR 400,000</li>
-              <li>Tugas 2: Backend Development - IDR 500,000</li>
-              <li>Tugas 3: UI Testing - IDR 300,000</li>
-            </ul>
-          </div>
-        </div>
 
-        <div className="mt-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Deskripsi (Opsional)
-          </label>
-          <textarea
-            className="w-full p-3 border rounded-lg focus:outline-none focus:border-[#1D204C]"
-            rows="4"
-            placeholder="Masukan pesan untuk client"
-          ></textarea>
-        </div>
+          <div className="text-base text-[#1D204C] space-y-4">
+            <div className="flex justify-between">
+              <span>Jumlah Total</span>
+              <span className="font-semibold">
+                IDR {formatCurrencyRupiah(order.fee)}
+              </span>
+            </div>
+            <div className="space-y-1">
+              <span>Detail Tugas:</span>
+              <ul className="list-disc pl-5">
+                <li>Tugas 1: {order.description}</li>
+                <li>Tugas 2: Backend Development - IDR 500,000</li>
+                <li>Tugas 3: UI Testing - IDR 300,000</li>
+              </ul>
+            </div>
+          </div>
 
-        <div className="mt-8 flex justify-center">
-          <Link
-            to="/payment-pending-worker"
-            className="bg-[#1D204C] text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-[#0b1434] transition duration-300"
-          >
-            Kirim Verifikasi
-          </Link>
-        </div>
+          {/* <div className="mt-6">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Deskripsi (Opsional)
+              </label>
+              <textarea
+                className="w-full p-3 border rounded-lg focus:outline-none focus:border-[#1D204C]"
+                rows="4"
+                placeholder="Masukan pesan untuk client"
+                value={description}
+                onChange={handleDescriptionChange}
+              ></textarea>
+            </div> */}
+
+          <div className="mt-8 flex justify-center">
+            <button
+              type="submit"
+              className="bg-[#1D204C] text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-[#0b1434] transition duration-300"
+            >
+              Kirim Verifikasi
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

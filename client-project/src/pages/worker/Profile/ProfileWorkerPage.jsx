@@ -25,6 +25,7 @@ export default function ProfileWorkerPage() {
         },
       });
 
+      console.log(data);
       setProfile(data);
     } catch (error) {
       console.log(error);
