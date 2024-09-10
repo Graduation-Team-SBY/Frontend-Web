@@ -1,39 +1,45 @@
-import { useEffect, useState } from "react";
-import ChatEnd from "../../../components/ChatEnd";
-import ChatStart from "../../../components/ChatStart";
-import ProfileChat from "../../../components/workerComponent/ProfileChat";
-import { io } from "socket.io-client";
-import { useLocation, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from 'react';
+import ChatEnd from '../../../components/ChatEnd';
+import ChatStart from '../../../components/ChatStart';
+import ProfileChat from '../../../components/workerComponent/ProfileChat';
+import { io } from 'socket.io-client';
+import { useLocation, useParams } from 'react-router-dom';
 
 export default function RoomChatWorkerPage() {
   const [chats, setChats] = useState([]);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [socket, setSocket] = useState(null);
   const [senderId, setSenderId] = useState(null);
-  const [chatId, setChatId] = useState("");
+  const [chatId, setChatId] = useState('');
+  const chatContainerRef = useRef(null);
 
   const { id } = useParams();
   const location = useLocation();
-
   const order = location.state?.order || {};
 
   useEffect(() => {
-    const storedRole = localStorage.getItem("role");
-    const newSocket = io("http://localhost:3000");
+    const storedRole = localStorage.getItem('role');
+    const newSocket = io('http://localhost:3000');
+
+    // Masuk ke room
     setSocket(newSocket);
+    newSocket.emit('join_room', id);
 
-    newSocket.emit("join_room", id);
-
-    newSocket.on("receive_message", (data) => {
+    // Gabungin data chat
+    newSocket.on('receive_message', (data) => {
       setChats((curr) => [...curr, data]);
     });
 
-    newSocket.on("joined_room", (data) => {
-      console.log(data, "<<<<< ini join room");
-      if (storedRole === "jalu") {
+    // set sender id
+    newSocket.on('joined_room', (data) => {
+      console.log(data, '<<<<< ini join room');
+      console.log(data.chats);
+      setChats(data.chats.contents);
+
+      if (storedRole === 'jalu') {
         setSenderId(data.currJob.clientId);
         // console.log(data.currJob.clientId, "<<< ini client id");
-      } else if (storedRole === "yasa") {
+      } else if (storedRole === 'yasa') {
         setSenderId(data.currJob.workerId);
         // console.log(data.currJob.workerId, "<<< ini worker id");
       }
@@ -46,16 +52,27 @@ export default function RoomChatWorkerPage() {
     };
   }, []);
 
+  useEffect(() => {
+    // Scroll otomatis ke bawah setiap kali `chats` berubah
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [chats]);
+
   const sendMessage = () => {
-    if (message.trim() !== "" && socket) {
+    if (message.trim() !== '' && socket) {
       const messageObj = {
+        room: id,
         senderId: senderId,
         message: message,
         createdAt: new Date(),
       };
-      socket.emit("send_message", messageObj, chatId, senderId);
-      setChats((curr) => [...curr, messageObj]);
-      setMessage("");
+      socket.emit('send_message', messageObj, chatId, senderId);
+
+      // setChats((curr) => [...curr, messageObj]);
+      setMessage('');
+      console.log(chats, 'currrr');
     }
   };
   return (
@@ -86,7 +103,10 @@ export default function RoomChatWorkerPage() {
 
           <hr className="border-t border-[#FAF9FE] mb-4" />
 
-          <div className="flex-1 overflow-y-auto space-y-2 pr-2 custom-scrollbar">
+          <div
+            ref={chatContainerRef}
+            className="flex-1 overflow-y-auto space-y-2 pr-2 custom-scrollbar"
+          >
             {chats.map((chat, index) =>
               chat.senderId === senderId ? (
                 <ChatEnd key={index} message={chat.message} />
@@ -103,7 +123,7 @@ export default function RoomChatWorkerPage() {
               placeholder="Write your message..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+              onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
             />
             <button
               className="ml-2 bg-[#1D204C] text-[#FAF9FE] px-3 py-2 rounded-lg shadow-md hover:bg-[#2a2b38] transition"
