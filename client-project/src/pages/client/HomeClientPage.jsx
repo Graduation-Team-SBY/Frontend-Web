@@ -1,40 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/effect-creative";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/effect-creative';
 
-import { Autoplay, EffectCreative } from "swiper/modules";
+import { Autoplay, EffectCreative } from 'swiper/modules';
 // import { formatCurrencyRupiah } from '../../helpers/currency';
-import axios from "../../config/axiosInstance";
-import { toast } from "react-toastify";
-import Wallet from "../../components/ClientComponent/Wallet";
+import axios from '../../config/axiosInstance';
+import { toast } from 'react-toastify';
+import Wallet from '../../components/ClientComponent/Wallet';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProfile } from '../../redux/features/clientProfileSlice';
 
 export default function HomeClientPage() {
-  //! data undefined
-  // const showUsername = async () => {
-  //   try {
-  //     const { data } = axios({
-  //       method: "GET",
-  //       url: "/profile",
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.access_token}`,
-  //       },
-  //     });
-  //     console.log(data, ">>>>>>Ini data USER");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   showUsername();
-  // }, []);
+  const dispatch = useDispatch();
+  const { profile } = useSelector((state) => state.clientProfile);
+
+  useEffect(() => {
+    dispatch(fetchProfile());
+  }, [dispatch]);
 
   return (
     <>
       <h1 className="hidden lg:block font-black text-5xl my-20 text-[#1D204C]">
-        Halo, <span className="text-[#05ECAE]">Adit</span> !
+        Halo, <span className="text-[#05ECAE]">{profile.name ? (profile.name) : "Jalu"}</span> !
       </h1>
       <div className="flex flex-col-reverse lg:flex-row lg:gap-10 justify-between mt-10">
         <div className="my-auto w-full lg:w-1/2">
@@ -55,9 +45,7 @@ export default function HomeClientPage() {
                 src="/shopping-bag.png"
                 alt="belanja"
               />
-              <span className="font-bold text-md mt-4 text-center">
-                Nitip
-              </span>
+              <span className="font-bold text-md mt-4 text-center">Nitip</span>
             </Link>
             <Link
               to="/jalu/order/add-cleaning"
@@ -68,20 +56,21 @@ export default function HomeClientPage() {
                 src="/bucket-cleaner.png"
                 alt="bersih"
               />
-              <span className="font-bold text-md mt-4 text-center">Bebersih</span>
+              <span className="font-bold text-md mt-4 text-center">
+                Bebersih
+              </span>
             </Link>
           </div>
         </div>
 
-        <Wallet />
-        
+        <Wallet name={profile.name} />
       </div>
 
       {/* Carousel */}
       <Swiper
         grabCursor={true}
         slidesPerView={1}
-        effect={"creative"}
+        effect={'creative'}
         loop={true}
         creativeEffect={{
           prev: {
@@ -89,7 +78,7 @@ export default function HomeClientPage() {
             translate: [0, 0, -400],
           },
           next: {
-            translate: ["100%", 0, 0],
+            translate: ['100%', 0, 0],
           },
         }}
         autoplay={{
@@ -119,9 +108,7 @@ export default function HomeClientPage() {
         <div className="flex gap-4 lg:justify-end items-center mt-5">
           <p>Filter :</p>
           <select className="select select-ghost w-fit" defaultValue="">
-            <option value="">
-              All
-            </option>
+            <option value="">All</option>
             <option value="Bebersih">Bebersih</option>
             <option value="Nitip">Nitip</option>
           </select>
@@ -153,12 +140,9 @@ export default function HomeClientPage() {
         <div className="flex gap-4 lg:justify-end items-center mt-5">
           <p>Filter :</p>
           <select className="select select-ghost w-fit" defaultValue="">
-            <option value="">
-              All
-            </option>
+            <option value="">All</option>
             <option value="Bebersih">Bebersih</option>
             <option value="Nitip">Nitip</option>
-            
           </select>
         </div>
 

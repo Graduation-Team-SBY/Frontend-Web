@@ -38,7 +38,7 @@ export default function UpdateProfileWorkerPage() {
   return (
     <div className="flex justify-center items-center h-[70vh]">
       <div className="bg-white shadow-lg rounded-lg w-full max-w-3xl mx-auto p-8">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+        <h3 className="text-2xl font-black text-gray-800 mb-6 text-center">
           Update Profile
         </h3>
         <form className="space-y-6" onSubmit={handleUpdate}>
@@ -85,33 +85,33 @@ export default function UpdateProfileWorkerPage() {
 
           <div className="grid grid-cols-1 gap-4">
             <div className="form-group">
-              <label className="text-sm text-gray-600">Name</label>
+              <label className="text-sm font-bold text-gray-600">Name</label>
               <input
                 type="text"
                 placeholder="Type your name"
                 value={name}
-                className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-400"
+                className="w-full border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:border-blue-400"
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
 
             <div className="form-group">
-              <label className="text-sm text-gray-600">Date of Birth</label>
+              <label className="text-sm font-bold text-gray-600">Date of Birth</label>
               <input
                 type="date"
                 value={dateOfBirth}
-                className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-400"
+                className="w-full border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:border-blue-400"
                 onChange={(e) => setDateOfBirth(e.target.value)}
               />
             </div>
 
             <div className="form-group">
-              <label className="text-sm text-gray-600">Address</label>
+              <label className="text-sm font-bold text-gray-600">Address</label>
               <input
                 type="text"
                 placeholder="Type your address"
                 value={address}
-                className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-400"
+                className="w-full border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:border-blue-400"
                 onChange={(e) => setAddress(e.target.value)}
               />
             </div>
@@ -119,7 +119,7 @@ export default function UpdateProfileWorkerPage() {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
+            className="w-full bg-[#1D204C] text-white hover:bg-[#05ECAE] py-2 rounded-full hover:text-[#1D204C] transition duration-300"
           >
             Update Profile
           </button>

@@ -62,7 +62,7 @@ export default function AddOrderGmapsPage() {
       <h1 className="font-black md:hidden text-4xl">
         Let's start with your first job post.
       </h1>
-      <div className="flex flex-col md:flex-row w-full h-full gap-10">
+      <div className="flex flex-col md:flex-row w-full h-full gap-10 mt-5">
         <div className="w-full md:w-[35%]">
           <Maps
             location={coordinates}

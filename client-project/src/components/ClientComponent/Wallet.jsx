@@ -3,7 +3,7 @@ import { formatCurrencyRupiah } from '../../helpers/currency';
 import axios from '../../config/axiosInstance';
 import { toast } from 'react-toastify';
 
-export default function Wallet() {
+export default function Wallet({ name }) {
   const [wallet, setWallet] = useState(0);
 
   const fetchWallet = async () => {
@@ -57,7 +57,7 @@ export default function Wallet() {
             });
 
             await fetchWallet();
-            setAmount(null)
+            setAmount(null);
           },
           onPending: function (result) {
             /* You may add your own implementation here */
@@ -112,7 +112,7 @@ export default function Wallet() {
         </svg>
       </div>
       <div className="">
-        <p>Aditya Saputra</p>
+        <p>{name}</p>
         <h1 className="font-black text-4xl">{formatCurrencyRupiah(wallet)}</h1>
       </div>
 

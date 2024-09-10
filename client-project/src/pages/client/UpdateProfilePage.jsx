@@ -1,13 +1,13 @@
-import { useState } from "react";
-import axios from "../../config/axiosInstance";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import axios from '../../config/axiosInstance';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export default function UpdateProfilePage() {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [dateOfBirth, setdateOfBirth] = useState("");
-  const [address, setAddress] = useState("");
+  const [name, setName] = useState('');
+  const [dateOfBirth, setdateOfBirth] = useState('');
+  const [address, setAddress] = useState('');
   const [image, setImage] = useState(null);
 
   const handleFileChange = (e) => {
@@ -19,24 +19,24 @@ export default function UpdateProfilePage() {
       e.preventDefault();
       const dataFrom = new FormData();
       if (name) {
-        dataFrom.append("name", name);
+        dataFrom.append('name', name);
       }
 
       if (dateOfBirth) {
-        dataFrom.append("dateOfBirth", dateOfBirth);
+        dataFrom.append('dateOfBirth', dateOfBirth);
       }
 
       if (address) {
-        dataFrom.append("address", address);
+        dataFrom.append('address', address);
       }
 
       if (image) {
-        dataFrom.append("image", image);
+        dataFrom.append('image', image);
       }
 
       const { data } = await axios({
-        method: "PATCH",
-        url: "/clients/profile",
+        method: 'PATCH',
+        url: '/clients/profile',
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
@@ -44,33 +44,28 @@ export default function UpdateProfilePage() {
       });
 
       console.log(data);
-      toast.info("Success to Update Profile");
-      navigate("/jalu/profile");
+      toast.info('Success to Update Profile');
+      navigate('/jalu/profile');
     } catch (error) {
       toast.error(error.response.data.message);
     }
   };
   return (
     <div className="">
-      <form
-        className="flex gap-10 mt-4 justify-between"
-        onSubmit={handleUpdate}
-      >
-        <div className="w-[30%] my-auto">
-          {/* <img
-            className="object-cover h-[60%] rounded-3xl "
-            src="https://images.unsplash.com/photo-1540132586218-183f59221b4f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
-          /> */}
-          <input
-            type="file"
-            className="file-input file-input-bordered w-full max-w-xs mt-5 rounded-full"
-            onChange={handleFileChange}
-          />
-        </div>
-        <div className="w-[70%] my-auto pl-44">
+      <form className="mt-4" onSubmit={handleUpdate}>
+        <div className="w-full my-auto">
           <h1 className="font-black text-4xl mb-10">Update Profile</h1>
 
+          <label className="form-control w-full">
+            <div className="label">
+              <span className="label-text font-bold">Ubah foto profile mu</span>
+            </div>
+            <input
+              type="file"
+              className="file-input file-input-bordered w-full rounded-full"
+              onChange={handleFileChange}
+            />
+          </label>
           <label className="form-control w-full">
             <div className="label">
               <span className="label-text font-bold">Name</span>

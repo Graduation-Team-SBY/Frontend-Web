@@ -1,37 +1,41 @@
-import { useEffect, useState } from "react";
-import axios from "../../config/axiosInstance";
-import { Link } from "react-router-dom";
-import { age } from "../../helpers/age";
-import { formatDate } from "../../helpers/formatDate";
-import CardHistory from "../../components/ClientComponent/CardHistori";
+import { useEffect, useState } from 'react';
+import axios from '../../config/axiosInstance';
+import { Link } from 'react-router-dom';
+import { age } from '../../helpers/age';
+import { formatDate } from '../../helpers/formatDate';
+import CardHistory from '../../components/ClientComponent/CardHistori';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProfile } from '../../redux/features/clientProfileSlice';
 
 export default function ProfilePage() {
-  const [profile, setProfile] = useState({});
+  const dispatch = useDispatch();
+  // const [profile, setProfile] = useState({});
   const [history, setHistory] = useState([]);
+  const { profile } = useSelector((state) => state.clientProfile);
 
-  const fetchProfile = async () => {
-    try {
-      const { data } = await axios({
-        method: "GET",
-        url: "clients/profile",
-        headers: {
-          Authorization: `Bearer ${localStorage.access_token}`,
-        },
-      });
+  // const fetchProfile = async () => {
+  //   try {
+  //     const { data } = await axios({
+  //       method: "GET",
+  //       url: "clients/profile",
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.access_token}`,
+  //       },
+  //     });
 
-      // console.log(data);
+  //     // console.log(data);
 
-      setProfile(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     setProfile(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const fetchHistory = async () => {
     try {
       const { data } = await axios({
-        method: "GET",
-        url: "/profile/histories",
+        method: 'GET',
+        url: '/profile/histories',
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
@@ -45,7 +49,11 @@ export default function ProfilePage() {
   };
 
   useEffect(() => {
-    fetchProfile();
+    dispatch(fetchProfile());
+  }, [dispatch]);
+
+  useEffect(() => {
+    // fetchProfile();
     fetchHistory();
   }, []);
 
