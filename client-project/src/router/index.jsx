@@ -19,13 +19,13 @@ import DetailJob from '../pages/worker/DetailJobPage';
 
 import CurrectJobsPage from '../pages/worker/Jobs/CurrenctJobPage';
 import DetailJobWorkerPage from '../pages/worker/Jobs/DetailCurrenctJobPage';
-import RoamChatWorkerPage from '../pages/worker/Chat/RoamChatWorkerPage';
 import VerificationOrderWorkerPage from '../pages/worker/CompletedOrder/VertifikasiOrderWorkerPage';
 
 import HistoryOrdersPage from '../pages/client/HistoryOrdersPage';
 import VerificationOrderClient from '../pages/client/CompletedOrder/VerificationOrderClientPage';
 import RoamChatClientPage from '../pages/client/Chat/RoamChatClientPage';
 import DetailJobPage from '../pages/worker/DetailJobPage';
+import RoomChatWorkerPage from '../pages/worker/Chat/RoamChatWorkerPage';
 
 const router = createBrowserRouter([
   {
@@ -112,7 +112,7 @@ const router = createBrowserRouter([
           },
           {
             path: ':id/chat',
-            element: <RoamChatClientPage />,
+            element: <RoomChatWorkerPage />,
           },
           {
             path: ':id/verification',
@@ -165,8 +165,8 @@ const router = createBrowserRouter([
             element: <DetailJobWorkerPage />,
           },
           {
-            path: "jobs/:id/chat",
-            element: <RoamChatWorkerPage />,
+            path: ":id/chat",
+            element: <RoomChatWorkerPage />,
           },
           {
             path: 'verification',

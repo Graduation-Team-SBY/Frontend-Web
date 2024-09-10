@@ -3,22 +3,42 @@ import ChatEnd from "../../../components/ChatEnd";
 import ChatStart from "../../../components/ChatStart";
 import ProfileChat from "../../../components/workerComponent/ProfileChat";
 import { io } from "socket.io-client";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
-export default function RoamChatWorkerPage() {
+export default function RoomChatWorkerPage() {
   const [chats, setChats] = useState([]);
   const [message, setMessage] = useState("");
   const [socket, setSocket] = useState(null);
+  const [senderId, setSenderId] = useState(null);
+  const [chatId, setChatId] = useState("");
+
   const { id } = useParams();
+  const location = useLocation();
+
+  const order = location.state?.order || {};
 
   useEffect(() => {
+    const storedRole = localStorage.getItem("role");
     const newSocket = io("http://localhost:3000");
     setSocket(newSocket);
 
     newSocket.emit("join_room", id);
 
     newSocket.on("receive_message", (data) => {
-      setChats((curr) => [...curr, { data, isMine: false }]);
+      setChats((curr) => [...curr, data]);
+    });
+
+    newSocket.on("joined_room", (data) => {
+      console.log(data, "<<<<< ini join room");
+      if (storedRole === "jalu") {
+        setSenderId(data.currJob.clientId);
+        // console.log(data.currJob.clientId, "<<< ini client id");
+      } else if (storedRole === "yasa") {
+        setSenderId(data.currJob.workerId);
+        // console.log(data.currJob.workerId, "<<< ini worker id");
+      }
+
+      setChatId(data.currJob.chatId);
     });
 
     return () => {
@@ -29,11 +49,11 @@ export default function RoamChatWorkerPage() {
   const sendMessage = () => {
     if (message.trim() !== "" && socket) {
       const messageObj = {
+        senderId: senderId,
         message: message,
         createdAt: new Date(),
-        isMine: true,
       };
-      socket.emit("send_message", messageObj, id);
+      socket.emit("send_message", messageObj, chatId, senderId);
       setChats((curr) => [...curr, messageObj]);
       setMessage("");
     }
@@ -68,7 +88,7 @@ export default function RoamChatWorkerPage() {
 
           <div className="flex-1 overflow-y-auto space-y-2 pr-2 custom-scrollbar">
             {chats.map((chat, index) =>
-              chat.isMine ? (
+              chat.senderId === senderId ? (
                 <ChatEnd key={index} message={chat.message} />
               ) : (
                 <ChatStart key={index} message={chat.message} />
@@ -85,7 +105,10 @@ export default function RoamChatWorkerPage() {
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             />
-            <button className="ml-2 bg-[#1D204C] text-[#FAF9FE] px-3 py-2 rounded-lg shadow-md hover:bg-[#2a2b38] transition">
+            <button
+              className="ml-2 bg-[#1D204C] text-[#FAF9FE] px-3 py-2 rounded-lg shadow-md hover:bg-[#2a2b38] transition"
+              onClick={sendMessage}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

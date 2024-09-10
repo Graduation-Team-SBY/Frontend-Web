@@ -106,7 +106,9 @@ export default function LoginPage() {
           {/* Open the modal using document.getElementById('ID').showModal() method */}
           <button
             className="text-blue-500 mt-10 hover:text-blue-800"
-            onClick={() => document.getElementById('registerChoice').showModal()}
+            onClick={() =>
+              document.getElementById('registerChoice').showModal()
+            }
           >
             Kamu belum punya akun?
           </button>
@@ -114,13 +116,21 @@ export default function LoginPage() {
             <div className="modal-box bg-[#faf9fe]">
               <h3 className="font-bold text-lg">Mau daftar jadi apa?</h3>
               <div className="grid grid-cols-2 gap-4 my-5">
-                <Link to="/jalu-register" className="bg-white rounded-xl p-5 text-center shadow-md hover:bg-[#1D204C] hover:text-white">
-                  <h2 className='font-bold'>Jalu</h2>
-                  <p className='text-sm'>Kamu bisa meminta pertolongan kepada Yasa</p>
+                <Link
+                  to="/jalu-register"
+                  className="bg-white rounded-xl p-5 text-center shadow-md hover:bg-[#1D204C] hover:text-white"
+                >
+                  <h2 className="font-bold">Jalu</h2>
+                  <p className="text-sm">
+                    Kamu bisa meminta pertolongan kepada Yasa
+                  </p>
                 </Link>
-                <Link to="/yasa-register" className="bg-white rounded-xl p-5 text-center shadow-md hover:bg-[#1D204C] hover:text-white">
-                  <h2 className='font-bold'>Yasa</h2>
-                  <p className='text-sm'>Bantu Jalu dan dapatkan upah</p>
+                <Link
+                  to="/yasa-register"
+                  className="bg-white rounded-xl p-5 text-center shadow-md hover:bg-[#1D204C] hover:text-white"
+                >
+                  <h2 className="font-bold">Yasa</h2>
+                  <p className="text-sm">Bantu Jalu dan dapatkan upah</p>
                 </Link>
               </div>
             </div>

@@ -21,6 +21,7 @@ export default function DetailJobWorkerPage() {
         },
       });
 
+      // console.log(data);
       setOrder(data);
       console.log(data, '<<data detail');
     } catch (error) {
@@ -33,7 +34,7 @@ export default function DetailJobWorkerPage() {
   };
 
   const handleToChat = (id) => {
-    navigate(`/yasa/order/jobs/${id}/chat`);
+    navigate(`/yasa/order/${id}/chat`, { state: { order } });
   };
 
   useEffect(() => {
