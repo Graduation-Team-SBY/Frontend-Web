@@ -102,7 +102,7 @@ export default function DetailJobPage() {
           )}
           
           <button
-            className="mt-10 w-1/2 bg-[#1D204C] text-white py-2 rounded-md hover:bg-[#1D204C]/90 focus:ring-4 focus:outline-none focus:ring-[#1D204C]/50 transition duration-300"
+            className="mt-10 w-1/2 bg-[#1D204C] text-white py-2 rounded-full hover:bg-[#1D204C]/90 focus:ring-4 focus:outline-none focus:ring-[#1D204C]/50 transition duration-300"
             onClick={() => handleApplyJob(id)}
           >
             Apply

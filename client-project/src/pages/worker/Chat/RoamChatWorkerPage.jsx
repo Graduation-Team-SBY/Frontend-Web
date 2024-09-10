@@ -7,6 +7,8 @@ import { useLocation, useParams } from 'react-router-dom';
 
 export default function RoomChatWorkerPage() {
   const [chats, setChats] = useState([]);
+
+
   const [message, setMessage] = useState('');
   const [socket, setSocket] = useState(null);
   const [senderId, setSenderId] = useState(null);
@@ -41,7 +43,6 @@ export default function RoomChatWorkerPage() {
         // console.log(data.currJob.clientId, "<<< ini client id");
       } else if (storedRole === 'yasa') {
         setSenderId(data.currJob.workerId);
-        // console.log(data.currJob.workerId, "<<< ini worker id");
       }
 
       setChatId(data.currJob.chatId);
@@ -78,11 +79,11 @@ export default function RoomChatWorkerPage() {
   return (
     <>
       <div className="flex bg-[#FAF9FE] gap-4 h-[75vh] overflow-hidden p-6 rounded-xl">
-        <ProfileChat />
+        <ProfileChat key={order._id} pro/>
 
         <div className="flex-1 p-6 flex flex-col bg-[#FAF9FE] rounded-2xl shadow-lg">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl font-semibold text-[#1D204C]">Aditya</h1>
+            <h1 className="text-2xl font-semibold text-[#1D204C]">{order.client?.name}</h1>
             <button className="text-[#1D204C] hover:text-[#2a2b38] transition">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
