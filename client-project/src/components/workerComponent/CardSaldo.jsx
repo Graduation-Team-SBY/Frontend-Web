@@ -1,6 +1,6 @@
 export default function CardSaldo({ data }) {
   return (
-    <div className="card-wallet bg-white text-white p-10 w-full lg:w-[40%] rounded-2xl flex flex-col justify-between gap-8 bg-gradient-to-tl from-[#05ECAE] to-[#1D204C]">
+    <div className="card-wallet bg-white text-white p-10 w-full lg:w-[40%] md:h-fit rounded-2xl flex flex-col justify-between gap-8 bg-gradient-to-tl from-[#05ECAE] to-[#1D204C]">
       <div className=" flex justify-between">
         <h2 className="font-black text-lg text-gray-200">My Balance</h2>
         <svg

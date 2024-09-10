@@ -4,6 +4,7 @@ import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
 const containerStyle = {
   width: '100%',
   height: '400px',
+  borderRadius: 25
 };
 
 const defaultCenter = {
@@ -105,7 +106,7 @@ export default function Maps({ location, setLocation, setAddress }) {
         </GoogleMap>
       </div>
 
-      <button className='btn btn-block mt-10 rounded-full' onClick={handleMyLocation}>Cari Posisi saya</button>
+      <button className='btn btn-block hover:bg-[#1D204C] hover:text-white mt-10 rounded-full' onClick={handleMyLocation}>Cari Posisi saya</button>
     </>
   ) : (
     <h1>Loading</h1>

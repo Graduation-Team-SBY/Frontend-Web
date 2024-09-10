@@ -15,7 +15,7 @@ import UpdateProfilePage from '../pages/client/UpdateProfilePage';
 import ProfileWorkerPage from '../pages/worker/Profile/ProfileWorkerPage';
 import DetailOrderPage from '../pages/client/DetailOrderPage';
 import UpdateProfileWorkerPage from '../pages/worker/Profile/UpdateProfileWorkerPage';
-import DetailJob from '../pages/worker/DetailJob';
+import DetailJob from '../pages/worker/DetailJobPage';
 
 import CurrectJobsPage from '../pages/worker/Jobs/CurrenctJobPage';
 import DetailJobWorkerPage from '../pages/worker/Jobs/DetailCurrenctJobPage';
@@ -25,6 +25,7 @@ import VerificationOrderWorkerPage from '../pages/worker/CompletedOrder/Vertifik
 import HistoryOrdersPage from '../pages/client/HistoryOrdersPage';
 import VerificationOrderClient from '../pages/client/CompletedOrder/VerificationOrderClientPage';
 import RoamChatClientPage from '../pages/client/Chat/RoamChatClientPage';
+import DetailJobPage from '../pages/worker/DetailJobPage';
 
 const router = createBrowserRouter([
   {
@@ -153,7 +154,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ':id',
-            element: <DetailJob />,
+            element: <DetailJobPage />,
           },
           {
             path: 'jobs',

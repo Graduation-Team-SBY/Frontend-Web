@@ -79,17 +79,17 @@ export default function DetailOrderPage() {
         method: 'PATCH',
         url: `/clients/jobs/${jobId}/client`,
         headers: {
-          Authorization: `Bearer ${localStorage.access_token}`
-        }
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
       });
 
       console.log(data);
 
-      toast.info("Anda telah menyelesaikan order anda");
+      toast.info('Anda telah menyelesaikan order anda');
 
-      navigate(`/jalu/order/${id}/verification`)
+      navigate(`/jalu/order/${id}/verification`);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast.error(error.response.data.message);
     }
   };
@@ -100,8 +100,8 @@ export default function DetailOrderPage() {
   return (
     <div>
       <h2 className="font-black text-4xl">Detail Order</h2>
-      <div className="mt-20 flex gap-10">
-        <div className="w-1/2">
+      <div className="mt-20 flex flex-col md:flex-row gap-10">
+        <div className="w-full md:w-1/2">
           {order.images ? (
             <Swiper
               slidesPerView={1}
@@ -112,7 +112,7 @@ export default function DetailOrderPage() {
               }}
               navigation={true}
               modules={[Pagination, Navigation]}
-              className="mySwiper w-96"
+              className="mySwiper w-[80%]"
             >
               {order.images.map((image, index) => {
                 return (
@@ -126,15 +126,25 @@ export default function DetailOrderPage() {
             <DetailMaps location={order.coordinates} />
           )}
         </div>
-        <div className="w-1/2">
+        <div className="w-full md:w-1/2">
           <h2 className="font-black text-4xl">{order.category?.name}</h2>
+          <p className="font-bold">{formatCurrencyRupiah(order.fee)}</p>
+
+          <p className="font-bold mt-10">Deskripsi: </p>
+          <p className="">{order.description}</p>
+
+          <p className="font-bold mt-10">Alamat:</p>
           <p>{order.address}</p>
-          <p>{order.addressNotes}</p>
-          <p className="mt-10">{order.description}</p>
-          <p className="mt-10">{formatCurrencyRupiah(order.fee)}</p>
+          {/* <p>{order.address}</p> */}
+          <p className="font-bold mt-10">Catatan Alamat:</p>
+          {order.addressNotes ? (
+            <p>{order.addressNotes}</p>
+          ) : (
+            <p className="text-gray-400">(Tidak ada)</p>
+          )}
 
           {order.workerId ? (
-            <div className="flex">
+            <div className="flex gap-6">
               <Link
                 to={`/jalu/order/${order._id}/chat`}
                 className="btn bg-[#1D204C] text-white rounded-full mt-10"
@@ -175,7 +185,7 @@ export default function DetailOrderPage() {
       {/* Waiting List Worker */}
 
       {order.workerId ? null : (
-        <div className="mt-5">
+        <div className="mt-10">
           <h2 className="text-2xl font-black mb-4">Waiting List Worker</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {order.workers
@@ -183,17 +193,32 @@ export default function DetailOrderPage() {
                   return (
                     <div
                       key={String(worker._id)}
-                      className="p-4 rounded-lg shadow-lg w-full bg-white"
+                      className="p-6 rounded-xl shadow-lg w-full bg-white flex justify-between items-center"
                     >
-                      <div className="flex justify-between">
-                        <p className="text-sm">{worker.name}</p>
-                        <span className="bg-[#1D204C] text-white py-1 px-3 rounded-lg text-xs">
-                          rating {worker.rating}
-                        </span>
+                      <div className="">
+                        <p className="font-bold">{worker.name}</p>
+                        {/* <span className="bg-[#1D204C] text-white py-1 px-3 rounded-lg text-xs"> */}
+                        {/* </span> */}
+                        <div className="badge badge-warning badge-outline p-3 mt-2">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            className="w-4"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                          {worker.rating}
+                        </div>
+                        {/* rating {worker.rating} */}
                       </div>
-                      <div className="card-actions justify-end">
+                      <div className="card-actions">
                         <button
-                          className="btn btn-primary"
+                          className="btn bg-[#1D204C] text-white hover:bg-[#05ECAE] py-2 rounded-full hover:text-[#1D204C]"
                           onClick={() => handleAcceptWorker(id, worker.userId)}
                         >
                           Accept

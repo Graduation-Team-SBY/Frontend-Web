@@ -18,7 +18,7 @@ export default function RoamChatClientPage() {
     newSocket.emit("join_room", id);
 
     newSocket.on("receive_message", (data) => {
-      setChats((curr) => [...curr, { data, isMine: false }]);
+      setChats((curr) => [...curr, data]);
     });
 
     return () => {
@@ -31,13 +31,13 @@ export default function RoamChatClientPage() {
       const messageObj = {
         message: message,
         createdAt: new Date(),
-        isMine: true,
       };
       socket.emit("send_message", messageObj, id);
       setChats((curr) => [...curr, messageObj]);
       setMessage("");
     }
   };
+  
   return (
     <>
       <div className="flex bg-[#FAF9FE] gap-4 h-[75vh] overflow-hidden p-6 rounded-xl">

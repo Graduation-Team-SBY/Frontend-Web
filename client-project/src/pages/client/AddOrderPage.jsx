@@ -10,7 +10,7 @@ export default function AddOrderPage() {
   const [fee, setFee] = useState('');
   const [description, setDescription] = useState('');
   const [address, setAddress] = useState('');
-  const [addressNotes, setAddressNotes] = useState("")
+  const [addressNotes, setAddressNotes] = useState('');
   const [images, setImages] = useState([]);
 
   const defaultCenter = {
@@ -27,12 +27,14 @@ export default function AddOrderPage() {
     formData.append('fee', fee);
     formData.append('description', description);
     formData.append('address', address);
-    formData.append("addressNotes", addressNotes)
-    formData.append("coordinates", coordinates)
+    formData.append('addressNotes', addressNotes);
+    formData.append('coordinates', JSON.stringify(coordinates));
 
     for (let i = 0; i < images.length; i++) {
       formData.append('image', images[i]);
     }
+
+    // console.log(formData)
 
     try {
       const { data } = await axios({
@@ -66,162 +68,163 @@ export default function AddOrderPage() {
   };
 
   return (
-    <div className="flex w-full h-full gap-10">
-      <div className="w-[35%]">
-        <Maps
-          location={coordinates}
-          setLocation={setCoordinates}
-          setAddress={setAddress}
-        />
-      </div>
-      <div className="flex-1 flex flex-col gap-4">
-        <h1 className="font-black text-4xl">
-          Let's start with your first job post.
-        </h1>
-
-        <label className="form-control w-full">
-          <div className="label">
-            <span className="label-text">Fee</span>
-          </div>
-          <input
-            type="number"
-            placeholder="Type here"
-            value={fee}
-            className="input input-bordered w-full rounded-full"
-            onChange={(e) => setFee(e.target.value)}
+    <>
+      <h1 className="font-black md:hidden text-4xl">
+        Let's start with your first job post.
+      </h1>
+      <div className="flex flex-col md:flex-row w-full h-full gap-10 mt-5">
+        <div className="w-full md:w-[35%]">
+          <Maps
+            location={coordinates}
+            setLocation={setCoordinates}
+            setAddress={setAddress}
           />
-        </label>
+        </div>
+        <div className="flex-1 flex flex-col gap-4">
+          <h1 className="hidden md:block font-black text-4xl">
+            Let's start with your first job post.
+          </h1>
 
-        <label className="form-control">
-          <div className="label">
-            <span className="label-text">Deskripsi</span>
-          </div>
-          <textarea
-            className="textarea textarea-bordered h-24 rounded-xl"
-            placeholder="Deskripsi"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
-        </label>
+          <label className="form-control w-full">
+            <div className="label">
+              <span className="label-text">Fee</span>
+            </div>
+            <input
+              type="number"
+              placeholder="Type here"
+              value={fee}
+              className="input input-bordered w-full rounded-full"
+              onChange={(e) => setFee(e.target.value)}
+            />
+          </label>
 
-        <label className="form-control w-full">
-          <div className="label">
-            <span className="label-text">Address</span>
-          </div>
-          <input
-            type="text"
-            placeholder="Type here"
-            className="input input-bordered w-full rounded-full"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-        </label>
-        <label className="form-control">
-          <div className="label">
-            <span className="label-text">Address Notes</span>
-          </div>
-          <textarea
-            className="textarea textarea-bordered h-24 rounded-xl"
-            placeholder="Address Notes"
-            value={addressNotes}
-            onChange={(e) => setAddressNotes(e.target.value)}
-          ></textarea>
-        </label>
+          <label className="form-control">
+            <div className="label">
+              <span className="label-text">Deskripsi</span>
+            </div>
+            <textarea
+              className="textarea textarea-bordered h-24 rounded-xl"
+              placeholder="Deskripsi"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+          </label>
 
-        <label className="form-control w-full mt-5">
-          <div className="label">
-            <span className="label-text">
-              Tambahkan foto ruangan yang ingin di bersihkan
-            </span>
-          </div>
-          <input
-            type="file"
-            className="file-input file-input-bordered w-full rounded-full"
-            multiple
-            onChange={(e) => setImages(e.target.files)}
-          />
-        </label>
+          <label className="form-control w-full">
+            <div className="label">
+              <span className="label-text">Address</span>
+            </div>
+            <input
+              type="text"
+              placeholder="Type here"
+              className="input input-bordered w-full rounded-full"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </label>
+          <label className="form-control">
+            <div className="label">
+              <span className="label-text">Address Notes</span>
+            </div>
+            <textarea
+              className="textarea textarea-bordered h-24 rounded-xl"
+              placeholder="Address Notes"
+              value={addressNotes}
+              onChange={(e) => setAddressNotes(e.target.value)}
+            ></textarea>
+          </label>
 
-        <button
-          className="btn btn-block btn-lg bg-[#1D204C] text-white rounded-full mt-10"
-          onClick={handleVerifOrder}
-        >
-          Buat Orderan
-        </button>
-        <dialog id="modal_confirm" className="modal">
-          <div className="modal-box">
-            <div className="flex justify-center items-center flex-col">
+          <label className="form-control w-full mt-5">
+            <div className="label">
+              <span className="label-text">
+                Tambahkan foto ruangan yang ingin di bersihkan
+              </span>
+            </div>
+            <input
+              type="file"
+              className="file-input file-input-bordered w-full rounded-full"
+              multiple
+              onChange={(e) => setImages(e.target.files)}
+            />
+          </label>
 
-              <div className="bg-white rounded-xl shadow-lg p-8 max-w-lg w-full">
-                <div className="flex justify-center items-center mb-6">
-                  <div className="bg-[#05ECAE] text-white rounded-full p-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="2"
-                      stroke="currentColor"
-                      className="w-8 h-8"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
+          <button
+            className="btn btn-block btn-lg bg-[#1D204C] text-white rounded-full mt-10"
+            onClick={handleVerifOrder}
+          >
+            Buat Orderan
+          </button>
+          <dialog id="modal_confirm" className="modal">
+            <div className="modal-box">
+              <div className="flex justify-center items-center flex-col">
+                <div className="bg-white rounded-xl shadow-lg p-8 max-w-lg w-full">
+                  <div className="flex justify-center items-center mb-6">
+                    <div className="bg-[#05ECAE] text-white rounded-full p-4">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        className="w-8 h-8"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
                   </div>
-                </div>
 
-                <h2 className="text-center text-2xl font-semibold mb-3 text-[#1D204C]">
-                  Konfirmasi Order
-                </h2>
-                <p className="text-center text-3xl font-bold mb-6 text-[#1D204C]">
-                  {formatCurrencyRupiah(fee)}
-                </p>
+                  <h2 className="text-center text-2xl font-semibold mb-3 text-[#1D204C]">
+                    Konfirmasi Order
+                  </h2>
+                  <p className="text-center text-3xl font-bold mb-6 text-[#1D204C]">
+                    {formatCurrencyRupiah(fee)}
+                  </p>
 
-                <hr className="my-6" />
+                  <hr className="my-6" />
 
-                <div className="text-base text-[#1D204C] space-y-4">
-                  <div className="flex flex-col justify-between">
-                    <span className="font-semibold">Deskripsi:</span>
-                    <span>{description}</span>
+                  <div className="text-base text-[#1D204C] space-y-4">
+                    <div className="flex flex-col justify-between">
+                      <span className="font-semibold">Deskripsi:</span>
+                      <span>{description}</span>
+                    </div>
+                    <div className="flex flex-col justify-between">
+                      <span className="font-semibold">Alamat:</span>
+                      <span>{address}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="font-semibold">Catatan Alamat:</span>
+                      <span>{addressNotes}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="font-semibold">Biaya Admin:</span>
+                      <span>{formatCurrencyRupiah(2000)}</span>
+                    </div>
                   </div>
-                  <div className="flex flex-col justify-between">
-                    <span className="font-semibold">Alamat:</span>
-                    <span>{address}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="font-semibold">Catatan Alamat:</span>
-                    <span>{addressNotes}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="font-semibold">Biaya Admin:</span>
-                    <span>{formatCurrencyRupiah(2000)}</span>
-                  </div>
-                </div>
 
-                <div className="mt-8 flex justify-center">
-                  <form onSubmit={handleNewJob}>
-                    <button
-                      type="submit"
-                      className="btn btn-block btn-lg bg-[#1D204C] text-white rounded-full mt-10"
-                    >
-                      Create
-                    </button>
-                  </form>
+                  <div className="mt-8 flex justify-center">
+                    <form onSubmit={handleNewJob}>
+                      <button
+                        type="submit"
+                        className="btn btn-block btn-lg bg-[#1D204C] text-white rounded-full mt-10"
+                      >
+                        Create
+                      </button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <form method="dialog" className="modal-backdrop">
-            <button>close</button>
-          </form>
-        </dialog>
+            <form method="dialog" className="modal-backdrop">
+              <button>close</button>
+            </form>
+          </dialog>
 
-
-
-        {/* <form onSubmit={handleNewJob}>
+          {/* <form onSubmit={handleNewJob}>
           <button
             type="submit"
             className="btn btn-block btn-lg bg-[#1D204C] text-white rounded-full mt-10"
@@ -229,7 +232,8 @@ export default function AddOrderPage() {
             Create
           </button>
         </form> */}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

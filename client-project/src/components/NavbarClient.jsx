@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { fetchProfile } from '../redux/features/clientProfileSlice';
 
 export default function NavbarClient() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { profile } = useSelector((state) => state.clientProfile);
+
+  useEffect(() => {
+    dispatch(fetchProfile());
+  }, [dispatch]);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -79,7 +87,13 @@ export default function NavbarClient() {
           </li>
 
           <li>
-            <details>
+            <Link
+              to="/jalu/order/my"
+              className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
+            >
+              My Order
+            </Link>
+            {/* <details>
               <summary className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full">
                 Orders
               </summary>
@@ -91,7 +105,7 @@ export default function NavbarClient() {
                   <Link to="/jalu/order/history">History</Link>
                 </li>
               </ul>
-            </details>
+            </details> */}
           </li>
         </ul>
       </div>
@@ -99,7 +113,11 @@ export default function NavbarClient() {
         <div className="dropdown dropdown-bottom dropdown-end flex content-center">
           <div className="avatar online" tabIndex={0} role="button">
             <div className="w-8 rounded-full">
-              <img src="https://cdn-icons-png.flaticon.com/512/8847/8847419.png" />
+              {profile.profilePicture ? (
+                <img src={profile.profilePicture} />
+              ) : (
+                <img src="https://cdn-icons-png.flaticon.com/512/8847/8847419.png" />
+              )}
             </div>
           </div>
           <ul
