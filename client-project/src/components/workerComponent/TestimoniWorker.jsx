@@ -1,62 +1,40 @@
-export default function Testimoni() {
-  // 1D204C blue
-  // 05ECAE mint
-  // FFFFFF card
-  // FAF9FE bg
+export default function Testimoni({ testi }) {
   return (
     <>
-      <section className="">
-        <div className="container py-10 mx-auto">
-          <h1 className="text-2xl font-semibold text-center">
-            see the rating given by the{" "}
-            <span className="text-[#05ECAE] ">Clients </span>say
-          </h1>
-          <div className="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-2 xl:mt-10 max-w-7xl">
-            <div className="p-6 bg-[#FFFFFF] rounded-lg md:p-8">
-              <p className="leading-loose text-[#1D204C]">
-                “Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Tempore quibusdam ducimus libero ad tempora doloribus expedita
-                laborum saepe voluptas perferendis delectus assumenda rerum,
-                culpa aperiam dolorum, obcaecati corrupti aspernatur a.”.
-              </p>
-              <div className="flex items-center mt-6">
-                <img
-                  className="object-cover rounded-full w-14 h-14"
-                  src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                  alt=""
+      <blockquote className=" h-full rounded-lg bg-[#FAF9FE] p-6 shadow-sm sm:p-8">
+        <div className="flex items-center gap-4">
+          <img
+            alt={testi.client.name}
+            src={testi.client.profilePicture}
+            className="size-14 rounded-full object-cover"
+          />
+
+          <div>
+            <p className="mt-0.5 text-lg font-medium text-[#1D204C]">
+              {testi.client.name}
+            </p>
+            <div className="badge badge-warning badge-outline p-3 gap-1  flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-4 h-4"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                  clipRule="evenodd"
                 />
-                <div className="mx-4">
-                  <h1 className="font-semibold text-[#1D204C]">Robbert</h1>
-                  <span className="text-sm text-[#1D204C]">
-                    CTO, Robert Consultency
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 bg-[#FFFFFF] rounded-lg  md:p-8">
-              <p className="leading-loose text-[#1D204C]">
-                “Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Tempore quibusdam ducimus libero ad tempora doloribus expedita
-                laborum saepe voluptas perferendis delectus assumenda rerum,
-                culpa aperiam dolorum, obcaecati corrupti aspernatur a.”.
-              </p>
-              <div className="flex items-center mt-6">
-                <img
-                  className="object-cover rounded-full w-14 h-14"
-                  src="https://images.unsplash.com/photo-1499470932971-a90681ce8530?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                  alt=""
-                />
-                <div className="mx-4">
-                  <h1 className="font-semibold text-[#1D204C]">Mia Brown</h1>
-                  <span className="text-sm text-[#1D204C]">
-                    Marketing Manager at Stech
-                  </span>
-                </div>
-              </div>
+              </svg>
+              <span className="font-bold text-[#1D204C]">{testi.rating}</span>
             </div>
           </div>
         </div>
-      </section>
+
+        <p className="mt-4 text-gray-700 line-clamp-5">
+          <strong>Pesan: </strong> {testi.description}
+        </p>
+      </blockquote>
     </>
   );
 }

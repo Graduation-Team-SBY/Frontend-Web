@@ -25,8 +25,26 @@ export default function ProfileWorkerPage() {
         },
       });
 
-      console.log(data);
+      // console.log(data);
       setProfile(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const [testi, setTesti] = useState([]);
+  const fetchTestimoni = async () => {
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: "/workers/profile/reviews",
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+
+      console.log(data, "<<<<< testi");
+      setTesti(data);
     } catch (error) {
       console.log(error);
     }
@@ -34,6 +52,7 @@ export default function ProfileWorkerPage() {
 
   useEffect(() => {
     fetchProfile();
+    fetchTestimoni();
   }, []);
   return (
     <>
@@ -62,9 +81,7 @@ export default function ProfileWorkerPage() {
                 )}
                 <div>
                   {profile.name ? (
-                    <h3 className="text-xl font-semibold">
-                      {profile.name}
-                    </h3>
+                    <h3 className="text-xl font-semibold">{profile.name}</h3>
                   ) : (
                     <h3 className="text-xl font-semibold">
                       Silakan update profile
@@ -110,9 +127,7 @@ export default function ProfileWorkerPage() {
 
               <div className="">
                 <p className="text-gray-400">Email</p>
-                <p className="font-bold text-xl">
-                  {profile.userData?.email}
-                </p>
+                <p className="font-bold text-xl">{profile.userData?.email}</p>
               </div>
 
               <div className="">
@@ -155,19 +170,19 @@ export default function ProfileWorkerPage() {
           </div> */}
         </div>
 
-        {/* <div className="flex space-x-4 mb-6">
-        <div className="flex-1 bg-white p-5 rounded-lg shadow-md text-center">
-          <span>Total Order</span>
-        </div>
-        <div className="flex-1 bg-white p-5 rounded-lg shadow-md text-center">
-          <span>BELUM</span>
-        </div>
-        <div className="flex-1 bg-white p-5 rounded-lg shadow-md text-center">
-          <span>SELESAI</span>
-        </div>
-      </div> */}
+        <section className="bg-white">
+          <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+            <h2 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+              Read trusted reviews from our <span className="text-[#05ECAE]">customers</span>
+            </h2>
 
-        <Testimoni />
+            <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
+              {testi.map((testi) => (
+                <Testimoni key={testi._id} testi={testi} />
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

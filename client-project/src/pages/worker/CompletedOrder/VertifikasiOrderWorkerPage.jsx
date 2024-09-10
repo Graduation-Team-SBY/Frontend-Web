@@ -64,12 +64,12 @@ export default function VerificationOrderWorkerPage() {
   };
 
   return (
-    <div className="flex justify-center items-center flex-col bg-[#FAF9FE] min-h-screen py-8">
-      <ul className="steps steps-vertical lg:steps-horizontal mb-8">
+    <div className="flex justify-center items-center bg-[#FAF9FE] py-8">
+      {/* <ul className="steps steps-vertical lg:steps-horizontal mb-8">
         <li className="step step-primary">Verifikasi Pesanan</li>
         <li className="step">Pembayaran</li>
         <li className="step">Selesai</li>
-      </ul>
+      </ul> */}
 
       <div className="bg-white rounded-xl shadow-lg p-8 max-w-lg w-full">
         <div className="flex justify-center items-center mb-6">
@@ -120,14 +120,11 @@ export default function VerificationOrderWorkerPage() {
                 IDR {formatCurrencyRupiah(order.fee)}
               </span>
             </div>
-            <div className="space-y-1">
-              <span>Detail Tugas:</span>
-              <ul className="list-disc pl-5">
-                <li>Tugas 1: {order.description}</li>
-                <li>Tugas 2: Backend Development - IDR 500,000</li>
-                <li>Tugas 3: UI Testing - IDR 300,000</li>
-              </ul>
-            </div>
+            <div className="mt-4 text-sm text-[#1D204C]">
+          <p>
+            <strong>Deskripsi: </strong> {order.description}
+          </p>
+        </div>
           </div>
 
           {/* <div className="mt-6">

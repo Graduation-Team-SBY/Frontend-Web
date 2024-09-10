@@ -177,9 +177,9 @@ export default function AddOrderPage() {
                     </div>
                   </div>
 
-                  <h2 className="text-center text-2xl font-semibold mb-3 text-[#1D204C]">
+                  <h2 className="text-center text-2xl font-semibol d mb-3 text-[#1D204C]">
                     Konfirmasi Order
-                  </h2>
+                    </h2>
                   <p className="text-center text-3xl font-bold mb-6 text-[#1D204C]">
                     {formatCurrencyRupiah(fee)}
                   </p>
