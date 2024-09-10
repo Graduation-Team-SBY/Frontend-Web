@@ -25,8 +25,7 @@ export default function RoamChatClientPage() {
 
     newSocket.on("receive_message", (data) => {
       setChats((curr) => [...curr, data]);
-<<<<<<< HEAD
-=======
+
     });
 
     newSocket.on("joined_room", (data) => {
@@ -40,7 +39,7 @@ export default function RoamChatClientPage() {
       }
 
       setChatId(data.currJob.chatId);
->>>>>>> development
+
     });
 
     return () => {
@@ -53,10 +52,8 @@ export default function RoamChatClientPage() {
       const messageObj = {
         message: message,
         createdAt: new Date(),
-<<<<<<< HEAD
-=======
         senderId: senderId,
->>>>>>> development
+
       };
       socket.emit("send_message", messageObj, chatId, senderId);
       console.log(messageObj, "Ini massage");
