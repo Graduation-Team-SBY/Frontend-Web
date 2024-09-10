@@ -6,7 +6,7 @@ export default function CardWorker({ work }) {
   return (
     <>
       <Link to={`/yasa/order/${work._id}`}>
-        <div className="w-full max-w-sm px-4 py-3 bg-[#FFFFFF] rounded-md shadow-md h-full flex flex-col justify-between">
+        <div className="w-full px-6 py-5 bg-[#FFFFFF] rounded-xl shadow-md h-full flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-sm font-light text-[#1D204C]">
               <h2 className="text-2xl font-semibold">{work.category.name}</h2>
