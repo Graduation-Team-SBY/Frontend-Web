@@ -36,7 +36,7 @@ export default function DetailOrderPage() {
         },
       });
 
-      console.log(data);
+      // console.log(data);
       navigate("/yasa");
       toast.success("Successfully apply for the job");
     } catch (error) {

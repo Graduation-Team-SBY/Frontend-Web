@@ -20,15 +20,16 @@ export default function LoginPage() {
         },
       });
 
-      console.log(data)
+      console.log(data);
       localStorage.setItem("access_token", data.access_token);
-      let role
+
+      let role;
       if (data.role === "client") {
-        role = "jalu"
+        role = "jalu";
       } else if (data.role === "worker") {
-        role = "yasa"
+        role = "yasa";
       }
-      localStorage.setItem("role", role)
+      localStorage.setItem("role", role);
       toast.info("Success to login");
       navigate(`/${localStorage.role}`);
     } catch (error) {
@@ -38,11 +39,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex gap-10 container mx-auto px-5 md:px-10 lg:px-32">
       <div className="hidden lg:flex justify-center content-center lg:w-1/2 min-h-screen">
-        <img
-          className="w-[100%]"
-          src="/login2.svg"
-          alt=""
-        />
+        <img className="w-[100%]" src="/login2.svg" alt="" />
       </div>
       <div className="w-full lg:w-1/2 min-h-screen flex flex-col justify-center items-center text-[#1D204C]">
         <h1 className="font-black text-5xl">Login</h1>
