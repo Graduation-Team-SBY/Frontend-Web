@@ -15,7 +15,6 @@ import UpdateProfilePage from '../pages/client/UpdateProfilePage';
 import ProfileWorkerPage from '../pages/worker/Profile/ProfileWorkerPage';
 import DetailOrderPage from '../pages/client/DetailOrderPage';
 import UpdateProfileWorkerPage from '../pages/worker/Profile/UpdateProfileWorkerPage';
-import DetailJob from '../pages/worker/DetailJobPage';
 
 import CurrectJobsPage from '../pages/worker/Jobs/CurrenctJobPage';
 import DetailJobWorkerPage from '../pages/worker/Jobs/DetailCurrenctJobPage';
@@ -23,11 +22,11 @@ import VerificationOrderWorkerPage from '../pages/worker/CompletedOrder/Vertifik
 
 import HistoryOrdersPage from '../pages/client/HistoryOrdersPage';
 
-import RoamChatClientPage from '../pages/client/Chat/RoamChatClientPage';
 import DetailJobPage from '../pages/worker/DetailJobPage';
-import RoomChatWorkerPage from '../pages/worker/Chat/RoamChatWorkerPage';
 import ReviewOrderClient from '../pages/client/CompletedOrder/ReviewOrderClientPage';
 import PaymentConfirmClientPage from '../pages/client/CompletedOrder/PaymentConfirmClientPage';
+import RoomChatJaluPage from '../pages/client/Chat/RoomChatJaluPage';
+import RoomChatYasaPage from '../pages/worker/Chat/RoomChatYasaPage';
 
 const router = createBrowserRouter([
   {
@@ -114,7 +113,7 @@ const router = createBrowserRouter([
           },
           {
             path: ':id/chat',
-            element: <RoamChatClientPage />,
+            element: <RoomChatJaluPage />,
           },
           {
             path: ':id/confirmation',
@@ -172,7 +171,7 @@ const router = createBrowserRouter([
           },
           {
             path: ':id/chat',
-            element: <RoomChatWorkerPage />,
+            element: <RoomChatYasaPage />,
           },
           {
             path: 'verification',
