@@ -50,7 +50,7 @@ export default function AddOrderPage() {
       });
       console.log(data);
 
-      navigate('/jalu');
+      navigate('/jalu/order/my');
       toast.info('Berhasil membuat Pekerjaan');
     } catch (error) {
       // console.log(error);

@@ -39,7 +39,7 @@ export default function AddOrderGmapsPage() {
       });
 
       console.log(data);
-      navigate('/jalu');
+      navigate('/jalu/order/my');
       toast.info('Berhasil membuat Pekerjaan');
     } catch (error) {
       toast.error(error.response.data.message);

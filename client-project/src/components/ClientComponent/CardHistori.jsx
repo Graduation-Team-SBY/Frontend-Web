@@ -4,7 +4,7 @@ import { formatDateMonth } from "../../helpers/formatDate";
 export default function CardHistory({ histories }) {
   return (
     <>
-      <div className="relative p-4 rounded-lg shadow-lg w-full bg-white">
+      <div className="relative p-7 rounded-xl shadow-lg w-full bg-white">
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <h2 className="text-xl font-bold text-gray-900">
