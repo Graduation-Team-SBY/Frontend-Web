@@ -21,7 +21,8 @@ export default function RoomChatJaluPage() {
 
   useEffect(() => {
     const storedRole = localStorage.getItem("role");
-    const newSocket = io("http://localhost:3000");
+    const newSocket = io("https://backend-yangtu.aryajati.my.id");
+    // const newSocket = io("http://localhost:3000");
 
     // Masuk ke room
     setSocket(newSocket);

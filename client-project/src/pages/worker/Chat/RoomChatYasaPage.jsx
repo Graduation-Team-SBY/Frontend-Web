@@ -23,7 +23,7 @@ export default function RoomChatYasaPage() {
 
   useEffect(() => {
     const storedRole = localStorage.getItem('role');
-    const newSocket = io('http://localhost:3000');
+    const newSocket = io('https://backend-yangtu.aryajati.my.id');
 
     // Masuk ke room
     setSocket(newSocket);

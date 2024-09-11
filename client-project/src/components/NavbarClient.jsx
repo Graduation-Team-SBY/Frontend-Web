@@ -67,7 +67,7 @@ export default function NavbarClient() {
           </ul>
         </div>
         <Link to="/" className="lg:ml-0 text-xl flex items-center gap-2 font-black hover:text-[#05ECAE]">
-          <img src='./LogoYangTu.png' className='w-10 h-10' />
+          <img src='/LogoYangTu.png' className='w-10 h-10' />
           <span>YangTu</span>
           </Link>
       </div>
