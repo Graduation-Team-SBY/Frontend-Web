@@ -24,7 +24,7 @@ export default function DetailJobWorkerPage() {
         },
       });
 
-      // console.log(data);
+      console.log(data);
       setOrder(data);
       console.log(data, '<<data detail');
     } catch (error) {

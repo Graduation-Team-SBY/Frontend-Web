@@ -144,7 +144,7 @@ export default function RoomChatJaluPage() {
             <input
               className="flex-1 bg-transparent p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1D204C]"
               type="text"
-              placeholder="Write your message..."
+              placeholder="Ketikan pesan kamu di sini..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
