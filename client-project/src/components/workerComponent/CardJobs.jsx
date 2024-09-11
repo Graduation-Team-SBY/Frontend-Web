@@ -8,7 +8,7 @@ export default function CardJobs({ jobs }) {
       <div className="w-full max-w-sm px-4 py-3 bg-[#FFFFFF] rounded-md shadow-md h-full flex flex-col justify-between">
         <div className="flex items-center justify-between">
           <span className="text-sm font-light text-[#1D204C]">
-            <h2 className="text-2xl font-semibold">{jobs.title}</h2>
+            <h2 className="text-2xl font-semibold line-clamp-1">{jobs.title}</h2>
             <h6 className="text-sm text-gray-500">
               {formatDateMonth(new Date(jobs.createdAt))}
             </h6>
