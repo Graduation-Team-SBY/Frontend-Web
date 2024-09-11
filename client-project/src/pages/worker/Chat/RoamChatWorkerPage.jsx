@@ -80,11 +80,30 @@ export default function RoomChatWorkerPage() {
   return (
     <>
       <div className="flex bg-[#FAF9FE] gap-4 h-[75vh] overflow-hidden p-6 rounded-xl">
-        <ProfileChat key={order._id} profile={order} />
+      <div className="w-72 bg-[#FFFFFF]  p-4 rounded-2xl">
+          <div className="mb-6">
+            <div className="flex items-center justify-center flex-col">
+              <div className="stat-figure text-secondary">
+                <div className="avatar online">
+                  <div className="w-16 rounded-full">
+                    <img src={order.client.profilePicture} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <p className="font-semibold text-[#1D204C] text-lg">
+                  {order.client.name}
+                </p>
+                <p className="text-xs text-[#05ECAE] mt-1">Online</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="flex-1 p-6 flex flex-col bg-[#FAF9FE] rounded-2xl shadow-lg">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl font-semibold text-[#1D204C]">{order.client.name}</h1>
+            <h1 className="text-2xl font-semibold text-[#1D204C]">{order.client?.name}</h1>
           </div>
 
           <hr className="border-t border-[#FAF9FE] mb-4" />
