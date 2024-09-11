@@ -1,15 +1,23 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { fetchProfile } from '../redux/features/workerProfileSlice';
 
 export default function NavbarWorker() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { profile } = useSelector((state) => state.workerProfile);
 
   const handleLogout = () => {
     localStorage.clear();
     navigate("/");
     toast.info("Berhasil Keluar");
   };
+
+  useEffect(() => {
+    dispatch(fetchProfile());
+  }, [dispatch]);
 
   return (
     <div className="navbar bg-[#faf9fe] px-8 md:px-20 lg:px-32 fixed top-0 inset-x-0 z-50">
@@ -87,7 +95,11 @@ export default function NavbarWorker() {
         <div className="dropdown dropdown-bottom dropdown-end flex content-center">
           <div className="avatar online" tabIndex={0} role="button">
             <div className="w-8 rounded-full">
-              <img src="https://cdn-icons-png.flaticon.com/512/8847/8847419.png" />
+              {profile.profilePicture ? (
+                <img src={profile.profilePicture} />
+              ) : (
+                <img src="https://cdn-icons-png.flaticon.com/512/8847/8847419.png" />
+              )}
             </div>
           </div>
           <ul

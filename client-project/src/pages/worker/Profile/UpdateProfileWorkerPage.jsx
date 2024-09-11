@@ -1,14 +1,15 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import axios from "../../../config/axiosInstance";
-import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import axios from '../../../config/axiosInstance';
+import { toast } from 'react-toastify';
 
 export default function UpdateProfileWorkerPage() {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
-  const [address, setAddress] = useState("");
+  const [name, setName] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [address, setAddress] = useState('');
   const [image, setImage] = useState(null);
+  const [bio, setBio] = useState('');
 
   const handleFileChange = (e) => setImage(e.target.files[0]);
 
@@ -16,27 +17,28 @@ export default function UpdateProfileWorkerPage() {
     e.preventDefault();
     const formData = new FormData();
 
-    if (name) formData.append("name", name);
-    if (dateOfBirth) formData.append("dateOfBirth", dateOfBirth);
-    if (address) formData.append("address", address);
-    if (image) formData.append("image", image);
+    if (name) formData.append('name', name);
+    if (dateOfBirth) formData.append('dateOfBirth', dateOfBirth);
+    if (address) formData.append('address', address);
+    if (image) formData.append('image', image);
+    if (bio) formData.append('bio', bio);
 
     try {
       const { data } = await axios({
-        method: "PATCH",
-        url: "/workers/profile",
+        method: 'PATCH',
+        url: '/workers/profile',
         headers: { Authorization: `Bearer ${localStorage.access_token}` },
         data: formData,
       });
-      toast.info("Profile updated successfully");
-      navigate("/yasa/profile");
+      toast.info('Profile updated successfully');
+      navigate('/yasa/profile');
     } catch (error) {
       if (error.response) toast.error(error.response.data.message);
     }
   };
 
   return (
-    <div className="flex justify-center items-center h-[70vh]">
+    <div className="flex justify-center items-center">
       <div className="bg-white shadow-lg rounded-lg w-full max-w-3xl mx-auto p-8">
         <h3 className="text-2xl font-black text-gray-800 mb-6 text-center">
           Update Profile
@@ -59,7 +61,7 @@ export default function UpdateProfileWorkerPage() {
                   src={
                     image
                       ? URL.createObjectURL(image)
-                      : "https://via.placeholder.com/150"
+                      : 'https://via.placeholder.com/150'
                   }
                   alt="Profile"
                 />
@@ -96,7 +98,9 @@ export default function UpdateProfileWorkerPage() {
             </div>
 
             <div className="form-group">
-              <label className="text-sm font-bold text-gray-600">Date of Birth</label>
+              <label className="text-sm font-bold text-gray-600">
+                Date of Birth
+              </label>
               <input
                 type="date"
                 value={dateOfBirth}
@@ -115,6 +119,20 @@ export default function UpdateProfileWorkerPage() {
                 onChange={(e) => setAddress(e.target.value)}
               />
             </div>
+
+            <label className="form-control">
+              <div className="label">
+                <span className="label-text text-sm font-bold text-gray-600">
+                  Biodata
+                </span>
+              </div>
+              <textarea
+                className="textarea textarea-bordered h-24 focus:outline-none focus:border-blue-400"
+                placeholder="Bio"
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+              ></textarea>
+            </label>
           </div>
 
           <button

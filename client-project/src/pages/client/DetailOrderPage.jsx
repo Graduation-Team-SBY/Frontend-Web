@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import axios from "../../config/axiosInstance";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { formatCurrencyRupiah } from "../../helpers/currency";
-import { toast } from "react-toastify";
+import { useEffect, useState } from 'react';
+import axios from '../../config/axiosInstance';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { formatCurrencyRupiah } from '../../helpers/currency';
+import { toast } from 'react-toastify';
 
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
-import { Pagination, Navigation } from "swiper/modules";
-import DetailMaps from "../../components/DetailMaps";
+import { Pagination, Navigation } from 'swiper/modules';
+import DetailMaps from '../../components/DetailMaps';
 
 export default function DetailOrderPage() {
   const navigate = useNavigate();
@@ -21,13 +21,13 @@ export default function DetailOrderPage() {
   const showDetailOrderClient = async (id) => {
     try {
       const { data } = await axios({
-        method: "GET",
+        method: 'GET',
         url: `clients/jobs/${id}/workers`,
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
-      console.log(data, "<< detail order client >>>>>");
+      console.log(data, '<< detail order client >>>>>');
       setOrder(data);
     } catch (error) {
       console.log(error);
@@ -37,7 +37,7 @@ export default function DetailOrderPage() {
   const handleAcceptWorker = async (jobId, workerId) => {
     try {
       const { data } = await axios({
-        method: "PATCH",
+        method: 'PATCH',
         url: `/clients/jobs/${jobId}/${workerId}`,
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
@@ -45,10 +45,10 @@ export default function DetailOrderPage() {
       });
 
       // console.log(data);
-      toast.info("Berhasil Menerima Worker");
-      toast.info("Kamu tinggal tunggu pekerjaan nya beres");
+      toast.info('Berhasil Menerima Worker');
+      toast.info('Kamu tinggal tunggu pekerjaan nya beres');
 
-      navigate("/jalu/order/my");
+      navigate('/jalu/order/my');
     } catch (error) {
       // console.log(error);
       toast.error(error.response.data.message);
@@ -58,7 +58,7 @@ export default function DetailOrderPage() {
   const handleDelete = async (jobId) => {
     try {
       const { data } = await axios({
-        method: "DELETE",
+        method: 'DELETE',
         url: `/clients/jobs/${jobId}`,
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
@@ -66,8 +66,8 @@ export default function DetailOrderPage() {
       });
 
       console.log(data);
-      toast.info("Berhasil membatalkan order nya");
-      navigate("/jalu/order/my");
+      toast.info('Berhasil membatalkan order nya');
+      navigate('/jalu/order/my');
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -76,7 +76,7 @@ export default function DetailOrderPage() {
   const handleConfirm = async (jobId) => {
     try {
       const { data } = await axios({
-        method: "PATCH",
+        method: 'PATCH',
         url: `/clients/jobs/${jobId}/client`,
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
@@ -85,7 +85,7 @@ export default function DetailOrderPage() {
 
       console.log(data);
 
-      toast.info("Anda telah menyelesaikan order anda");
+      toast.info('Anda telah menyelesaikan order anda');
 
       navigate(`/jalu/order/${id}/verification`);
     } catch (error) {
@@ -179,6 +179,27 @@ export default function DetailOrderPage() {
               Batalkan Pekerjaan
             </button>
           )}
+
+          <button
+            className="btn"
+            onClick={() => document.getElementById('bukti-selesai').showModal()}
+          >
+            Bukti selesai
+          </button>
+          <dialog id="bukti-selesai" className="modal">
+            <div className="modal-box">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                  ✕
+                </button>
+              </form>
+              <h3 className="font-bold text-lg">Foto Hasil pekerjaan</h3>
+              {order.status?.confirmationImages.map((image, index) => {
+                return <img key={index} src={image} alt="" />;
+              })}
+            </div>
+          </dialog>
         </div>
       </div>
 
@@ -212,7 +233,9 @@ export default function DetailOrderPage() {
                               clipRule="evenodd"
                             />
                           </svg>
-                          <span className="font-bold text-[#1D204C]">{worker.rating}</span>
+                          <span className="font-bold text-[#1D204C]">
+                            {worker.rating}
+                          </span>
                         </div>
                         {/* rating {worker.rating} */}
                       </div>
