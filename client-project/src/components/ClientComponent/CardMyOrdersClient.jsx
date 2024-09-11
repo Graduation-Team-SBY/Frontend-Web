@@ -12,7 +12,7 @@ export default function CardMyOrdersClient({ data }) {
               <div className="">
                 <div className="flex flex-wrap gap-2">
                   <div className="badge badge-outline badge-primary">
-                    {data.status? ("ongoing") : ("belum")}
+                    {data.status ? "Dalam Pengerjaan" : "Menunggu Yasa"}
                   </div>
                 </div>
                 <h2 className="card-title text-2xl font-black line-clamp-1">
@@ -23,7 +23,7 @@ export default function CardMyOrdersClient({ data }) {
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
-                <div className="badge badge-outline badge-primary">
+                <div className="badge bg-[#1D204C] text-white p-3">
                   {data.category.name}
                 </div>
               </div>
