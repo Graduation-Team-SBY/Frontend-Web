@@ -1,17 +1,17 @@
-import axios from "../../config/axiosInstance";
-import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
-import { formatCurrencyRupiah } from "../../helpers/currency";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from '../../config/axiosInstance';
+import { toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
+import { formatCurrencyRupiah } from '../../helpers/currency';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
-import { Pagination, Navigation } from "swiper/modules";
-import DetailMaps from "../../components/DetailMaps";
+import { Pagination, Navigation } from 'swiper/modules';
+import DetailMaps from '../../components/DetailMaps';
 
 export default function DetailOrderPage() {
   const navigate = useNavigate();
@@ -23,13 +23,13 @@ export default function DetailOrderPage() {
     try {
       setIsloading(true);
       const { data } = await axios({
-        method: "GET",
+        method: 'GET',
         url: `/clients/jobs/${id}/workers`,
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
-      console.log(data, "<< detail order client >>>>>");
+      console.log(data, '<< detail order client >>>>>');
       setOrder(data);
     } catch (error) {
       console.log(error);
@@ -41,18 +41,18 @@ export default function DetailOrderPage() {
   const handleAcceptWorker = async (jobId, workerId) => {
     try {
       const { data } = await axios({
-        method: "PATCH",
+        method: 'PATCH',
         url: `/clients/jobs/${jobId}/${workerId}`,
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
 
-      console.log(data, "ini clinet");
-      toast.info("Berhasil Menerima Worker");
-      toast.info("Kamu tinggal tunggu pekerjaan nya beres");
+      console.log(data, 'ini clinet');
+      toast.info('Berhasil Menerima Worker');
+      toast.info('Kamu tinggal tunggu pekerjaan nya beres');
 
-      navigate("/jalu/order/my");
+      navigate('/jalu/order/my');
     } catch (error) {
       // console.log(error);
       toast.error(error.response.data.message);
@@ -62,16 +62,16 @@ export default function DetailOrderPage() {
   const handleDelete = async (jobId) => {
     try {
       const { data } = await axios({
-        method: "DELETE",
+        method: 'DELETE',
         url: `/clients/jobs/${jobId}`,
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
 
-      console.log(data, "inmi client");
-      toast.info("Berhasil membatalkan order nya");
-      navigate("/jalu/order/my");
+      console.log(data, 'inmi client');
+      toast.info('Berhasil membatalkan order nya');
+      navigate('/jalu/order/my');
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -117,7 +117,9 @@ export default function DetailOrderPage() {
           )}
         </div>
         <div className="w-full md:w-1/2">
-          <div className="badge badge-primary badge-outline p-3">{order.category?.name}</div>
+          <div className="badge badge-primary badge-outline p-3">
+            {order.category?.name}
+          </div>
           <h2 className="font-black text-4xl">{order.title}</h2>
           <p className="font-bold">{formatCurrencyRupiah(order.fee)}</p>
 
@@ -191,31 +193,40 @@ export default function DetailOrderPage() {
                       key={String(worker._id)}
                       className="p-6 rounded-xl shadow-lg w-full bg-white flex justify-between items-center"
                     >
-                      <div className="">
-                        <p className="font-bold">{worker.name}</p>
-                        {/* <span className="bg-[#1D204C] text-white py-1 px-3 rounded-lg text-xs"> */}
-                        {/* </span> */}
-                        {worker.rating ? (
-                          <div className="badge badge-warning badge-outline text-white font-bold flex gap-2 p-3 mt-2">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-4"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span className="text-black">{worker.rating}</span>
-                          </div>
-                        ) : (
-                          <div className="badge badge-success badge-outline text-white font-bold flex gap-2 p-3 mt-2">
-                            <span>Yusa Baru</span>
-                          </div>
-                        )}
+                      <div className="flex gap-5 items-center">
+                        <img
+                          src={worker.profilePicture}
+                          className="rounded-full w-10 h-10"
+                          alt=""
+                        />
+                        <div className="">
+                          <p className="font-bold">{worker.name}</p>
+                          {/* <span className="bg-[#1D204C] text-white py-1 px-3 rounded-lg text-xs"> */}
+                          {/* </span> */}
+                          {worker.rating ? (
+                            <div className="badge badge-warning badge-outline text-white font-bold flex gap-2 p-3 mt-2">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className="w-4"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              <span className="text-black">
+                                {worker.rating}
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="badge badge-success badge-outline text-white font-bold flex gap-2 p-3 mt-2">
+                              <span>Yusa Baru</span>
+                            </div>
+                          )}
+                        </div>
                         {/* rating {worker.rating} */}
                       </div>
                       <div className="card-actions">
