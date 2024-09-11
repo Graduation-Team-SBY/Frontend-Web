@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom';
-import CardSaldo from '../../../components/workerComponent/CardSaldo';
-import StarRating from '../../../components/workerComponent/StarRating';
-import Testimoni from '../../../components/workerComponent/TestimoniWorker';
-import { useEffect, useState } from 'react';
-import axios from '../../../config/axiosInstance';
-import { formatDate } from '../../../helpers/formatDate';
-import { age } from '../../../helpers/age';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchProfile } from '../../../redux/features/workerProfileSlice';
-import { toast } from 'react-toastify';
+import { Link } from "react-router-dom";
+import CardSaldo from "../../../components/workerComponent/CardSaldo";
+import StarRating from "../../../components/workerComponent/StarRating";
+import Testimoni from "../../../components/workerComponent/TestimoniWorker";
+import { useEffect, useState } from "react";
+import axios from "../../../config/axiosInstance";
+import { formatDate } from "../../../helpers/formatDate";
+import { age } from "../../../helpers/age";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProfile } from "../../../redux/features/workerProfileSlice";
+import { toast } from "react-toastify";
 
 // 1D204C blue
 // 05ECAE mint
@@ -34,14 +34,14 @@ export default function ProfileWorkerPage() {
   const fetchTestimoni = async () => {
     try {
       const { data } = await axios({
-        method: 'GET',
-        url: '/workers/profile/reviews',
+        method: "GET",
+        url: "/workers/profile/reviews",
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
 
-      console.log(data, '<<<<< testi');
+      console.log(data, "<<<<< testi");
       setTesti(data);
     } catch (error) {
       console.log(error);
@@ -111,8 +111,22 @@ export default function ProfileWorkerPage() {
               </div>
               <Link
                 to="/yasa/profile/update"
-                className="bg-[#1D204C] text-[#FAF9FE] px-4 py-2 rounded-full"
+                className="bg-[#1D204C] text-[#FAF9FE] px-4 py-2 rounded-full flex hover:bg-[#05ECAE] hover:text-[#1D204C]"
               >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                  />
+                </svg>
                 Ubah Profile
               </Link>
             </div>
@@ -143,12 +157,7 @@ export default function ProfileWorkerPage() {
                 </p>
               </div>
 
-              <div className="">
-                <p className="text-gray-400">Bergabung pada</p>
-                <p className="font-bold text-xl">
-                  {formatDate(profile.userData?.createdAt)}
-                </p>
-              </div>
+              {/* <div i */}
             </div>
 
             <div className="flex flex-wrap gap-x-20 gap-y-10 mt-10 mb-10">
@@ -219,7 +228,7 @@ export default function ProfileWorkerPage() {
         <section className="bg-white">
           <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
             <h2 className="text-center text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Baca ulasan terpercaya dari pelanggan{' '}
+              Baca ulasan terpercaya dari pelanggan{" "}
               <span className="text-[#05ECAE]">pelanggan </span>kami
             </h2>
 

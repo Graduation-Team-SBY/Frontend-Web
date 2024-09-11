@@ -7,7 +7,10 @@ export default function LandingPage() {
       <div className="navbar bg-[#faf9fe] px-8 md:px-20 lg:px-32 fixed top-0 inset-x-0 z-50">
         <div className="navbar-start">
           
-          <Link to="/" className="lg:ml-0 text-xl font-black hover:text-[#05ECAE]">YangTu</Link>
+          <Link to="/" className="lg:ml-0 text-xl flex items-center gap-2 font-black hover:text-[#05ECAE]">
+          <img src='./LogoYangTu.png' className='w-10 h-10' />
+          <span>YangTu</span>
+          </Link>
         </div>
         
         <div className="navbar-end">

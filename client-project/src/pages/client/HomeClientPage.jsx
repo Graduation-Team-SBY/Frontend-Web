@@ -63,7 +63,7 @@ export default function HomeClientPage() {
           <div className="flex gap-6">
             <Link
               to="/jalu/order/add-shopping"
-              className="bg-white mt-10 p-10 w-full rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
+              className="bg-[#FDFDFE] mt-10 p-10 w-full rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
             >
               <img
                 className="w-[60%] md:w-[35%] lg:w-[70%] xl:w-[60%]"
@@ -74,7 +74,7 @@ export default function HomeClientPage() {
             </Link>
             <Link
               to="/jalu/order/add-cleaning"
-              className="bg-white mt-10 p-10 w-full rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
+              className="bg-[#FDFDFE] mt-10 p-10 w-full rounded-xl flex flex-col justify-center items-center text-[#1D204C] hover:bg-[#05ECAE]"
             >
               <img
                 className="w-[60%] md:w-[35%] lg:w-[70%] xl:w-[60%]"

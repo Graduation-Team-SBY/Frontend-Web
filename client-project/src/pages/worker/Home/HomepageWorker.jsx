@@ -1,14 +1,9 @@
 import axios from "../../../config/axiosInstance";
 import CardWorker from "../../../components/workerComponent/CardWorker";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile } from "../../../redux/features/workerProfileSlice";
 
-// 1D204C blue
-// 05ECAE mint
-// FFFFFF card
-// FAF9FE bg
 export default function HomepageWorker() {
   const [data, setData] = useState([]);
   const dispatch = useDispatch();
@@ -24,7 +19,7 @@ export default function HomepageWorker() {
         },
       });
 
-      console.log(data);
+      // console.log(data);
       setData(data);
     } catch (error) {
       console.log(error);

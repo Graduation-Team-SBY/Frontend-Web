@@ -83,7 +83,7 @@ export default function RoomChatYasaPage() {
   return (
     <>
       <div className="flex bg-[#FAF9FE] gap-4 h-[75vh] overflow-hidden p-6 rounded-xl">
-        <div className="w-72 bg-[#FFFFFF]  p-4 rounded-2xl">
+        <div className="w-72 bg-[#FFFFFF] p-4 rounded-2xl hidden md:block">
           <div className="mb-6">
             <div className="flex items-center justify-center flex-col">
               <div className="stat-figure text-secondary">

@@ -66,12 +66,10 @@ export default function NavbarClient() {
             </li>
           </ul>
         </div>
-        <Link
-          to="/"
-          className="ml-5 lg:ml-0 text-xl font-black hover:text-[#05ECAE]"
-        >
-          YangTu
-        </Link>
+        <Link to="/" className="lg:ml-0 text-xl flex items-center gap-2 font-black hover:text-[#05ECAE]">
+          <img src='./LogoYangTu.png' className='w-10 h-10' />
+          <span>YangTu</span>
+          </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

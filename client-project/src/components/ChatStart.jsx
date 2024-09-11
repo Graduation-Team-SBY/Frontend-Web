@@ -16,7 +16,7 @@ export default function ChatStart({ message, profile, date }) {
           )}
         </div>
       </div>
-      <div className="chat-bubble bg-[#05ECAE] text-[#1D204C]">{message}</div>
+      <div className="chat-bubble bg-[#79ECCD] text-[#1D204C]">{message}</div>
       <div className="chat-footer opacity-50">{formatTime(date)}</div>
     </div>
   );
