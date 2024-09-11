@@ -9,27 +9,8 @@ import { fetchProfile } from '../../redux/features/clientProfileSlice';
 
 export default function ProfilePage() {
   const dispatch = useDispatch();
-  // const [profile, setProfile] = useState({});
   const [history, setHistory] = useState([]);
   const { profile } = useSelector((state) => state.clientProfile);
-
-  // const fetchProfile = async () => {
-  //   try {
-  //     const { data } = await axios({
-  //       method: "GET",
-  //       url: "clients/profile",
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.access_token}`,
-  //       },
-  //     });
-
-  //     // console.log(data);
-
-  //     setProfile(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const fetchHistory = async () => {
     try {

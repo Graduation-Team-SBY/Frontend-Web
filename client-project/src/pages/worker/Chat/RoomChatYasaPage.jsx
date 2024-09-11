@@ -7,7 +7,8 @@ import { useLocation, useParams } from 'react-router-dom';
 
 export default function RoomChatYasaPage() {
   const [chats, setChats] = useState([]);
-
+  const [workerProfile, setWorkerProfile] = useState({});
+  const [clientProfile, setClientProfile] = useState({});
 
   const [message, setMessage] = useState('');
   const [socket, setSocket] = useState(null);
@@ -18,7 +19,7 @@ export default function RoomChatYasaPage() {
   const { id } = useParams();
   const location = useLocation();
   const order = location.state?.order || {};
-  console.log(order, "ini order")
+  console.log(order, 'ini order');
 
   useEffect(() => {
     const storedRole = localStorage.getItem('role');
@@ -36,8 +37,10 @@ export default function RoomChatYasaPage() {
     // set sender id
     newSocket.on('joined_room', (data) => {
       console.log(data, '<<<<< ini join room');
-      console.log(data.chats);
+      // console.log(data.chats);
       setChats(data.chats.contents);
+      setWorkerProfile(data.workerProfile);
+      setClientProfile(data.clientProfile);
 
       if (storedRole === 'jalu') {
         setSenderId(data.currJob.clientId);
@@ -80,7 +83,7 @@ export default function RoomChatYasaPage() {
   return (
     <>
       <div className="flex bg-[#FAF9FE] gap-4 h-[75vh] overflow-hidden p-6 rounded-xl">
-      <div className="w-72 bg-[#FFFFFF]  p-4 rounded-2xl">
+        <div className="w-72 bg-[#FFFFFF]  p-4 rounded-2xl">
           <div className="mb-6">
             <div className="flex items-center justify-center flex-col">
               <div className="stat-figure text-secondary">
@@ -103,7 +106,9 @@ export default function RoomChatYasaPage() {
 
         <div className="flex-1 p-6 flex flex-col bg-[#FAF9FE] rounded-2xl shadow-lg">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl font-semibold text-[#1D204C]">{order.client?.name}</h1>
+            <h1 className="text-2xl font-semibold text-[#1D204C]">
+              {order.client?.name}
+            </h1>
           </div>
 
           <hr className="border-t border-[#FAF9FE] mb-4" />
@@ -114,9 +119,19 @@ export default function RoomChatYasaPage() {
           >
             {chats.map((chat, index) =>
               chat.senderId === senderId ? (
-                <ChatEnd key={index} message={chat.message} />
+                <ChatEnd
+                  key={index}
+                  message={chat.message}
+                  profile={workerProfile.profilePicture}
+                  date={chat.createdAt}
+                />
               ) : (
-                <ChatStart key={index} message={chat.message} />
+                <ChatStart
+                  key={index}
+                  message={chat.message}
+                  profile={clientProfile.profilePicture}
+                  date={chat.createdAt}
+                />
               )
             )}
           </div>

@@ -89,7 +89,7 @@ export default function DetailOrderPage() {
     <h1>Loading</h1>
   ) : (
     <div>
-      <h2 className="font-black text-4xl">Detail Pesanan1</h2>
+      <h2 className="font-black text-4xl">Detail Pesanan</h2>
       <div className="mt-20 flex flex-col md:flex-row gap-10">
         <div className="w-full md:w-1/2">
           {order.images ? (
@@ -117,7 +117,8 @@ export default function DetailOrderPage() {
           )}
         </div>
         <div className="w-full md:w-1/2">
-          <h2 className="font-black text-4xl">{order.category?.name}</h2>
+          <div className="badge badge-primary badge-outline p-3">{order.category?.name}</div>
+          <h2 className="font-black text-4xl">{order.title}</h2>
           <p className="font-bold">{formatCurrencyRupiah(order.fee)}</p>
 
           <p className="font-bold mt-10">Deskripsi: </p>
@@ -155,6 +156,7 @@ export default function DetailOrderPage() {
                     d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"
                   />
                 </svg>
+                Chat
               </button>
               {order.status.isWorkerConfirmed && (
                 <Link
@@ -173,26 +175,6 @@ export default function DetailOrderPage() {
               Batalkan Pekerjaan
             </button>
           )}
-
-          {/* <button
-            className="btn"
-            onClick={() => document.getElementById('bukti-selesai').showModal()}
-          >
-            Bukti selesai
-          </button>
-          <dialog id="bukti-selesai" className="modal">
-            <div className="modal-box">
-              <form method="dialog">
-                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                  ✕
-                </button>
-              </form>
-              <h3 className="font-bold text-lg">Foto Hasil pekerjaan</h3>
-              {order.status?.confirmationImages.map((image, index) => {
-                return <img key={index} src={image} alt="" />;
-              })}
-            </div>
-          </dialog> */}
         </div>
       </div>
 
