@@ -80,27 +80,11 @@ export default function RoomChatWorkerPage() {
   return (
     <>
       <div className="flex bg-[#FAF9FE] gap-4 h-[75vh] overflow-hidden p-6 rounded-xl">
-        <ProfileChat key={order._id} />
+        <ProfileChat key={order._id} profile={order} />
 
         <div className="flex-1 p-6 flex flex-col bg-[#FAF9FE] rounded-2xl shadow-lg">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl font-semibold text-[#1D204C]">{order.client?.name}</h1>
-            <button className="text-[#1D204C] hover:text-[#2a2b38] transition">
-              <svg 
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5} 
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5.75 7h12.5m-12.5 5h12.5m-12.5 5h12.5"
-                />
-              </svg>
-            </button>
+            <h1 className="text-2xl font-semibold text-[#1D204C]">{order.client.name}</h1>
           </div>
 
           <hr className="border-t border-[#FAF9FE] mb-4" />

@@ -109,7 +109,7 @@ export default function ProfileWorkerPage() {
                 to="/yasa/profile/update"
                 className="bg-[#1D204C] text-[#FAF9FE] px-4 py-2 rounded-full"
               >
-                Edit
+                Ubah Profile
               </Link>
             </div>
 
@@ -163,7 +163,7 @@ export default function ProfileWorkerPage() {
               </div>
 
               <div className="">
-                <p className="text-gray-400">My Address</p>
+                <p className="text-gray-400">Alamat Saya</p>
                 {profile.address ? (
                   <p className="font-bold text-xl">{profile.address}</p>
                 ) : (
@@ -194,7 +194,7 @@ export default function ProfileWorkerPage() {
                   </p>
                 </div>
                 <div className="">
-                  <p className="text-gray-400">Pekerjaan yang sudah di ambil</p>
+                  <p className="text-gray-400">Pekerjaan yang diselesaikan</p>
                   <p className="font-bold text-xl text-green-600 capitalize">
                     {profile.jobDone}
                   </p>

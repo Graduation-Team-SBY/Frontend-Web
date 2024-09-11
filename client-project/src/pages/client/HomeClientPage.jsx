@@ -38,7 +38,7 @@ export default function HomeClientPage() {
   useEffect(() => {
     fetchBestYasa();
   }, []);
-  
+
   useEffect(() => {
     dispatch(fetchProfile());
   }, [dispatch]);
@@ -143,8 +143,8 @@ export default function HomeClientPage() {
         <div className="list-card flex gap-6 mt-5 overflow-y-auto no-scrollbar rounded-xl">
           {yasaBest.map((yasa) => {
             return (
-              <div className="p-10 bg-white text-[#1D204C] rounded-xl w-96 shrink-0">
-              <blockquote className="rounded-lg bg-[#ffffff]">
+              <div className="p-10 bg-white text-[#1D204C] rounded-xl w-96 shrink-0" key={yasa._id}>
+                <blockquote className="rounded-lg bg-[#ffffff]">
                   <div className="flex items-center gap-4">
                     <img
                       alt={yasa.name}
@@ -179,7 +179,7 @@ export default function HomeClientPage() {
                   <p className="mt-4 text-gray-700 line-clamp-5">{yasa.bio}</p>
                 </blockquote>
               </div>
-                            );
+            );
           })}
         </div>
       </div>
