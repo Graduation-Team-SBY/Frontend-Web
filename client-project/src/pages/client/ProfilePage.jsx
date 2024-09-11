@@ -41,7 +41,7 @@ export default function ProfilePage() {
         },
       });
 
-      // console.log(data);
+      console.log(data);
       setHistory(data);
     } catch (error) {
       console.log(error);
@@ -174,8 +174,8 @@ export default function ProfilePage() {
         <h2 className="text-2xl font-black mb-4">Riwayat Pesanan</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Card */}
-          {history.map((histories) => (
-            <CardHistory key={history._id} histories={histories} />
+          {history.map((histories, index) => (
+            <CardHistory key={index} histories={histories} />
           ))}
         </div>
       </div>

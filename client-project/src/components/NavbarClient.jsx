@@ -48,23 +48,21 @@ export default function NavbarClient() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/jalu">Beranda</Link>
+              <Link
+                to="/jalu"
+                className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
+              >
+                Beranda
+              </Link>
             </li>
 
             <li>
-              <details>
-                <summary className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full">
-                  Orders
-                </summary>
-                <ul className="p-2 w-36">
-                  <li>
-                    <Link to="/jalu/order/my">Pesanan Saya</Link>
-                  </li>
-                  <li>
-                    <Link to="/jalu/order/history">Riwayat Pesanan</Link>
-                  </li>
-                </ul>
-              </details>
+              <Link
+                to="/jalu/order/my"
+                className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
+              >
+                Pesanan Saya
+              </Link>
             </li>
           </ul>
         </div>

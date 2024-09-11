@@ -72,7 +72,7 @@ export default function AddOrderPage() {
   return (
     <>
       <h1 className="font-black md:hidden text-4xl">
-        Let's start with your first job post.
+        Mari kita mulai dengan pesanan pertama Anda.
       </h1>
       <div className="flex flex-col md:flex-row w-full h-full gap-10 mt-5">
         <div className="w-full md:w-[35%]">
@@ -84,7 +84,7 @@ export default function AddOrderPage() {
         </div>
         <div className="flex-1 flex flex-col gap-4">
           <h1 className="hidden md:block font-black text-4xl">
-            Let's start with your first job post.
+            Mari kita mulai dengan pesanan pertama Anda.
           </h1>
 
           <label className="form-control w-full">
@@ -92,9 +92,9 @@ export default function AddOrderPage() {
               <span className="label-text">Judul</span>
             </div>
             <input
-              type="number"
+              type="text"
               placeholder="Type here"
-              value={fee}
+              value={title}
               className="input input-bordered w-full rounded-full"
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -210,10 +210,14 @@ export default function AddOrderPage() {
                       <span className="font-semibold">Alamat:</span>
                       <span>{address}</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="font-semibold">Catatan Alamat:</span>
-                      <span>{addressNotes}</span>
-                    </div>
+
+                    {addressNotes && (
+                      <div className="flex justify-between">
+                        <span className="font-semibold">Catatan Alamat:</span>
+                        <span>{addressNotes}</span>
+                      </div>
+                    )}
+
                     <div className="flex justify-between">
                       <span className="font-semibold">Biaya Admin:</span>
                       <span>{formatCurrencyRupiah(2000)}</span>
