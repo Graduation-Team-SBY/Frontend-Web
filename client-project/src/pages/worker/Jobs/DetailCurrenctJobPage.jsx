@@ -8,11 +8,14 @@ import { Navigation, Pagination } from 'swiper/modules';
 
 export default function DetailJobWorkerPage() {
   const [order, setOrder] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
 
   const showData = async (id) => {
     try {
+      setIsLoading(true);
+
       const { data } = await axios({
         method: 'GET',
         url: `/jobs/${id}`,
@@ -26,6 +29,8 @@ export default function DetailJobWorkerPage() {
       console.log(data, '<<data detail');
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -40,6 +45,10 @@ export default function DetailJobWorkerPage() {
   useEffect(() => {
     showData(id);
   }, [id]);
+
+  if (isLoading) {
+    return <h1>Loading</h1>;
+  }
 
   return (
     <div>
@@ -94,12 +103,14 @@ export default function DetailJobWorkerPage() {
             >
               Pesan
             </button>
-            <button
-              className="w-1/2 bg-[#1D204C] text-white py-2 rounded-full hover:bg-[#1D204C]/90 focus:ring-4 focus:outline-none focus:ring-[#1D204C]/50 transition duration-300"
-              onClick={() => handleVerificationOrder()}
-            >
-              Selesai
-            </button>
+            {!order.status?.isWorkerConfirmed && (
+              <button
+                className="w-1/2 bg-[#1D204C] text-white py-2 rounded-full hover:bg-[#1D204C]/90 focus:ring-4 focus:outline-none focus:ring-[#1D204C]/50 transition duration-300"
+                onClick={() => handleVerificationOrder()}
+              >
+                Selesai
+              </button>
+            )}
           </div>
         </div>
       </div>

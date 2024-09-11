@@ -22,10 +22,12 @@ import DetailJobWorkerPage from '../pages/worker/Jobs/DetailCurrenctJobPage';
 import VerificationOrderWorkerPage from '../pages/worker/CompletedOrder/VertifikasiOrderWorkerPage';
 
 import HistoryOrdersPage from '../pages/client/HistoryOrdersPage';
-import VerificationOrderClient from '../pages/client/CompletedOrder/VerificationOrderClientPage';
+
 import RoamChatClientPage from '../pages/client/Chat/RoamChatClientPage';
 import DetailJobPage from '../pages/worker/DetailJobPage';
 import RoomChatWorkerPage from '../pages/worker/Chat/RoamChatWorkerPage';
+import ReviewOrderClient from '../pages/client/CompletedOrder/ReviewOrderClientPage';
+import PaymentConfirmClientPage from '../pages/client/CompletedOrder/PaymentConfirmClientPage';
 
 const router = createBrowserRouter([
   {
@@ -115,8 +117,12 @@ const router = createBrowserRouter([
             element: <RoomChatWorkerPage />,
           },
           {
-            path: ':id/verification',
-            element: <VerificationOrderClient />,
+            path: ':id/confirmation',
+            element: <PaymentConfirmClientPage />,
+          },
+          {
+            path: ':id/review',
+            element: <ReviewOrderClient />,
           },
         ],
       },
@@ -161,11 +167,11 @@ const router = createBrowserRouter([
             element: <CurrectJobsPage />,
           },
           {
-            path: "jobs/:id",
+            path: 'jobs/:id',
             element: <DetailJobWorkerPage />,
           },
           {
-            path: ":id/chat",
+            path: ':id/chat',
             element: <RoomChatWorkerPage />,
           },
           {

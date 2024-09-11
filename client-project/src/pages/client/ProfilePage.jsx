@@ -76,7 +76,7 @@ export default function ProfilePage() {
                 <img
                   className="w-32 h-32 rounded-full"
                   alt={profile.name}
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-BzIly8lOyVuXcOoG-DPpFoiheFNGa2t_pQ&s"
+                  src="https://cdn-icons-png.flaticon.com/512/8847/8847419.png"
                 />
               )}
               <div>
