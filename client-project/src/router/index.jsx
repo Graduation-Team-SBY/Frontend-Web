@@ -114,7 +114,7 @@ const router = createBrowserRouter([
           },
           {
             path: ':id/chat',
-            element: <RoomChatWorkerPage />,
+            element: <RoamChatClientPage />,
           },
           {
             path: ':id/confirmation',

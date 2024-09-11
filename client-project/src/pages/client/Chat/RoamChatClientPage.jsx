@@ -1,16 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
-import { io } from 'socket.io-client';
-import { useLocation, useParams } from 'react-router-dom';
-import ChatEnd from '../../../components/ChatEnd';
-import ChatStart from '../../../components/ChatStart';
-import ProfileChat from '../../../components/workerComponent/ProfileChat';
+import { useEffect, useRef, useState } from "react";
+import { io } from "socket.io-client";
+import { useLocation, useParams } from "react-router-dom";
+import ChatEnd from "../../../components/ChatEnd";
+import ChatStart from "../../../components/ChatStart";
+import ProfileChat from "../../../components/workerComponent/ProfileChat";
+import StarRating from "../../../components/workerComponent/StarRating";
 
 export default function RoamChatClientPage() {
   const [chats, setChats] = useState([]);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [socket, setSocket] = useState(null);
   const [senderId, setSenderId] = useState(null);
-  const [chatId, setChatId] = useState('');
+  const [chatId, setChatId] = useState("");
   const chatContainerRef = useRef(null);
 
   const { id } = useParams();
@@ -18,30 +19,30 @@ export default function RoamChatClientPage() {
   const order = location.state?.order || {};
 
   useEffect(() => {
-    const storedRole = localStorage.getItem('role');
-    const newSocket = io('http://localhost:3000');
+    const storedRole = localStorage.getItem("role");
+    const newSocket = io("http://localhost:3000");
 
     // Masuk ke room
     setSocket(newSocket);
-    newSocket.emit('join_room', id);
+    newSocket.emit("join_room", id);
 
     // Gabungin data chat
-    newSocket.on('receive_message', (data) => {
+    newSocket.on("receive_message", (data) => {
       setChats((curr) => [...curr, data]);
     });
 
     // Set sender id
-    newSocket.on('joined_room', (data) => {
-      console.log(data, '<<<<< ini join room');
+    newSocket.on("joined_room", (data) => {
+      console.log(data, "<<<<< ini join room");
       console.log(data.chats);
       setChats(data.chats.contents);
 
-      if (storedRole === 'jalu') {
+      if (storedRole === "jalu") {
         setSenderId(data.currJob.clientId);
-        console.log(data.currJob.clientId, '<<< ini client id');
-      } else if (storedRole === 'yasa') {
+        console.log(data.currJob.clientId, "<<< ini client id");
+      } else if (storedRole === "yasa") {
         setSenderId(data.currJob.workerId);
-        console.log(data.currJob.workerId, '<<< ini worker id');
+        console.log(data.currJob.workerId, "<<< ini worker id");
       }
 
       setChatId(data.currJob.chatId);
@@ -61,52 +62,60 @@ export default function RoamChatClientPage() {
   }, [chats]);
 
   const sendMessage = () => {
-    if (message.trim() !== '' && socket) {
+    if (message.trim() !== "" && socket) {
       const messageObj = {
         room: id,
         message: message,
         createdAt: new Date(),
         senderId: senderId,
       };
-      socket.emit('send_message', messageObj, chatId, senderId);
-      console.log(messageObj, 'Ini massage');
+      socket.emit("send_message", messageObj, chatId, senderId);
+      console.log(messageObj, "Ini massage");
       // setChats((curr) => [...curr, messageObj]);
-      setMessage('');
+      setMessage("");
     }
   };
 
   return (
     <>
       <div className="flex bg-[#FAF9FE] gap-4 h-[75vh] overflow-hidden p-6 rounded-xl">
-        <ProfileChat />
+        {/* {JSON.stringify(chats)}; */}
+        <div className="w-72 bg-[#FFFFFF]  p-4 rounded-2xl">
+          <div className="mb-6">
+            <div className="flex items-center justify-center flex-col">
+              <div className="stat-figure text-secondary">
+                <div className="avatar online">
+                  <div className="w-16 rounded-full">
+                    <img src={order.workers[0].profilePicture} />
+                  </div>
+                </div>
+              </div>
 
+              <div className="text-center">
+                <p className="font-semibold text-[#1D204C] text-lg">
+                  {order.workers[0].name}
+                </p>
+                <p className="text-xs text-[#05ECAE] mt-1">Online</p>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="flex-1 p-6 flex flex-col bg-[#FAF9FE] rounded-2xl shadow-lg">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl font-semibold text-[#1D204C]">Aditya</h1>
-            <button className="text-[#1D204C] hover:text-[#2a2b38] transition">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5.75 7h12.5m-12.5 5h12.5m-12.5 5h12.5"
-                />
-              </svg>
-            </button>
+            <h1 className="text-2xl font-semibold text-[#1D204C]">
+              {order.workers[0].name}
+            </h1>
           </div>
 
           <hr className="border-t border-[#FAF9FE] mb-4" />
 
-          <div ref={chatContainerRef} className="flex-1 overflow-y-auto space-y-2 pr-2 custom-scrollbar">
+          <div
+            ref={chatContainerRef}
+            className="flex-1 overflow-y-auto space-y-2 pr-2 custom-scrollbar"
+          >
             {chats.map((chat, index) =>
               chat.senderId === senderId ? (
-                (console.log(senderId, 'ini sender di chat'),
+                (console.log(chat, "ini chat"),
                 (<ChatEnd key={index} message={chat.message} />))
               ) : (
                 <ChatStart key={index} message={chat.message} />
@@ -121,7 +130,7 @@ export default function RoamChatClientPage() {
               placeholder="Write your message..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             />
             <button
               className="ml-2 bg-[#1D204C] text-[#FAF9FE] px-3 py-2 rounded-lg shadow-md hover:bg-[#2a2b38] transition"

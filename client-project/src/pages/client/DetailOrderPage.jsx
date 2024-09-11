@@ -1,17 +1,17 @@
-import axios from '../../config/axiosInstance';
-import { toast } from 'react-toastify';
-import { useEffect, useState } from 'react';
-import { formatCurrencyRupiah } from '../../helpers/currency';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import axios from "../../config/axiosInstance";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { formatCurrencyRupiah } from "../../helpers/currency";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
-import { Pagination, Navigation } from 'swiper/modules';
-import DetailMaps from '../../components/DetailMaps';
+import { Pagination, Navigation } from "swiper/modules";
+import DetailMaps from "../../components/DetailMaps";
 
 export default function DetailOrderPage() {
   const navigate = useNavigate();
@@ -23,13 +23,13 @@ export default function DetailOrderPage() {
     try {
       setIsloading(true);
       const { data } = await axios({
-        method: 'GET',
-        url: `clients/jobs/${id}/workers`,
+        method: "GET",
+        url: `/clients/jobs/${id}/workers`,
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
-      console.log(data, '<< detail order client >>>>>');
+      console.log(data, "<< detail order client >>>>>");
       setOrder(data);
     } catch (error) {
       console.log(error);
@@ -41,18 +41,18 @@ export default function DetailOrderPage() {
   const handleAcceptWorker = async (jobId, workerId) => {
     try {
       const { data } = await axios({
-        method: 'PATCH',
+        method: "PATCH",
         url: `/clients/jobs/${jobId}/${workerId}`,
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
 
-      // console.log(data);
-      toast.info('Berhasil Menerima Worker');
-      toast.info('Kamu tinggal tunggu pekerjaan nya beres');
+      console.log(data, "ini clinet");
+      toast.info("Berhasil Menerima Worker");
+      toast.info("Kamu tinggal tunggu pekerjaan nya beres");
 
-      navigate('/jalu/order/my');
+      navigate("/jalu/order/my");
     } catch (error) {
       // console.log(error);
       toast.error(error.response.data.message);
@@ -62,19 +62,23 @@ export default function DetailOrderPage() {
   const handleDelete = async (jobId) => {
     try {
       const { data } = await axios({
-        method: 'DELETE',
+        method: "DELETE",
         url: `/clients/jobs/${jobId}`,
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
 
-      console.log(data);
-      toast.info('Berhasil membatalkan order nya');
-      navigate('/jalu/order/my');
+      console.log(data, "inmi client");
+      toast.info("Berhasil membatalkan order nya");
+      navigate("/jalu/order/my");
     } catch (error) {
       toast.error(error.response.data.message);
     }
+  };
+
+  const handleToChat = (id) => {
+    navigate(`/jalu/order/${id}/chat`, { state: { order } });
   };
 
   useEffect(() => {
@@ -85,7 +89,7 @@ export default function DetailOrderPage() {
     <h1>Loading</h1>
   ) : (
     <div>
-      <h2 className="font-black text-4xl">Detail Pesanan</h2>
+      <h2 className="font-black text-4xl">Detail Pesanan1</h2>
       <div className="mt-20 flex flex-col md:flex-row gap-10">
         <div className="w-full md:w-1/2">
           {order.images ? (
@@ -133,9 +137,9 @@ export default function DetailOrderPage() {
             <h1>Loading</h1>
           ) : order.workerId ? (
             <div className="flex gap-6">
-              <Link
-                to={`/jalu/order/${order._id}/chat`}
+              <button
                 className="btn bg-[#1D204C] text-white rounded-full mt-10"
+                onClick={() => handleToChat(id)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +155,7 @@ export default function DetailOrderPage() {
                     d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"
                   />
                 </svg>
-              </Link>
+              </button>
               {order.status.isWorkerConfirmed && (
                 <Link
                   to={`/jalu/order/${id}/confirmation`}
