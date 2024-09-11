@@ -34,7 +34,7 @@ export default function CardWorker({ work }) {
             <div className="mt-4 flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <img
-                  className="object-cover h-10 rounded-full"
+                  className="object-cover h-10 w-10 rounded-full"
                   src={work.client.profilePicture}
                   alt="Avatar"
                 />

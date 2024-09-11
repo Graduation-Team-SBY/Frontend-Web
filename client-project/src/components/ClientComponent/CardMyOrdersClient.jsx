@@ -1,16 +1,23 @@
-import { Link } from 'react-router-dom';
-import { formatCurrencyRupiah } from '../../helpers/currency';
-import { formatDateMonth } from '../../helpers/formatDate';
+import { Link } from "react-router-dom";
+import { formatCurrencyRupiah } from "../../helpers/currency";
+import { formatDateMonth } from "../../helpers/formatDate";
 
 export default function CardMyOrdersClient({ data }) {
   return (
     <>
       <Link to={`/jalu/order/${data._id}`}>
-        <div className="w-full h-full px-4 py-3 bg-[#FFFFFF] rounded-lg shadow-sm transition duration-300 ease-in-out hover:shadow-xl flex flex-col justify-between">
+        <div className="w-full h-full px-4 py-3 bg-[#FFFFFF] rounded-xl shadow-sm transition duration-300 ease-in-out hover:shadow-xl flex flex-col justify-between">
           <div className="card-body">
             <div className="flex justify-between items-center">
               <div className="">
-                <h2 className="card-title text-2xl font-black">{data.title}</h2>
+                <div className="flex flex-wrap gap-2">
+                  <div className="badge badge-outline badge-primary">
+                    {data.status? ("ongoing") : ("belum")}
+                  </div>
+                </div>
+                <h2 className="card-title text-2xl font-black line-clamp-1">
+                  {data.title}
+                </h2>
                 <p className="font-semibold text-gray-400">
                   {formatDateMonth(new Date(data.createdAt))}
                 </p>

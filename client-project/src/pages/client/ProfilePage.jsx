@@ -50,7 +50,7 @@ export default function ProfilePage() {
             <div className="flex items-center gap-10">
               {profile.profilePicture ? (
                 <img
-                  className="w-32 h-32 rounded-full"
+                  className="w-32 h-32 rounded-full object-cover"
                   src={profile.profilePicture}
                 />
               ) : (

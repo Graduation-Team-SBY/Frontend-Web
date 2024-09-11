@@ -49,8 +49,7 @@ export default function HomeClientPage() {
         Halo,{" "}
         <span className="text-[#05ECAE]">
           {profile.name ? profile.name : "Jalu"}
-        </span>{" "}
-        !
+        </span>!
       </h1>
       <div className="flex flex-col-reverse lg:flex-row lg:gap-10 justify-between mt-10">
         <div className="my-auto w-full lg:w-1/2">

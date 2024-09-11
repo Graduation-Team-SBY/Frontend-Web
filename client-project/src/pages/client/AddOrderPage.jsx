@@ -93,7 +93,7 @@ export default function AddOrderPage() {
             </div>
             <input
               type="text"
-              placeholder="Type here"
+              placeholder="Ketikan judul pesanan di sini"
               value={title}
               className="input input-bordered w-full rounded-full"
               onChange={(e) => setTitle(e.target.value)}
@@ -106,7 +106,7 @@ export default function AddOrderPage() {
             </div>
             <input
               type="number"
-              placeholder="Type here"
+              placeholder="Ketikan biaya pesanan di sini"
               value={fee}
               className="input input-bordered w-full rounded-full"
               onChange={(e) => setFee(e.target.value)}
@@ -119,7 +119,7 @@ export default function AddOrderPage() {
             </div>
             <textarea
               className="textarea textarea-bordered h-24 rounded-xl"
-              placeholder="Deskripsi"
+              placeholder="Ketikan deskripsi pesanan di sini"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
@@ -131,7 +131,7 @@ export default function AddOrderPage() {
             </div>
             <input
               type="text"
-              placeholder="Type here"
+              placeholder="Ketikan alamat pesanan"
               className="input input-bordered w-full rounded-full"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
@@ -143,7 +143,7 @@ export default function AddOrderPage() {
             </div>
             <textarea
               className="textarea textarea-bordered h-24 rounded-xl"
-              placeholder="Address Notes"
+              placeholder="Ketikan catatan alamat di sini"
               value={addressNotes}
               onChange={(e) => setAddressNotes(e.target.value)}
             ></textarea>

@@ -7,7 +7,7 @@ export default function CardHistory({ histories }) {
       <div className="relative p-4 rounded-lg shadow-lg w-full bg-white">
         <div className="space-y-3">
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold text-gray-900">
+            <h2 className="text-md font-bold text-gray-900">
               {histories.jobDetail.title}
             </h2>
             <div>
@@ -44,7 +44,7 @@ export default function CardHistory({ histories }) {
           </div>
           <div>
             <p className="text-sm text-gray-900">
-              Yasa
+            <span className="font-light"> {histories.worker?.name}</span>
             </p>
           </div>
         </div>
