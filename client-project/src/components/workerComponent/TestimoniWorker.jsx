@@ -1,7 +1,7 @@
 export default function Testimoni({ testi }) {
   return (
     <>
-      <blockquote className=" h-full rounded-lg bg-[#FAF9FE] p-6 shadow-sm sm:p-8">
+      <blockquote className="h-full rounded-lg bg-[#FAF9FE] p-6 shadow-sm sm:p-8">
         <div className="flex items-center gap-4">
           <img
             alt={testi.client.name}
@@ -13,7 +13,7 @@ export default function Testimoni({ testi }) {
             <p className="mt-0.5 text-lg font-medium text-[#1D204C]">
               {testi.client.name}
             </p>
-            <div className="badge badge-warning badge-outline p-3 gap-1  flex items-center">
+            <div className="badge badge-warning badge-outline p-3 gap-1 flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -34,6 +34,17 @@ export default function Testimoni({ testi }) {
         <p className="mt-4 text-gray-700 line-clamp-5">
           <strong>Pesan: </strong> {testi.description}
         </p>
+
+        <div className="grid grid-cols-3 gap-2 mt-4">
+          {testi.images.map((image, i) => (
+            <img
+              key={i}
+              src={image}
+              alt={testi.name}
+              className="w-full h-full object-cover rounded-md"
+            />
+          ))}
+        </div>
       </blockquote>
     </>
   );

@@ -1,10 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "../../../config/axiosInstance";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProfile } from "../../../redux/features/workerProfileSlice";
 
 export default function UpdateProfileWorkerPage() {
+  // const { profile } = useSelector((state) => state.workerProfile);
+  // console.log(profile);
+  // const [profile, setProfile] = useState()
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [address, setAddress] = useState("");
@@ -12,6 +18,26 @@ export default function UpdateProfileWorkerPage() {
   const [bio, setBio] = useState("");
 
   const handleFileChange = (e) => setImage(e.target.files[0]);
+
+  const fetchProfile = async () => {
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: "workers/profile",
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+
+      // console.log(data);
+      setName(data.name);
+      setAddress(data.address);
+      setBio(data.bio);
+      setDateOfBirth(new Date(data.dateOfBirth).toISOString().split("T")[0]);
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -37,6 +63,10 @@ export default function UpdateProfileWorkerPage() {
     }
   };
 
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
   return (
     <div className="flex justify-center items-center">
       <div className="bg-white shadow-lg rounded-lg w-full max-w-3xl mx-auto p-8">
@@ -61,23 +91,23 @@ export default function UpdateProfileWorkerPage() {
                   src={
                     image
                       ? URL.createObjectURL(image)
-                      : "https://avatars.dicebear.com/api/bottts/username.svg"
+                      : "https://cdn-icons-png.flaticon.com/512/8847/8847419.png"
                   }
                   alt="Profile"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-300">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="w-10 h-10 text-white"
                     fill="none"
                     viewBox="0 0 24 24"
+                    strokeWidth={1.5}
                     stroke="currentColor"
-                    strokeWidth="1.5"
+                    className="size-6 text-white"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M12 4.5V2m0 0h9m-9 0L6 9m0 0v13.5"
+                      d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
                     />
                   </svg>
                 </div>
@@ -91,7 +121,7 @@ export default function UpdateProfileWorkerPage() {
               <input
                 type="text"
                 placeholder="Ketikan Nama kamu di sini"
-                value={name}
+                defaultValue={name}
                 className="w-full border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:border-blue-400"
                 onChange={(e) => setName(e.target.value)}
               />
@@ -103,7 +133,7 @@ export default function UpdateProfileWorkerPage() {
               </label>
               <input
                 type="date"
-                value={dateOfBirth}
+                defaultValue={dateOfBirth}
                 className="w-full border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:border-blue-400"
                 onChange={(e) => setDateOfBirth(e.target.value)}
               />
@@ -114,7 +144,7 @@ export default function UpdateProfileWorkerPage() {
               <input
                 type="text"
                 placeholder="Ketikan Alamat kamu di sini"
-                value={address}
+                defaultValue={address}
                 className="w-full border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:border-blue-400"
                 onChange={(e) => setAddress(e.target.value)}
               />
@@ -129,7 +159,7 @@ export default function UpdateProfileWorkerPage() {
               <textarea
                 className="textarea textarea-bordered h-24 focus:outline-none focus:border-blue-400"
                 placeholder="Bio"
-                value={bio}
+                defaultValue={bio}
                 onChange={(e) => setBio(e.target.value)}
               ></textarea>
             </label>

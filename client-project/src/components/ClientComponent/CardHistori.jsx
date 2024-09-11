@@ -1,31 +1,53 @@
-import { formatCurrencyRupiah } from '../../helpers/currency';
-import { formatDateMonth } from '../../helpers/formatDate';
+import { formatCurrencyRupiah } from "../../helpers/currency";
+import { formatDateMonth } from "../../helpers/formatDate";
 
 export default function CardHistory({ histories }) {
   return (
     <>
-      <div className="p-4 rounded-lg shadow-lg w-full bg-white">
-        <h2 className="font-bold text-lg">{histories.jobDetail.title}</h2>
-        <div className="flex justify-between">
-          <p className="text-sm">
-            {formatDateMonth(new Date(histories.createdAt))}
+      <div className="relative p-4 rounded-lg shadow-lg w-full bg-white">
+        <div className="space-y-3">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-bold text-gray-900">
+              {histories.jobDetail.title}
+            </h2>
+            <div>
+              {histories.jobDetail.categoryName === "Nitip" ? (
+                <span className="bg-[#1D204C] text-white px-4 py-1 rounded-full">
+                  Nitip
+                </span>
+              ) : (
+                <span className="bg-[#05ECAE] text-[#1D204C] px-2.5 py-0.5 rounded-full">
+                  Bebersih
+                </span>
+              )}
+            </div>
+          </div>
+          <p className="text-sm text-gray-600">
+            <span className="font-bold">Deskripsi: </span>
+            {histories.jobDetail.description}
           </p>
-          {histories.jobDetail.categoryName === 'Nitip' ? (
-            <span className="bg-[#1D204C] badge text-white p-4">Nitip</span>
-          ) : (
-            <span className="bg-[#05ECAE] badge text-[#1D204C] p-4">
-              Bebersih
-            </span>
-          )}
+          <p className="text-sm text-gray-600">
+            <span className="font-bold">Waktu Pemesanan: </span>
+            {formatDateMonth(new Date(histories.jobDetail.createdAt))}
+          </p>
+          <p className="text-sm text-gray-600">
+            <span className="font-bold">Biaya: </span>
+            {formatCurrencyRupiah(histories.jobDetail.fee)}
+          </p>
         </div>
 
-        <p className='mt-2 font-bold'>Deskripsi:</p>
-        <p className="">{histories.jobDetail.description}</p>
-
-        <p className='mt-2 font-bold'>Biaya:</p>
-        <p className="">
-          {formatCurrencyRupiah(histories.jobDetail.fee)}
-        </p>
+        <div className="mt-2 flex items-start">
+          <div>
+            <p className="text-sm text-gray-600 font-medium">
+              <span className="font-bold">Yasa: </span>
+            </p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-900">
+              Yasa
+            </p>
+          </div>
+        </div>
       </div>
     </>
   );
