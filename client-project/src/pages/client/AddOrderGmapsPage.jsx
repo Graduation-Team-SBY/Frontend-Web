@@ -192,10 +192,12 @@ export default function AddOrderGmapsPage() {
                       <span className="font-semibold">Alamat:</span>
                       <span>{address}</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="font-semibold">Catatan Alamat:</span>
-                      <span>{addressNotes}</span>
-                    </div>
+                    {addressNotes && (
+                      <div className="flex justify-between">
+                        <span className="font-semibold">Catatan Alamat:</span>
+                        <span>{addressNotes}</span>
+                      </div>
+                    )}
                     <div className="flex justify-between">
                       <span className="font-semibold">Biaya Admin:</span>
                       <span>{formatCurrencyRupiah(2000)}</span>

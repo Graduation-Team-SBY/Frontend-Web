@@ -9,13 +9,13 @@ export default function CardWorker({ work }) {
         <div className="w-full px-6 py-5 bg-[#FFFFFF] rounded-xl shadow-md h-full flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-sm font-light text-[#1D204C]">
-              <h2 className="text-2xl font-semibold">{work.category.name}</h2>
+              <h2 className="text-2xl font-semibold">{work.title}</h2>
               <h6 className="text-sm text-gray-500">
                 {formatDateMonth(new Date(work.createdAt))}
               </h6>
             </span>
             <span className="px-3 py-1 text-xs text-[#1D204C] bg-[#05ECAE] rounded-full">
-              <span className="p-1 rounded text-xs">{work.category.name}</span>
+              <span className="p-1 rounded text-xs">{work.category?.name}</span>
             </span>
           </div>
           <div className="mt-4 text-sm text-[#1D204C]">
@@ -38,7 +38,7 @@ export default function CardWorker({ work }) {
                   src={work.client.profilePicture}
                   alt="Avatar"
                 />
-                <h3 className="text-lg font-semibold">{work.client.name}</h3>
+                <h3 className="text-lg font-semibold">{work.client?.name}</h3>
               </div>
               <span className="text-[#1D204C]">
                 {formatCurrencyRupiah(work.fee)}
