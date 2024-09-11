@@ -8,6 +8,7 @@ import { formatDate } from '../../../helpers/formatDate';
 import { age } from '../../../helpers/age';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProfile } from '../../../redux/features/workerProfileSlice';
+import { toast } from 'react-toastify';
 
 // 1D204C blue
 // 05ECAE mint
@@ -29,26 +30,25 @@ export default function ProfileWorkerPage() {
   //       },
   //     });
 
-
-
-
   const [testi, setTesti] = useState([]);
   const fetchTestimoni = async () => {
     try {
       const { data } = await axios({
-        method: "GET",
-        url: "/workers/profile/reviews",
+        method: 'GET',
+        url: '/workers/profile/reviews',
         headers: {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
       });
 
-      console.log(data, "<<<<< testi");
+      console.log(data, '<<<<< testi');
       setTesti(data);
     } catch (error) {
       console.log(error);
     }
   };
+
+  
 
   useEffect(() => {
     fetchTestimoni();
@@ -115,6 +115,11 @@ export default function ProfileWorkerPage() {
 
             <div className="flex flex-wrap gap-x-20 gap-y-10 mt-20">
               <div className="">
+                <p className="text-gray-400">Email</p>
+                <p className="font-bold text-xl">{profile.userData?.email}</p>
+              </div>
+
+              <div className="">
                 <p className="text-gray-400">Umur</p>
                 {profile.dateOfBirth ? (
                   <p className="font-bold text-xl">
@@ -135,21 +140,14 @@ export default function ProfileWorkerPage() {
               </div>
 
               <div className="">
-                <p className="text-gray-400">Email</p>
-                <p className="font-bold text-xl">{profile.userData?.email}</p>
-
-              </div>
-
-              <div className="">
                 <p className="text-gray-400">Bergabung pada</p>
                 <p className="font-bold text-xl">
                   {formatDate(profile.userData?.createdAt)}
                 </p>
-
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-x-20 gap-y-10 mt-10 mb-20">
+            <div className="flex flex-wrap gap-x-20 gap-y-10 mt-10 mb-10">
               <div className="">
                 <p className="text-gray-400">Tanggal Lahir</p>
                 {/* <p className="font-bold text-xl">28 June 2001</p> */}
@@ -174,6 +172,14 @@ export default function ProfileWorkerPage() {
                   </p>
                 )}
               </div>
+            </div>
+            <div className="">
+              <p className="text-gray-400">Bio</p>
+              {profile.bio ? (
+                <p className="font-bold text-xl">{profile.bio}</p>
+              ) : (
+                <p className="font-bold text-xl text-gray-400">(Belum Diisi)</p>
+              )}
             </div>
           </div>
           <div className="flex flex-col w-full lg:w-[40%] gap-10">
@@ -209,7 +215,8 @@ export default function ProfileWorkerPage() {
         <section className="bg-white">
           <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
             <h2 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-              Read trusted reviews from our <span className="text-[#05ECAE]">customers</span>
+              Read trusted reviews from our{' '}
+              <span className="text-[#05ECAE]">customers</span>
             </h2>
 
             <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">

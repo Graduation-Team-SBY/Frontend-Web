@@ -1,4 +1,33 @@
+import axios from '../../config/axiosInstance';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { formatCurrencyRupiah } from '../../helpers/currency';
+
 export default function CardSaldo({ data }) {
+  const [wallet, setWallet] = useState(0);
+
+  const fetchWallet = async () => {
+    try {
+      const { data } = await axios({
+        method: 'GET',
+        url: '/profile/wallet',
+        headers: {
+          Authorization: `Bearer ${localStorage.access_token}`,
+        },
+      });
+
+      setWallet(data.amount);
+      console.log(wallet);
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchWallet();
+  }, []);
+
   return (
     <div className="card-wallet bg-white text-white p-10 w-full  rounded-2xl flex flex-col justify-between gap-8 bg-gradient-to-tl from-[#05ECAE] to-[#1D204C]">
       <div className=" flex justify-between">
@@ -19,7 +48,7 @@ export default function CardSaldo({ data }) {
       </div>
       <div className="">
         <p>{data?.name}</p>
-        <h1 className="font-black text-3xl">Rp. 300.000</h1>
+        <h1 className="font-black text-3xl">{formatCurrencyRupiah(wallet)}</h1>
       </div>
     </div>
   );
