@@ -1,17 +1,20 @@
-import { useEffect, useRef, useState } from "react";
-import { io } from "socket.io-client";
-import { useLocation, useParams } from "react-router-dom";
-import ChatEnd from "../../../components/ChatEnd";
-import ChatStart from "../../../components/ChatStart";
-import ProfileChat from "../../../components/workerComponent/ProfileChat";
-import StarRating from "../../../components/workerComponent/StarRating";
+import { useEffect, useRef, useState } from 'react';
+import { io } from 'socket.io-client';
+import { useLocation, useParams } from 'react-router-dom';
+import ChatEnd from '../../../components/ChatEnd';
+import ChatStart from '../../../components/ChatStart';
+import ProfileChat from '../../../components/workerComponent/ProfileChat';
+import StarRating from '../../../components/workerComponent/StarRating';
 
 export default function RoomChatJaluPage() {
   const [chats, setChats] = useState([]);
-  const [message, setMessage] = useState("");
+  const [clientProfile, setClientProfile] = useState({});
+  const [workerProfile, setWorkerProfile] = useState({});
+
+  const [message, setMessage] = useState('');
   const [socket, setSocket] = useState(null);
   const [senderId, setSenderId] = useState(null);
-  const [chatId, setChatId] = useState("");
+  const [chatId, setChatId] = useState('');
   const chatContainerRef = useRef(null);
 
   const { id } = useParams();
@@ -19,30 +22,32 @@ export default function RoomChatJaluPage() {
   const order = location.state?.order || {};
 
   useEffect(() => {
-    const storedRole = localStorage.getItem("role");
-    const newSocket = io("http://localhost:3000");
+    const storedRole = localStorage.getItem('role');
+    const newSocket = io('http://localhost:3000');
 
     // Masuk ke room
     setSocket(newSocket);
-    newSocket.emit("join_room", id);
+    newSocket.emit('join_room', id);
 
     // Gabungin data chat
-    newSocket.on("receive_message", (data) => {
+    newSocket.on('receive_message', (data) => {
       setChats((curr) => [...curr, data]);
     });
 
     // Set sender id
-    newSocket.on("joined_room", (data) => {
-      console.log(data, "<<<<< ini join room");
+    newSocket.on('joined_room', (data) => {
+      console.log(data, '<<<<< ini join room');
       console.log(data.chats);
       setChats(data.chats.contents);
+      setWorkerProfile(data.workerProfile);
+      setClientProfile(data.clientProfile);
 
-      if (storedRole === "jalu") {
+      if (storedRole === 'jalu') {
         setSenderId(data.currJob.clientId);
-        console.log(data.currJob.clientId, "<<< ini client id");
-      } else if (storedRole === "yasa") {
+        console.log(data.currJob.clientId, '<<< ini client id');
+      } else if (storedRole === 'yasa') {
         setSenderId(data.currJob.workerId);
-        console.log(data.currJob.workerId, "<<< ini worker id");
+        console.log(data.currJob.workerId, '<<< ini worker id');
       }
 
       setChatId(data.currJob.chatId);
@@ -62,17 +67,17 @@ export default function RoomChatJaluPage() {
   }, [chats]);
 
   const sendMessage = () => {
-    if (message.trim() !== "" && socket) {
+    if (message.trim() !== '' && socket) {
       const messageObj = {
         room: id,
         message: message,
         createdAt: new Date(),
         senderId: senderId,
       };
-      socket.emit("send_message", messageObj, chatId, senderId);
-      console.log(messageObj, "Ini massage");
+      socket.emit('send_message', messageObj, chatId, senderId);
+      console.log(messageObj, 'Ini massage');
       // setChats((curr) => [...curr, messageObj]);
-      setMessage("");
+      setMessage('');
     }
   };
 
@@ -115,10 +120,22 @@ export default function RoomChatJaluPage() {
           >
             {chats.map((chat, index) =>
               chat.senderId === senderId ? (
-                (console.log(chat, "ini chat"),
-                (<ChatEnd key={index} message={chat.message} />))
+                (console.log(chat, 'ini chat'),
+                (
+                  <ChatEnd
+                    key={index}
+                    message={chat.message}
+                    profile={clientProfile.profilePicture}
+                    date={chat.createdAt}
+                  />
+                ))
               ) : (
-                <ChatStart key={index} message={chat.message} />
+                <ChatStart
+                  key={index}
+                  message={chat.message}
+                  profile={workerProfile.profilePicture}
+                  date={chat.createdAt}
+                />
               )
             )}
           </div>
@@ -130,7 +147,7 @@ export default function RoomChatJaluPage() {
               placeholder="Write your message..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+              onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
             />
             <button
               className="ml-2 bg-[#1D204C] text-[#FAF9FE] px-3 py-2 rounded-lg shadow-md hover:bg-[#2a2b38] transition"
