@@ -47,7 +47,7 @@ export default function HomepageWorker() {
       <div className="flex flex-col">
         <div className="bg-blue-100 rounded-lg p-6 h-[25iiiiiiiiiiiiiivh] flex items-center justify-between">
           <div>
-            <h1 className="text-lg font-bold text-gray-800">Logo Here</h1>
+            {/* <h1 className="text-lg font-bold text-gray-800">Logo Here</h1> */}
             <h2 className="text-2xl font-semibold text-gray-900 mt-1">
               YangTu
             </h2>
