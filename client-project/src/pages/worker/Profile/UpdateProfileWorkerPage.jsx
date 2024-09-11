@@ -1,15 +1,15 @@
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import axios from '../../../config/axiosInstance';
-import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "../../../config/axiosInstance";
+import { toast } from "react-toastify";
 
 export default function UpdateProfileWorkerPage() {
   const navigate = useNavigate();
-  const [name, setName] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState('');
-  const [address, setAddress] = useState('');
+  const [name, setName] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [address, setAddress] = useState("");
   const [image, setImage] = useState(null);
-  const [bio, setBio] = useState('');
+  const [bio, setBio] = useState("");
 
   const handleFileChange = (e) => setImage(e.target.files[0]);
 
@@ -17,21 +17,21 @@ export default function UpdateProfileWorkerPage() {
     e.preventDefault();
     const formData = new FormData();
 
-    if (name) formData.append('name', name);
-    if (dateOfBirth) formData.append('dateOfBirth', dateOfBirth);
-    if (address) formData.append('address', address);
-    if (image) formData.append('image', image);
-    if (bio) formData.append('bio', bio);
+    if (name) formData.append("name", name);
+    if (dateOfBirth) formData.append("dateOfBirth", dateOfBirth);
+    if (address) formData.append("address", address);
+    if (image) formData.append("image", image);
+    if (bio) formData.append("bio", bio);
 
     try {
       const { data } = await axios({
-        method: 'PATCH',
-        url: '/workers/profile',
+        method: "PATCH",
+        url: "/workers/profile",
         headers: { Authorization: `Bearer ${localStorage.access_token}` },
         data: formData,
       });
-      toast.info('Profile updated successfully');
-      navigate('/yasa/profile');
+      toast.info("Berhasil mengubah profile");
+      navigate("/yasa/profile");
     } catch (error) {
       if (error.response) toast.error(error.response.data.message);
     }
@@ -41,7 +41,7 @@ export default function UpdateProfileWorkerPage() {
     <div className="flex justify-center items-center">
       <div className="bg-white shadow-lg rounded-lg w-full max-w-3xl mx-auto p-8">
         <h3 className="text-2xl font-black text-gray-800 mb-6 text-center">
-          Update Profile
+          Ubah Profile
         </h3>
         <form className="space-y-6" onSubmit={handleUpdate}>
           <div className="flex justify-center mb-6">
@@ -61,7 +61,7 @@ export default function UpdateProfileWorkerPage() {
                   src={
                     image
                       ? URL.createObjectURL(image)
-                      : 'https://via.placeholder.com/150'
+                      : "https://avatars.dicebear.com/api/bottts/username.svg"
                   }
                   alt="Profile"
                 />
@@ -87,10 +87,10 @@ export default function UpdateProfileWorkerPage() {
 
           <div className="grid grid-cols-1 gap-4">
             <div className="form-group">
-              <label className="text-sm font-bold text-gray-600">Name</label>
+              <label className="text-sm font-bold text-gray-600">Nama</label>
               <input
                 type="text"
-                placeholder="Type your name"
+                placeholder="Ketikan Nama kamu di sini"
                 value={name}
                 className="w-full border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:border-blue-400"
                 onChange={(e) => setName(e.target.value)}
@@ -99,7 +99,7 @@ export default function UpdateProfileWorkerPage() {
 
             <div className="form-group">
               <label className="text-sm font-bold text-gray-600">
-                Date of Birth
+                Tanggal Lahir
               </label>
               <input
                 type="date"
@@ -110,10 +110,10 @@ export default function UpdateProfileWorkerPage() {
             </div>
 
             <div className="form-group">
-              <label className="text-sm font-bold text-gray-600">Address</label>
+              <label className="text-sm font-bold text-gray-600">Alamat</label>
               <input
                 type="text"
-                placeholder="Type your address"
+                placeholder="Ketikan Alamat kamu di sini"
                 value={address}
                 className="w-full border border-gray-300 rounded-full py-2 px-4 focus:outline-none focus:border-blue-400"
                 onChange={(e) => setAddress(e.target.value)}
@@ -139,7 +139,7 @@ export default function UpdateProfileWorkerPage() {
             type="submit"
             className="w-full bg-[#1D204C] text-white hover:bg-[#05ECAE] py-2 rounded-full hover:text-[#1D204C] transition duration-300"
           >
-            Update Profile
+            Simpan
           </button>
         </form>
       </div>

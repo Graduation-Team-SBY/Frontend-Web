@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 export default function VerificationOrderWorkerPage() {
   const location = useLocation();
   const [order, setOrder] = useState(location.state?.order || {});
-  const [file, setFile] = useState(null);
+  const [images, setImages] = useState([]);
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
@@ -33,16 +33,16 @@ export default function VerificationOrderWorkerPage() {
     }
   }, [order]);
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+ 
 
   const handleVerificationSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("image", file);
     formData.append("description", description);
+    for (let i = 0; i < images.length; i++) {
+      formData.append('image', images[i]);
+    }
 
     try {
       const { data } = await axios({
@@ -59,18 +59,13 @@ export default function VerificationOrderWorkerPage() {
       toast.success("Successfully");
       navigate("/yasa/order/jobs");
     } catch (error) {
-      console.error("Error submitting verification:", error);
+      console.error("Verifikasi gagal:", error);
     }
   };
 
   return (
-    <div className="flex justify-center items-center bg-[#FAF9FE] py-8">
-      {/* <ul className="steps steps-vertical lg:steps-horizontal mb-8">
-        <li className="step step-primary">Verifikasi Pesanan</li>
-        <li className="step">Pembayaran</li>
-        <li className="step">Selesai</li>
-      </ul> */}
-
+    <>
+      <div className="flex justify-center items-center bg-[#FAF9FE] py-8">
       <div className="bg-white rounded-xl shadow-lg p-8 max-w-lg w-full">
         <div className="flex justify-center items-center mb-6">
           <div className="bg-[#E5E7EB] text-[#1D204C] rounded-full p-4">
@@ -107,8 +102,9 @@ export default function VerificationOrderWorkerPage() {
             </label>
             <input
               type="file"
+              multiple
               className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#1D204C] file:text-white hover:file:bg-[#0b1434]"
-              onChange={handleFileChange}
+              onChange={(e) => setImages(e.target.files)}
               required
             />
           </div>
@@ -127,19 +123,6 @@ export default function VerificationOrderWorkerPage() {
         </div>
           </div>
 
-          {/* <div className="mt-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Deskripsi (Opsional)
-              </label>
-              <textarea
-                className="w-full p-3 border rounded-lg focus:outline-none focus:border-[#1D204C]"
-                rows="4"
-                placeholder="Masukan pesan untuk client"
-                value={description}
-                onChange={handleDescriptionChange}
-              ></textarea>
-            </div> */}
-
           <div className="mt-8 flex justify-center">
             <button
               type="submit"
@@ -151,5 +134,6 @@ export default function VerificationOrderWorkerPage() {
         </form>
       </div>
     </div>
-  );
+    </>
+  )
 }
