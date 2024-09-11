@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
 import axios from '../../config/axiosInstance';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { formatCurrencyRupiah } from '../../helpers/currency';
 import { toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
+import { formatCurrencyRupiah } from '../../helpers/currency';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -15,11 +15,13 @@ import DetailMaps from '../../components/DetailMaps';
 
 export default function DetailOrderPage() {
   const navigate = useNavigate();
-  const [order, setOrder] = useState({});
   const { id } = useParams();
+  const [order, setOrder] = useState({});
+  const [isLoading, setIsloading] = useState(false);
 
   const showDetailOrderClient = async (id) => {
     try {
+      setIsloading(true);
       const { data } = await axios({
         method: 'GET',
         url: `clients/jobs/${id}/workers`,
@@ -31,6 +33,8 @@ export default function DetailOrderPage() {
       setOrder(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsloading(false);
     }
   };
 
@@ -73,31 +77,13 @@ export default function DetailOrderPage() {
     }
   };
 
-  const handleConfirm = async (jobId) => {
-    try {
-      const { data } = await axios({
-        method: 'PATCH',
-        url: `/clients/jobs/${jobId}/client`,
-        headers: {
-          Authorization: `Bearer ${localStorage.access_token}`,
-        },
-      });
-
-      console.log(data);
-
-      toast.info('Anda telah menyelesaikan order anda');
-
-      navigate(`/jalu/order/${id}/verification`);
-    } catch (error) {
-      console.log(error);
-      toast.error(error.response.data.message);
-    }
-  };
-
   useEffect(() => {
     showDetailOrderClient(id);
   }, []);
-  return (
+
+  return isLoading ? (
+    <h1>Loading</h1>
+  ) : (
     <div>
       <h2 className="font-black text-4xl">Detail Pesanan</h2>
       <div className="mt-20 flex flex-col md:flex-row gap-10">
@@ -143,7 +129,9 @@ export default function DetailOrderPage() {
             <p className="text-gray-400">(Tidak ada)</p>
           )}
 
-          {order.workerId ? (
+          {isLoading ? (
+            <h1>Loading</h1>
+          ) : order.workerId ? (
             <div className="flex gap-6">
               <Link
                 to={`/jalu/order/${order._id}/chat`}
@@ -164,12 +152,14 @@ export default function DetailOrderPage() {
                   />
                 </svg>
               </Link>
-              <button
-                onClick={() => handleConfirm(id)}
-                className="btn bg-[#1D204C] text-white rounded-full mt-10"
-              >
-                Konfirmasi selesai
-              </button>
+              {order.status.isWorkerConfirmed && (
+                <Link
+                  to={`/jalu/order/${id}/confirmation`}
+                  className="btn bg-[#1D204C] text-white rounded-full mt-10"
+                >
+                  Konfirmasi selesai
+                </Link>
+              )}
             </div>
           ) : (
             <button
@@ -180,7 +170,7 @@ export default function DetailOrderPage() {
             </button>
           )}
 
-          <button
+          {/* <button
             className="btn"
             onClick={() => document.getElementById('bukti-selesai').showModal()}
           >
@@ -189,7 +179,6 @@ export default function DetailOrderPage() {
           <dialog id="bukti-selesai" className="modal">
             <div className="modal-box">
               <form method="dialog">
-                {/* if there is a button in form, it will close the modal */}
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                   ✕
                 </button>
@@ -199,7 +188,7 @@ export default function DetailOrderPage() {
                 return <img key={index} src={image} alt="" />;
               })}
             </div>
-          </dialog>
+          </dialog> */}
         </div>
       </div>
 

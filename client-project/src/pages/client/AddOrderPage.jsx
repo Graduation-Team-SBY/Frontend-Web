@@ -7,6 +7,7 @@ import Maps from '../../components/Maps';
 
 export default function AddOrderPage() {
   const navigate = useNavigate();
+  const [title, setTitle] = useState('');
   const [fee, setFee] = useState('');
   const [description, setDescription] = useState('');
   const [address, setAddress] = useState('');
@@ -24,6 +25,7 @@ export default function AddOrderPage() {
     e.preventDefault();
 
     const formData = new FormData();
+    formData.append('title', title);
     formData.append('fee', fee);
     formData.append('description', description);
     formData.append('address', address);
@@ -84,6 +86,19 @@ export default function AddOrderPage() {
           <h1 className="hidden md:block font-black text-4xl">
             Let's start with your first job post.
           </h1>
+
+          <label className="form-control w-full">
+            <div className="label">
+              <span className="label-text">Judul</span>
+            </div>
+            <input
+              type="number"
+              placeholder="Type here"
+              value={fee}
+              className="input input-bordered w-full rounded-full"
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </label>
 
           <label className="form-control w-full">
             <div className="label">
@@ -179,7 +194,7 @@ export default function AddOrderPage() {
 
                   <h2 className="text-center text-2xl font-semibol d mb-3 text-[#1D204C]">
                     Konfirmasi Order
-                    </h2>
+                  </h2>
                   <p className="text-center text-3xl font-bold mb-6 text-[#1D204C]">
                     {formatCurrencyRupiah(fee)}
                   </p>

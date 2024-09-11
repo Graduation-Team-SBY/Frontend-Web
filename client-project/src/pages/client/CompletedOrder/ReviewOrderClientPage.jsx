@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import axios from '../../../config/axiosInstance';
 import { formatCurrencyRupiah } from '../../../helpers/currency';
 
-export default function VerificationOrderClient() {
+export default function ReviewOrderClient() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [rating, setRating] = useState(0);
@@ -64,7 +64,6 @@ export default function VerificationOrderClient() {
     fetchOrder();
   }, []);
 
-
   return (
     <div className="flex justify-center items-center flex-col bg-[#FAF9FE] min-h-screen py-8">
       <div className="bg-white rounded-xl shadow-lg p-8 max-w-lg w-full">
@@ -81,17 +80,17 @@ export default function VerificationOrderClient() {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M12 9v3.75m0-10.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.25-8.25-3.286Zm0 13.036h.008v.008H12v-.008Z"
+                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
               />
             </svg>
           </div>
         </div>
 
         <h2 className="text-center text-2xl font-bold mb-4 text-[#1D204C]">
-          Verifikasi Pesanan
+          Review Yasa
         </h2>
         <p className="text-center text-base mb-8 text-[#1D204C]">
-          Tolong lakukan verifikasi pesanan untuk melanjutkan proses.
+          berikan testimoni kamu ke yasa
         </p>
 
         <hr className="my-6" />
@@ -128,7 +127,7 @@ export default function VerificationOrderClient() {
 
             <label className="form-control w-full mt-5">
               <div className="label">
-                <span className="label-text">
+                <span className="label-text font-semibold">
                   Tambahkan foto Testimoni kamu
                 </span>
               </div>
@@ -144,7 +143,7 @@ export default function VerificationOrderClient() {
           <div className="mt-8 flex justify-center">
             <button
               // onClick={handleRating}
-              type='submit'
+              type="submit"
               className="bg-[#1D204C] text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-[#0b1434] transition duration-300"
             >
               Kirim Review

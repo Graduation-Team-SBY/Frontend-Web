@@ -1,24 +1,23 @@
 import axios from '../../config/axiosInstance';
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Maps from '../../components/Maps';
 import { formatCurrencyRupiah } from '../../helpers/currency';
 
 export default function AddOrderGmapsPage() {
-  // const [location, setLocation] = useState('Hacktiv');
   const defaultCenter = {
     lat: -6.2, // Lokasi default (Jakarta)
     lng: 106.816666,
   };
 
-  const [coordinates, setCoordinates] = useState(defaultCenter);
-
   const navigate = useNavigate();
+  const [title, setTitle] = useState("")
   const [fee, setFee] = useState('');
   const [description, setDescription] = useState('');
   const [address, setAddress] = useState('');
   const [addressNotes, setAddressNotes] = useState('');
+  const [coordinates, setCoordinates] = useState(defaultCenter);
 
   const handleNewJob = async (e) => {
     e.preventDefault();
@@ -30,6 +29,7 @@ export default function AddOrderGmapsPage() {
           Authorization: `Bearer ${localStorage.access_token}`,
         },
         data: {
+          title,
           fee,
           description,
           address,
@@ -60,7 +60,7 @@ export default function AddOrderGmapsPage() {
   return (
     <>
       <h1 className="font-black md:hidden text-4xl">
-        Let's start with your first job post.
+        Mari kita mulai dengan pesanan pertama Anda.
       </h1>
       <div className="flex flex-col md:flex-row w-full h-full gap-10 mt-5">
         <div className="w-full md:w-[35%]">
@@ -72,8 +72,21 @@ export default function AddOrderGmapsPage() {
         </div>
         <div className="flex-1 flex flex-col gap-4">
           <h1 className="hidden md:block font-black text-4xl">
-          Mari kita mulai dengan pesanan pertama Anda.
+            Mari kita mulai dengan pesanan pertama Anda.
           </h1>
+
+          <label className="form-control w-full">
+            <div className="label">
+              <span className="label-text">Judul</span>
+            </div>
+            <input
+              type="text"
+              placeholder="Type here"
+              value={title}
+              className="input input-bordered w-full rounded-full"
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </label>
 
           <label className="form-control w-full">
             <div className="label">
