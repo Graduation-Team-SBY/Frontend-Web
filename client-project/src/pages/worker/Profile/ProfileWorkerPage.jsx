@@ -133,7 +133,7 @@ export default function ProfileWorkerPage() {
               </div>
 
               <div className="">
-                <p className="text-gray-400">Nomor Telephone</p>
+                <p className="text-gray-400">Nomor Telepon</p>
                 <p className="font-bold text-xl">
                   {profile.userData?.phoneNumber}
                 </p>
@@ -215,8 +215,8 @@ export default function ProfileWorkerPage() {
         <section className="bg-white">
           <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
             <h2 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-              Read trusted reviews from our{' '}
-              <span className="text-[#05ECAE]">customers</span>
+              Baca ulasan tepercaya dari pelanggan{" "}
+              <span className="text-[#05ECAE]">pelanggan </span>kami
             </h2>
 
             <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">

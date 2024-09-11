@@ -43,7 +43,7 @@ export default function DetailJobWorkerPage() {
 
   return (
     <div>
-      <h2 className="font-black text-4xl">Detail Order</h2>
+      <h2 className="font-black text-4xl">Detail Pesanan</h2>
       <div className="mt-20 flex flex-col md:flex-row gap-10">
         <div className="w-full md:w-1/2">
           {order.images ? (
@@ -92,13 +92,13 @@ export default function DetailJobWorkerPage() {
               className="w-1/2 bg-[#05ECAE] text-white py-2 rounded-full transition duration-300"
               onClick={() => handleToChat(id)}
             >
-              Chat
+              Pesan
             </button>
             <button
               className="w-1/2 bg-[#1D204C] text-white py-2 rounded-full hover:bg-[#1D204C]/90 focus:ring-4 focus:outline-none focus:ring-[#1D204C]/50 transition duration-300"
               onClick={() => handleVerificationOrder()}
             >
-              Done
+              Selesai
             </button>
           </div>
         </div>

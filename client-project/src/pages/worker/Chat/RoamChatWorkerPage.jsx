@@ -18,6 +18,7 @@ export default function RoomChatWorkerPage() {
   const { id } = useParams();
   const location = useLocation();
   const order = location.state?.order || {};
+  console.log(order, "ini order")
 
   useEffect(() => {
     const storedRole = localStorage.getItem('role');
@@ -79,17 +80,17 @@ export default function RoomChatWorkerPage() {
   return (
     <>
       <div className="flex bg-[#FAF9FE] gap-4 h-[75vh] overflow-hidden p-6 rounded-xl">
-        <ProfileChat key={order._id} pro/>
+        <ProfileChat key={order._id} />
 
         <div className="flex-1 p-6 flex flex-col bg-[#FAF9FE] rounded-2xl shadow-lg">
           <div className="flex justify-between items-center mb-4">
             <h1 className="text-2xl font-semibold text-[#1D204C]">{order.client?.name}</h1>
             <button className="text-[#1D204C] hover:text-[#2a2b38] transition">
-              <svg
+              <svg 
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                strokeWidth={1.5}
+                strokeWidth={1.5} 
                 stroke="currentColor"
                 className="w-6 h-6"
               >

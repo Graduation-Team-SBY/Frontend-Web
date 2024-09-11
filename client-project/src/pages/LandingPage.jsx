@@ -7,11 +7,11 @@ export default function LandingPage() {
       <div className="navbar bg-[#faf9fe] px-8 md:px-20 lg:px-32 fixed top-0 inset-x-0 z-50">
         <div className="navbar-start">
           
-          <Link to="/" className="lg:ml-0 text-xl font-black hover:text-[#05ECAE]">AssisMaster</Link>
+          <Link to="/" className="lg:ml-0 text-xl font-black hover:text-[#05ECAE]">YangTu</Link>
         </div>
         
         <div className="navbar-end">
-          <Link to="/login" className="bg-[#1D204C] text-white px-5 py-2 rounded-full hover:bg-[#05ECAE] hover:text-[#1D204C]">Login</Link>
+          <Link to="/login" className="bg-[#1D204C] text-white px-5 py-2 rounded-full hover:bg-[#05ECAE] hover:text-[#1D204C]">Masuk</Link>
         </div>
       </div>
       <div className="container mx-auto px-8 md:px-20 lg:px-32 py-24 min-h-screen flex items-center">
@@ -55,7 +55,7 @@ export default function LandingPage() {
                 to="/jalu-register"
                 className="bg-[#1D204C] text-white px-5 py-2 rounded-full hover:bg-[#05ECAE] hover:text-[#1D204C]"
               >
-                Register
+                Daftar
               </Link>
               <Link
                 to="/yasa-register"

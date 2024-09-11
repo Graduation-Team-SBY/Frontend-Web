@@ -63,21 +63,21 @@ export default function Wallet({ name }) {
             /* You may add your own implementation here */
             setAmount(null);
 
-            toast.info('Wating for your payment!');
+            toast.info('Menunggu pembayaran Anda!');
             console.log(result);
           },
           onError: function (result) {
             /* You may add your own implementation here */
             setAmount(null);
 
-            toast.error('Payment Failed!');
+            toast.error('Pembayaran Gagal!');
             console.log(result);
           },
           onClose: function () {
             /* You may add your own implementation here */
             setAmount(null);
 
-            toast.error('You closed the popup without finishing the payment');
+            toast.error('Anda menutup popup tanpa menyelesaikan pembayaran');
           },
         });
       } else {
@@ -96,7 +96,7 @@ export default function Wallet({ name }) {
   return (
     <div className="card-wallet bg-white text-white p-10 w-full lg:w-1/2 rounded-2xl flex flex-col justify-between gap-8 bg-gradient-to-tl from-[#05ECAE] to-[#1D204C]">
       <div className=" flex justify-between">
-        <h2 className="font-black text-lg text-gray-200">My Balance</h2>
+        <h2 className="font-black text-lg text-gray-200">Saldo saya</h2>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -150,7 +150,7 @@ export default function Wallet({ name }) {
                   </div>
                   <input
                     type="number"
-                    placeholder="Type here"
+                    placeholder="Ketikan di sini "
                     className="input input-bordered w-full rounded-full"
                     defaultValue={amount}
                     onChange={(e) => setAmount(e.target.value)}
@@ -165,7 +165,7 @@ export default function Wallet({ name }) {
               </form>
             </div>
             <form method="dialog" className="modal-backdrop">
-              <button>close</button>
+              <button>Tutup</button>
             </form>
           </dialog>
 

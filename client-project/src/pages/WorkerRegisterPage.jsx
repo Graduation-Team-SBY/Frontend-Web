@@ -22,7 +22,7 @@ export default function WorkerRegisterPage() {
         },
       });
       // console.log(data);
-      toast.info('Success to Register as worker');
+      toast.info('Berhasil Mendaftar sebagai Yasa');
       navigate('/login');
     } catch (error) {
       toast.error(error.response.data.message);
@@ -55,7 +55,7 @@ export default function WorkerRegisterPage() {
           <img className="w-[100%]" src="/register2.svg" alt="" />
         </div>
         <div className="w-full lg:w-1/2 min-h-screen flex flex-col justify-center items-center text-[#1D204C]">
-          <h1 className="font-black text-4xl">Worker Register</h1>
+          <h1 className="font-black text-4xl">Pendaftaran Yasa</h1>
           <h6 className="font-bold text-gray-400">
             Create Account in this app
           </h6>

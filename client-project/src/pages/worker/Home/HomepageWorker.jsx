@@ -41,7 +41,7 @@ export default function HomepageWorker() {
     <>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold">
-          Welcome, <span className="text-[#05ECAE]">{profile.name}!</span>
+          Selamat datang, <span className="text-[#05ECAE]">{profile.name}!</span>
         </h1>
       </div>
       <div className="flex flex-col">
@@ -51,7 +51,7 @@ export default function HomepageWorker() {
 
         <div className="mt-6 bg-[#FFFFFF] p-6 rounded-lg">
           <select className="p-2 bg-[#FAF9FE] rounded">
-            <option>All types</option>
+            <option>Semua Tipe</option>
           </select>
         </div>
 

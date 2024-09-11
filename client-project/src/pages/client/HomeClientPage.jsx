@@ -28,7 +28,7 @@ export default function HomeClientPage() {
         },
       });
 
-      console.log(data, "<<<<<< Bst yass");
+      // console.log(data, "<<<<<< Bst yass");
       setYasaBest(data);
     } catch (error) {
       console.log(error);
@@ -38,6 +38,7 @@ export default function HomeClientPage() {
   useEffect(() => {
     fetchBestYasa();
   }, []);
+  
   useEffect(() => {
     dispatch(fetchProfile());
   }, [dispatch]);
@@ -129,11 +130,11 @@ export default function HomeClientPage() {
       {/* Carousel */}
 
       <div className="mt-20">
-        <h2 className="font-black text-3xl lg:text-4xl">Recommendation</h2>
+        <h2 className="font-black text-3xl lg:text-4xl">Rekomendasi</h2>
         <div className="flex gap-4 lg:justify-end items-center mt-5">
           <p>Filter :</p>
           <select className="select select-ghost w-fit" defaultValue="">
-            <option value="">All</option>
+            <option value="">Semua</option>
             <option value="Bebersih">Bebersih</option>
             <option value="Nitip">Nitip</option>
           </select>
@@ -184,11 +185,11 @@ export default function HomeClientPage() {
       </div>
 
       <div className="mt-20">
-        <h2 className="font-black text-3xl lg:text-4xl">Histories</h2>
+        <h2 className="font-black text-3xl lg:text-4xl">Riwayat</h2>
         <div className="flex gap-4 lg:justify-end items-center mt-5">
           <p>Filter :</p>
           <select className="select select-ghost w-fit" defaultValue="">
-            <option value="">All</option>
+            <option value="">Semua</option>
             <option value="Bebersih">Bebersih</option>
             <option value="Nitip">Nitip</option>
           </select>
