@@ -12,7 +12,7 @@ export default function AddOrderGmapsPage() {
   };
 
   const navigate = useNavigate();
-  const [title, setTitle] = useState("")
+  const [title, setTitle] = useState('');
   const [fee, setFee] = useState('');
   const [description, setDescription] = useState('');
   const [address, setAddress] = useState('');
@@ -89,7 +89,7 @@ export default function AddOrderGmapsPage() {
           </label>
 
           <label className="form-control w-full">
-            <div className="label">
+            <div className="label flex items-center justify-start">
               <span className="label-text">Biaya</span>
             </div>
             <input
@@ -99,6 +99,12 @@ export default function AddOrderGmapsPage() {
               className="input input-bordered w-full rounded-full"
               onChange={(e) => setFee(e.target.value)}
             />
+            <div className="label">
+              <span className="label-text-alt text-xs text-red-400">
+                *Harga hanya biaya jasa, tidak termasuk biaya belanja
+              </span>
+              {/* <span className="label-text-alt">Bottom Right label</span> */}
+            </div>
           </label>
 
           <label className="form-control">

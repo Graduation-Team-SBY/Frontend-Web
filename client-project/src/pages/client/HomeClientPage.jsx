@@ -55,7 +55,7 @@ export default function HomeClientPage() {
       <div className="flex flex-col-reverse lg:flex-row lg:gap-10 justify-between mt-10">
         <div className="my-auto w-full lg:w-1/2">
           <h1 className="lg:hidden font-black text-5xl my-10 text-[#1D204C]">
-            Halo, <span className="text-[#05ECAE]">Adit</span> !
+            Halo, <span className="text-[#05ECAE]">{profile.name ? profile.name : "Jalu"}</span> !
           </h1>
 
           <h2 className="font-bold text-xl md:text-2xl lg-text-3xl">
@@ -130,7 +130,7 @@ export default function HomeClientPage() {
       {/* Carousel */}
 
       <div className="mt-20">
-        <h2 className="font-black text-3xl lg:text-4xl">Rekomendasi</h2>
+        <h2 className="font-black text-3xl lg:text-4xl">Yasa Terbaik</h2>
         <div className="flex gap-4 lg:justify-end items-center mt-5">
           <p>Filter :</p>
           <select className="select select-ghost w-fit" defaultValue="">
@@ -184,36 +184,7 @@ export default function HomeClientPage() {
         </div>
       </div>
 
-      <div className="mt-20">
-        <h2 className="font-black text-3xl lg:text-4xl">Riwayat</h2>
-        <div className="flex gap-4 lg:justify-end items-center mt-5">
-          <p>Filter :</p>
-          <select className="select select-ghost w-fit" defaultValue="">
-            <option value="">Semua</option>
-            <option value="Bebersih">Bebersih</option>
-            <option value="Nitip">Nitip</option>
-          </select>
-        </div>
-
-        <div className="list-card flex gap-6 mt-5 overflow-y-auto no-scrollbar rounded-xl">
-          {[1, 2, 3, 4, 5, 6].map((_, i) => {
-            return (
-              <div
-                className="p-10 bg-white text-[#1D204C] rounded-xl w-96 shrink-0"
-                key={i}
-              >
-                <h3 className="font-black">Pencuci Piring</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Asperiores officia tempora voluptates ea id maiores earum
-                  numquam qui sapiente, eius, quisquam assumenda illo quis ipsa
-                  cum? Rem eveniet odio officiis?
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      
     </>
   );
 }
