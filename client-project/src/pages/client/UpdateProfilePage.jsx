@@ -44,7 +44,7 @@ export default function UpdateProfilePage() {
       });
 
       console.log(data);
-      toast.info('Success to Update Profile');
+      toast.info('Berhasil mengubah profile');
       navigate('/jalu/profile');
     } catch (error) {
       toast.error(error.response.data.message);
@@ -54,7 +54,7 @@ export default function UpdateProfilePage() {
     <div className="">
       <form className="mt-4" onSubmit={handleUpdate}>
         <div className="w-full my-auto">
-          <h1 className="font-black text-4xl mb-10">Update Profile</h1>
+          <h1 className="font-black text-4xl mb-10">Ubah Profile</h1>
 
           <label className="form-control w-full">
             <div className="label">
@@ -68,11 +68,11 @@ export default function UpdateProfilePage() {
           </label>
           <label className="form-control w-full">
             <div className="label">
-              <span className="label-text font-bold">Name</span>
+              <span className="label-text font-bold">Nama</span>
             </div>
             <input
               type="text"
-              placeholder="Type here"
+              placeholder="Ketikan Namamu di sini"
               value={name}
               className="input input-bordered w-full rounded-full py-6"
               onChange={(e) => setName(e.target.value)}
@@ -80,11 +80,10 @@ export default function UpdateProfilePage() {
           </label>
           <label className="form-control w-full">
             <div className="label">
-              <span className="label-text font-bold">Date of Birth</span>
+              <span className="label-text font-bold">Tanggal Lahir</span>
             </div>
             <input
               type="date"
-              placeholder="Type here"
               value={dateOfBirth}
               className="input input-bordered w-full rounded-full py-6"
               onChange={(e) => setdateOfBirth(e.target.value)}
@@ -92,11 +91,11 @@ export default function UpdateProfilePage() {
           </label>
           <label className="form-control w-full">
             <div className="label">
-              <span className="label-text font-bold">Address</span>
+              <span className="label-text font-bold">Alamat</span>
             </div>
             <input
               type="text"
-              placeholder="Type here"
+              placeholder="Ketikan Alamatmu di sini"
               value={address}
               className="input input-bordered w-full rounded-full py-6"
               onChange={(e) => setAddress(e.target.value)}
@@ -106,7 +105,7 @@ export default function UpdateProfilePage() {
             type="submit"
             className="py-4 w-full mt-14 rounded-full bg-[#1D204C] hover:bg-[#05ECAE] text-white hover:text-[#1D204C]"
           >
-            Save
+            Simpan
           </button>
         </div>
       </form>

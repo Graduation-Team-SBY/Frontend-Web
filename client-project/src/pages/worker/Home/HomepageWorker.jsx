@@ -3,10 +3,7 @@ import CardWorker from "../../../components/workerComponent/CardWorker";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-// 1D204C blue
-// 05ECAE mint
-// FFFFFF card
-// FAF9FE bg
+
 export default function HomepageWorker() {
   const [data, setData] = useState([]);
 
@@ -35,7 +32,7 @@ export default function HomepageWorker() {
     <>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold">
-          Welcome, <span className="text-[#05ECAE]">Adits!</span>
+          Selamat datang, <span className="text-[#05ECAE]">Adits!</span>
         </h1>
       </div>
       <div className="flex flex-col">
@@ -45,7 +42,7 @@ export default function HomepageWorker() {
 
         <div className="mt-6 bg-[#FFFFFF] p-6 rounded-lg">
           <select className="p-2 bg-[#FAF9FE] rounded">
-            <option>All types</option>
+            <option>Semua Tipe</option>
           </select>
         </div>
 

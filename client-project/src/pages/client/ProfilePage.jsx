@@ -41,7 +41,7 @@ export default function ProfilePage() {
         },
       });
 
-      console.log(data);
+      // console.log(data);
       setHistory(data);
     } catch (error) {
       console.log(error);
@@ -60,12 +60,7 @@ export default function ProfilePage() {
   return (
     <div className="">
       <div className="flex justify-between mb-6">
-        <h1 className="text-4xl font-black">My Profile</h1>
-        <div className="flex items-center gap-4">
-          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">
-            Unduh Profile
-          </button>
-        </div>
+        <h1 className="text-4xl font-black">Profile Saya</h1>
       </div>
       {/* Profile */}
       <div className=" mb-8 mt-20">
@@ -120,7 +115,7 @@ export default function ProfilePage() {
                     d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
                   />
                 </svg>
-                <p>Edit Profile</p>
+                <p>Ubah Profile</p>
               </div>
             </Link>
           </div>
@@ -142,7 +137,7 @@ export default function ProfilePage() {
             </div>
 
             <div className="">
-              <p className="text-gray-400">Nomor Telephone</p>
+              <p className="text-gray-400">Nomor Telepon</p>
               <p className="font-bold text-xl">
                 {profile.userData?.phoneNumber}
               </p>
@@ -151,7 +146,7 @@ export default function ProfilePage() {
 
           <div className="flex flex-wrap gap-x-20 gap-y-10 mt-10 mb-20">
             <div className="">
-              <p className="text-gray-400">Date of Birth</p>
+              <p className="text-gray-400">Tanggal Lahir</p>
               {/* <p className="font-bold text-xl">28 June 2001</p> */}
               {profile.dateOfBirth ? (
                 <p className="font-bold text-xl">
@@ -163,7 +158,7 @@ export default function ProfilePage() {
             </div>
 
             <div className="">
-              <p className="text-gray-400">My Address</p>
+              <p className="text-gray-400">Alamat</p>
               {profile.address ? (
                 <p className="font-bold text-xl">{profile.address}</p>
               ) : (
@@ -176,7 +171,7 @@ export default function ProfilePage() {
 
       {/* History */}
       <div className="">
-        <h2 className="text-2xl font-black mb-4">Histori</h2>
+        <h2 className="text-2xl font-black mb-4">Riwayat Pesanan</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Card */}
           {history.map((histories) => (

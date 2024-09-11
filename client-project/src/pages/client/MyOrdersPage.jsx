@@ -23,7 +23,7 @@ export default function MyOrdersPage() {
         },
       });
       setJobs(data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -35,7 +35,7 @@ export default function MyOrdersPage() {
 
   return (
     <div>
-      <h2 className="font-black text-4xl text-[#1D204C]">My Orders</h2>
+      <h2 className="font-black text-4xl text-[#1D204C]">Pesanan Saya</h2>
       <div className="flex gap-4 justify-end items-center mt-5">
         <p>Filter :</p>
         <select
@@ -43,7 +43,7 @@ export default function MyOrdersPage() {
           defaultValue={filter}
           onChange={(e) => setFilter(e.target.value)}
         >
-          <option value="">All</option>
+          <option value="">Semua</option>
           <option value="Bebersih">Bebersih</option>
           <option value="Nitip">Nitip</option>
         </select>

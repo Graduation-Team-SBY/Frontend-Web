@@ -99,7 +99,7 @@ export default function DetailOrderPage() {
   }, []);
   return (
     <div>
-      <h2 className="font-black text-4xl">Detail Order</h2>
+      <h2 className="font-black text-4xl">Detail Pesanan</h2>
       <div className="mt-20 flex flex-col md:flex-row gap-10">
         <div className="w-full md:w-1/2">
           {order.images ? (
@@ -186,7 +186,7 @@ export default function DetailOrderPage() {
 
       {order.workerId ? null : (
         <div className="mt-10">
-          <h2 className="text-2xl font-black mb-4">Waiting List Worker</h2>
+          <h2 className="text-2xl font-black mb-4">Daftar Tunggu Yasa</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {order.workers
               ? order.workers.map((worker) => {

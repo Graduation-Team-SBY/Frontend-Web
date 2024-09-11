@@ -72,12 +72,12 @@ export default function AddOrderGmapsPage() {
         </div>
         <div className="flex-1 flex flex-col gap-4">
           <h1 className="hidden md:block font-black text-4xl">
-            Let's start with your first job post.
+          Mari kita mulai dengan pesanan pertama Anda.
           </h1>
 
           <label className="form-control w-full">
             <div className="label">
-              <span className="label-text">Fee</span>
+              <span className="label-text">Biaya</span>
             </div>
             <input
               type="number"
@@ -102,7 +102,7 @@ export default function AddOrderGmapsPage() {
 
           <label className="form-control w-full">
             <div className="label">
-              <span className="label-text">Address</span>
+              <span className="label-text">Alamat</span>
             </div>
             <input
               type="text"
@@ -115,7 +115,7 @@ export default function AddOrderGmapsPage() {
 
           <label className="form-control">
             <div className="label">
-              <span className="label-text">Address Notes</span>
+              <span className="label-text">Catatan Alamat</span>
             </div>
             <textarea
               className="textarea textarea-bordered h-24 rounded-xl"
@@ -130,7 +130,7 @@ export default function AddOrderGmapsPage() {
             className="btn btn-block btn-lg bg-[#1D204C] text-white rounded-full mt-10"
             onClick={handleVerifOrder}
           >
-            Buat Orderan
+            Buat Pesanan
           </button>
           <dialog id="modal_confirm" className="modal">
             <div className="modal-box">
@@ -156,7 +156,7 @@ export default function AddOrderGmapsPage() {
                   </div>
 
                   <h2 className="text-center text-2xl font-semibold mb-3 text-[#1D204C]">
-                    Konfirmasi Order
+                    Konfirmasi Pesanan
                   </h2>
                   <p className="text-center text-3xl font-bold mb-6 text-[#1D204C]">
                     {formatCurrencyRupiah(fee)}
@@ -189,7 +189,7 @@ export default function AddOrderGmapsPage() {
                         type="submit"
                         className="btn btn-block btn-lg bg-[#1D204C] text-white rounded-full mt-10"
                       >
-                        Create
+                        Buat
                       </button>
                     </form>
                   </div>
@@ -198,7 +198,7 @@ export default function AddOrderGmapsPage() {
             </div>
 
             <form method="dialog" className="modal-backdrop">
-              <button>close</button>
+              <button>Tutup</button>
             </form>
           </dialog>
         </div>

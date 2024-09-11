@@ -8,7 +8,7 @@ export default function NavbarWorker() {
   const handleLogout = () => {
     localStorage.clear();
     navigate("/");
-    toast.info("Success to logout");
+    toast.info("Berhasil Keluar");
   };
 
   return (
@@ -40,11 +40,11 @@ export default function NavbarWorker() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/yasa">Home</Link>
+              <Link to="/yasa">Beranda</Link>
             </li>
 
             <li>
-              <Link to="/yasa/order/jobs">Work</Link>
+              <Link to="/yasa/order/jobs">Pesanan</Link>
             </li>
           </ul>
         </div>
@@ -52,7 +52,7 @@ export default function NavbarWorker() {
           to="/"
           className="ml-5 lg:ml-0 text-xl font-black hover:text-[#05ECAE]"
         >
-          AssistMaster
+          YangTu
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -62,7 +62,7 @@ export default function NavbarWorker() {
               className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
               to="/yasa"
             >
-              Home
+              Beranda
             </Link>
           </li>
           <li>
@@ -70,7 +70,7 @@ export default function NavbarWorker() {
               className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
               to="/yasa/order/jobs"
             >
-              Work
+              Pesanan
             </Link>
           </li>
           <li>
@@ -98,7 +98,7 @@ export default function NavbarWorker() {
               <Link to="/yasa/profile">Profile</Link>
             </li>
             <li>
-              <button onClick={handleLogout}>Logout</button>
+              <button onClick={handleLogout}>Keluar</button>
             </li>
           </ul>
         </div>

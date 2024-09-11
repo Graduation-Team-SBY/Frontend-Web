@@ -21,7 +21,7 @@ export default function ClientRegisterPage() {
           password,
         },
       });
-      toast.info('Success to Register');
+      toast.info('Berhasil Mendaftar');
       navigate('/login');
     } catch (error) {
       toast.error(error.response.data.message);
@@ -55,9 +55,9 @@ export default function ClientRegisterPage() {
           <img className="w-[100%]" src="/register2.svg" alt="" />
         </div>
         <div className="w-full lg:w-1/2 min-h-screen flex flex-col justify-center items-center text-[#1D204C]">
-          <h1 className="font-black text-4xl">Client Register</h1>
+          <h1 className="font-black text-4xl">Daftar Jalu</h1>
           <h6 className="font-bold text-gray-400">
-            Create Account in this app
+            Buat akun untuk masuk ke aplikasi
           </h6>
 
           <form
@@ -78,7 +78,7 @@ export default function ClientRegisterPage() {
             </label>
             <label className="form-control mt-3">
               <div className="label">
-                <span className="label-text font-bold">Phone Number</span>
+                <span className="label-text font-bold">Nomer Telepon</span>
               </div>
               <input
                 type="number"
@@ -90,7 +90,7 @@ export default function ClientRegisterPage() {
             </label>
             <label className="form-control mt-3">
               <div className="label">
-                <span className="label-text font-bold">Password</span>
+                <span className="label-text font-bold">Kata Sandi</span>
               </div>
               <input
                 type="password"
@@ -105,7 +105,7 @@ export default function ClientRegisterPage() {
               type="submit"
               className="btn btn-block btn-lg bg-[#1D204C] text-white mt-10 text-lg hover:text-[#1D204C] rounded-full"
             >
-              Register
+              Daftar
             </button>
           </form>
           <Link

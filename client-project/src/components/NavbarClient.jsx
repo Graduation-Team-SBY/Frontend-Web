@@ -15,7 +15,7 @@ export default function NavbarClient() {
 
   const handleLogout = () => {
     localStorage.clear();
-    toast.info('Success to logout');
+    toast.info('Berhasil Keluar');
     navigate('/');
   };
 
@@ -48,7 +48,7 @@ export default function NavbarClient() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/jalu">Home</Link>
+              <Link to="/jalu">Beranda</Link>
             </li>
 
             <li>
@@ -58,10 +58,10 @@ export default function NavbarClient() {
                 </summary>
                 <ul className="p-2 w-36">
                   <li>
-                    <Link to="/jalu/order/my">My Order</Link>
+                    <Link to="/jalu/order/my">Pesanan Saya</Link>
                   </li>
                   <li>
-                    <Link to="/jalu/order/history">History</Link>
+                    <Link to="/jalu/order/history">Riwayat Pesanan</Link>
                   </li>
                 </ul>
               </details>
@@ -72,7 +72,7 @@ export default function NavbarClient() {
           to="/"
           className="ml-5 lg:ml-0 text-xl font-black hover:text-[#05ECAE]"
         >
-          AssistMaster
+          YangTu
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -82,7 +82,7 @@ export default function NavbarClient() {
               className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
               to="/jalu"
             >
-              Home
+              Beranda
             </Link>
           </li>
 
@@ -91,7 +91,7 @@ export default function NavbarClient() {
               to="/jalu/order/my"
               className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full"
             >
-              My Order
+              Pesanan Saya
             </Link>
             {/* <details>
               <summary className="font-bold hover:text-[#1D204C] hover:bg-[#05ECAE] rounded-full">
@@ -128,7 +128,7 @@ export default function NavbarClient() {
               <Link to="/jalu/profile">Profile</Link>
             </li>
             <li>
-              <button onClick={handleLogout}>Logout</button>
+              <button onClick={handleLogout}>Keluar</button>
             </li>
           </ul>
         </div>

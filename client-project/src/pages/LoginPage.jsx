@@ -29,7 +29,7 @@ export default function LoginPage() {
         role = 'yasa';
       }
       localStorage.setItem('role', role);
-      toast.info('Success to login');
+      toast.info('Berhasil Masuk');
       navigate(`/${localStorage.role}`);
     } catch (error) {
       toast.error(error.response.data.message);
@@ -62,8 +62,8 @@ export default function LoginPage() {
           <img className="w-[100%]" src="/login2.svg" alt="" />
         </div>
         <div className="w-full lg:w-1/2 min-h-screen flex flex-col justify-center items-center text-[#1D204C]">
-          <h1 className="font-black text-4xl">Login</h1>
-          <h6 className="font-bold text-gray-400">Welcome back!</h6>
+          <h1 className="font-black text-4xl">Masuk</h1>
+          <h6 className="font-bold text-gray-400">Selamat datang kembali!</h6>
 
           <form
             onSubmit={handlerLogin}
@@ -76,7 +76,7 @@ export default function LoginPage() {
               <input
                 type="text"
                 name="email"
-                placeholder="Type here your email"
+                placeholder="Ketikan Email anda di sini"
                 className="input input-bordered rounded-full p-7"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -84,12 +84,12 @@ export default function LoginPage() {
 
             <label className="form-control mt-3">
               <div className="label">
-                <span className="label-text font-bold">Password</span>
+                <span className="label-text font-bold">Kata Sandi</span>
               </div>
               <input
                 type="password"
                 name="password"
-                placeholder="Type here your password"
+                placeholder="Ketikan Kata Sandi anda di sini"
                 className="input input-bordered rounded-full p-7"
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -99,7 +99,7 @@ export default function LoginPage() {
               type="submit"
               className="btn btn-block btn-lg bg-[#1D204C] text-white mt-10 text-lg hover:text-[#1D204C] rounded-full"
             >
-              Login
+              Masuk
             </button>
           </form>
 
@@ -135,7 +135,7 @@ export default function LoginPage() {
               </div>
             </div>
             <form method="dialog" className="modal-backdrop">
-              <button>close</button>
+              <button>Tutup</button>
             </form>
           </dialog>
         </div>

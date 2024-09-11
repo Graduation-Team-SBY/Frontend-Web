@@ -15,11 +15,7 @@ export default function CardWorker({ work }) {
               </h6>
             </span>
             <span className="px-3 py-1 text-xs text-[#1D204C] bg-[#05ECAE] rounded-full">
-              {work.category.name === "Nitip" ? (
-                <span className="p-1 rounded text-xs">Belanja</span>
-              ) : (
-                <span className="p-1 rounded text-xs">Rumah Tangga</span>
-              )}
+              <span className="p-1 rounded text-xs">{work.category.name}</span>
             </span>
           </div>
           <div className="mt-4 text-sm text-[#1D204C]">

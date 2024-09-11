@@ -19,7 +19,7 @@ export default function DetailOrderPage() {
         },
       });
 
-      console.log(data);
+      // console.log(data);
       setOrder(data);
     } catch (error) {
       console.log(error);
@@ -38,7 +38,7 @@ export default function DetailOrderPage() {
 
       // console.log(data);
       navigate("/yasa");
-      toast.success("Successfully apply for the job");
+      toast.success("Berhasil Menerima Pekerjaan");
     } catch (error) {
       console.log(error);
     }
@@ -50,7 +50,7 @@ export default function DetailOrderPage() {
 
   return (
     <div>
-      <h2 className="font-black text-4xl">Detail Order</h2>
+      <h2 className="font-black text-4xl">Detail Pesanan</h2>
       <div className="mt-20 flex gap-10">
         <div className="w-1/2">
           <img
@@ -69,7 +69,7 @@ export default function DetailOrderPage() {
             className="mt-10 w-1/2 bg-[#1D204C] text-white py-2 rounded-full hover:bg-[#1D204C]/90 focus:ring-4 focus:outline-none focus:ring-[#1D204C]/50 transition duration-300"
             onClick={() => handleApplyJob(id)}
           >
-            Apply
+            Melamar
           </button>
         </div>
       </div>

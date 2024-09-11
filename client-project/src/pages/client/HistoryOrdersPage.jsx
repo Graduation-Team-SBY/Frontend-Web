@@ -3,17 +3,16 @@ import React from 'react';
 export default function HistoryOrdersPage() {
   return (
     <div>
-      <h2 className="font-black text-4xl text-[#1D204C]">History Orders</h2>
+      <h2 className="font-black text-4xl text-[#1D204C]">Riwayat Pesanan</h2>
 
       <div className="flex gap-4 justify-end items-center mt-5">
         <p>Filter :</p>
         <select className="select select-ghost w-fit">
           <option disabled selected>
-            Category
+            Kategori
           </option>
-          <option>Svelte</option>
-          <option>Vue</option>
-          <option>React</option>
+          <option>Bebersih</option>
+          <option>Nitip</option>
         </select>
       </div>
 
